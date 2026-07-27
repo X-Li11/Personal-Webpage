@@ -1,18 +1,33 @@
 {
   "version": 1,
+  "updated": "2026-07-27T20:28:49.382Z",
   "entries": [
     {
       "id": "welcome-entry",
       "date": "2026-07-27",
-      "title": "First entry",
-      "body": "This is your log book. Type freely here — it's plain text, and blank lines make paragraphs.\n\nUse the checklist below for anything you want to tick off, and tags to group entries (e.g. work, research, personal).\n\nDelete this entry whenever you're ready.",
-      "tags": ["setup"],
-      "checklist": [
-        { "id": "c1", "text": "Create the GitHub repo and turn on Pages", "done": true },
-        { "id": "c2", "text": "Paste a fine-grained token into Settings", "done": false },
-        { "id": "c3", "text": "Write my first real entry", "done": false }
+      "title": "Log Trial",
+      "body": "Trying this webpage",
+      "tags": [
+        "setup"
       ],
-      "updated": "2026-07-27T00:00:00.000Z"
+      "checklist": [
+        {
+          "id": "c1",
+          "text": "Create the GitHub repo and turn on Pages",
+          "done": true
+        },
+        {
+          "id": "c2",
+          "text": "Paste a fine-grained token into Settings",
+          "done": true
+        },
+        {
+          "id": "c3",
+          "text": "Write my first real entry",
+          "done": true
+        }
+      ],
+      "updated": "2026-07-27T20:28:44.397Z"
     }
   ]
 }
