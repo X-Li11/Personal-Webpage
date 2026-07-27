@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log book · Xiangchen Li</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📓</text></svg>">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Xiangchen Li</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="logbook.html" class="active">Log book</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap lb">
+
+  <!-- ============ sidebar ============ -->
+  <aside class="panel sidebar">
+    <div class="toolbar">
+      <button class="primary" id="btnNew">+ New entry</button>
+      <div class="spacer"></div>
+      <button class="ghost" id="btnSettings" title="GitHub settings">⚙</button>
+    </div>
+
+    <input type="text" id="search" placeholder="Search entries…" autocomplete="off">
+    <div class="taglist" id="tagFilters"></div>
+    <ul class="entry-list" id="entryList"></ul>
+
+    <hr class="hr">
+    <div class="toolbar" style="margin:0">
+      <button class="primary" id="btnSave">Save to GitHub</button>
+      <button class="ghost" id="btnReload" title="Discard local changes and reload from GitHub">↻</button>
+    </div>
+    <div style="margin-top:10px"><span class="status" id="status"><span class="dot"></span><span id="statusText">Loading…</span></span></div>
+    <div style="margin-top:8px" class="sub">
+      <a href="#" id="btnExport">Export JSON</a> ·
+      <a href="#" id="btnImport">Import</a>
+      <input type="file" id="fileInput" accept="application/json" hidden>
+    </div>
+  </aside>
+
+  <!-- ============ editor ============ -->
+  <section class="panel" id="editorPanel">
+    <div id="emptyState" class="empty">
+      <p>No entry selected.</p>
+      <button class="primary" onclick="document.getElementById('btnNew').click()">Start today's entry</button>
+    </div>
+
+    <div id="editor" hidden>
+      <div class="entry-head">
+        <input type="text" id="entryTitle" placeholder="Untitled entry" autocomplete="off">
+        <input type="date" id="entryDate">
+      </div>
+      <div class="sub" id="entryMeta"></div>
+
+      <hr class="hr">
+
+      <textarea id="entryBody" rows="8" placeholder="What happened today?"></textarea>
+
+      <hr class="hr">
+
+      <div class="toolbar" style="margin-bottom:6px">
+        <strong style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3)">Checklist</strong>
+        <span class="sub" id="checkProgress"></span>
+        <div class="spacer"></div>
+        <button id="btnAddCheck">+ Item</button>
+      </div>
+      <div id="checkList"></div>
+
+      <hr class="hr">
+
+      <label class="field" style="margin:0">
+        <span>Tags — comma separated</span>
+        <input type="text" id="entryTags" placeholder="work, research, personal" autocomplete="off">
+      </label>
+
+      <hr class="hr">
+      <div class="toolbar" style="margin:0">
+        <button class="danger" id="btnDelete">Delete entry</button>
+        <div class="spacer"></div>
+        <button id="btnDuplicate">Duplicate</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ settings modal ============ -->
+<div class="modal-bg" id="settingsModal">
+  <div class="modal">
+    <h3>GitHub settings</h3>
+    <span class="sub">Your entries live in a JSON file in your repo. The token is stored only in this browser and is sent only to api.github.com.</span>
+    <label class="field"><span>Owner (your GitHub username)</span><input type="text" id="cfgOwner" placeholder="xiangchen"></label>
+    <label class="field"><span>Repository</span><input type="text" id="cfgRepo" placeholder="xiangchen.github.io"></label>
+    <label class="field"><span>Branch</span><input type="text" id="cfgBranch" placeholder="main"></label>
+    <label class="field"><span>Data file path</span><input type="text" id="cfgPath" placeholder="data/entries.json"></label>
+    <label class="field"><span>Fine-grained token — Contents: Read and write</span><input type="password" id="cfgToken" placeholder="github_pat_…"></label>
+    <div class="toolbar" style="margin:0">
+      <button class="ghost" id="btnForget">Forget token</button>
+      <div class="spacer"></div>
+      <button id="btnCancelCfg">Cancel</button>
+      <button class="primary" id="btnSaveCfg">Save &amp; connect</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+"use strict";
+
+/* ---------------- state ---------------- */
+const CFG_KEY = "logbook.cfg.v1";
+const CACHE_KEY = "logbook.cache.v1";
+const DEFAULT_PATH = "data/entries.json";
+
+let cfg = { owner:"", repo:"", branch:"main", path:DEFAULT_PATH, token:"" };
+let entries = [];
+let sha = null;            // git blob sha of the data file, needed to update it
+let currentId = null;
+let dirty = false;
+let activeTag = null;
+
+const $ = (id) => document.getElementById(id);
+const store = {
+  get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
+  set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+  del(k){ try { localStorage.removeItem(k); } catch {} }
+};
+
+const uid = () => Math.random().toString(36).slice(2,10) + Date.now().toString(36).slice(-4);
+const todayISO = () => { const d=new Date(); return new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10); };
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),2200); }
+function setStatus(text, kind){ const s=$("status"); s.className = "status" + (kind ? " "+kind : ""); $("statusText").textContent = text; }
+function markDirty(){ if(!dirty){ dirty = true; setStatus("Unsaved changes", "err"); } cacheLocal(); }
+function cacheLocal(){ store.set(CACHE_KEY, { entries, sha, dirty, savedAt: Date.now() }); }
+
+/* ---------------- data model helpers ---------------- */
+function newEntry(seed = {}){
+  return {
+    id: uid(),
+    date: seed.date || todayISO(),
+    title: seed.title || "",
+    body: seed.body || "",
+    tags: seed.tags ? [...seed.tags] : [],
+    checklist: (seed.checklist || []).map(c => ({ id: uid(), text: c.text, done: false })),
+    updated: new Date().toISOString()
+  };
+}
+const byId = (id) => entries.find(e => e.id === id);
+function sortEntries(){ entries.sort((a,b) => (b.date||"").localeCompare(a.date||"") || (b.updated||"").localeCompare(a.updated||"")); }
+function allTags(){ return [...new Set(entries.flatMap(e => e.tags || []))].sort(); }
+
+/* ---------------- GitHub I/O ---------------- */
+const apiUrl = () => `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}`;
+const configured = () => cfg.owner && cfg.repo && cfg.path;
+
+function b64encode(str){ return btoa(String.fromCharCode(...new TextEncoder().encode(str))); }
+function b64decode(b64){ const bin = atob(b64.replace(/\s/g,"")); return new TextDecoder().decode(Uint8Array.from(bin, c => c.charCodeAt(0))); }
+
+async function ghGet(){
+  const headers = { "Accept":"application/vnd.github+json" };
+  if (cfg.token) headers.Authorization = "Bearer " + cfg.token;
+  const res = await fetch(`${apiUrl()}?ref=${encodeURIComponent(cfg.branch||"main")}&t=${Date.now()}`, { headers, cache:"no-store" });
+  if (res.status === 404) return { entries: [], sha: null, missing: true };
+  if (!res.ok) throw new Error(`GitHub ${res.status}: ${(await res.json().catch(()=>({}))).message || res.statusText}`);
+  const json = await res.json();
+  const parsed = JSON.parse(b64decode(json.content || ""));
+  return { entries: parsed.entries || [], sha: json.sha };
+}
+
+async function ghPut(){
+  if (!cfg.token) throw new Error("No token set — open ⚙ settings to add one.");
+  const payload = JSON.stringify({ version: 1, updated: new Date().toISOString(), entries }, null, 2) + "\n";
+  const body = {
+    message: `log book: update ${new Date().toISOString().slice(0,16).replace("T"," ")}`,
+    content: b64encode(payload),
+    branch: cfg.branch || "main"
+  };
+  if (sha) body.sha = sha;
+  const res = await fetch(apiUrl(), {
+    method: "PUT",
+    headers: { "Accept":"application/vnd.github+json", "Authorization":"Bearer "+cfg.token, "Content-Type":"application/json" },
+    body: JSON.stringify(body)
+  });
+  const json = await res.json().catch(()=>({}));
+  if (!res.ok) throw new Error(`GitHub ${res.status}: ${json.message || res.statusText}`);
+  sha = json.content && json.content.sha;
+  return true;
+}
+
+async function load({ silent } = {}){
+  const cached = store.get(CACHE_KEY);
+  if (!configured()){
+    if (cached && cached.entries && cached.entries.length){
+      entries = cached.entries;
+    } else {
+      try {
+        const res = await fetch(DEFAULT_PATH + "?t=" + Date.now(), { cache:"no-store" });
+        entries = res.ok ? ((await res.json()).entries || []) : [];
+      } catch { entries = []; }
+    }
+    sortEntries(); render();
+    setStatus("Local only — set up GitHub in ⚙", "err");
+    return;
+  }
+  setStatus("Loading…");
+  try {
+    const r = await ghGet();
+    if (cached && cached.dirty && !silent){
+      // Unsaved local work beats the remote copy; keep it and let the user push.
+      entries = cached.entries; sha = r.sha; dirty = true;
+      render(); setStatus("Unsaved changes (restored)", "err");
+      return;
+    }
+    entries = r.entries; sha = r.sha; dirty = false;
+    sortEntries(); cacheLocal(); render();
+    setStatus(r.missing ? "File not found — Save will create it" : "Synced with GitHub", r.missing ? "err" : "ok");
+  } catch (err){
+    entries = (cached && cached.entries) || [];
+    render();
+    setStatus(String(err.message).slice(0,60), "err");
+  }
+}
+
+async function save(){
+  if (!configured()){ openSettings(); return; }
+  const btn = $("btnSave"); btn.disabled = true; setStatus("Saving…");
+  try {
+    await ghPut();
+    dirty = false; cacheLocal();
+    setStatus("Synced with GitHub", "ok"); toast("Saved to GitHub");
+  } catch (err){
+    setStatus(String(err.message).slice(0,60), "err"); toast("Save failed — " + err.message);
+  } finally { btn.disabled = false; }
+}
+
+/* ---------------- rendering ---------------- */
+function visibleEntries(){
+  const q = $("search").value.trim().toLowerCase();
+  return entries.filter(e => {
+    if (activeTag && !(e.tags||[]).includes(activeTag)) return false;
+    if (!q) return true;
+    const hay = [e.title, e.body, e.date, (e.tags||[]).join(" "), (e.checklist||[]).map(c=>c.text).join(" ")].join(" ").toLowerCase();
+    return hay.includes(q);
+  });
+}
+
+function render(){
+  sortEntries();
+  renderTags();
+  renderList();
+  renderEditor();
+}
+
+function renderTags(){
+  const tags = allTags();
+  $("tagFilters").innerHTML = tags.map(t =>
+    `<span class="tag${t===activeTag?" active":""}" data-tag="${esc(t)}">${esc(t)}</span>`
+  ).join("");
+}
+
+function renderList(){
+  const list = visibleEntries();
+  if (!list.length){
+    $("entryList").innerHTML = `<li style="cursor:default;color:var(--ink-3);font-size:.85rem">No matching entries.</li>`;
+    return;
+  }
+  $("entryList").innerHTML = list.map(e => {
+    const cl = e.checklist || [];
+    const done = cl.filter(c=>c.done).length;
+    const prog = cl.length ? `<span class="prog">${done}/${cl.length}</span>` : "";
+    return `<li data-id="${e.id}" class="${e.id===currentId?"active":""}">
+      <span class="t">${esc(e.title || "Untitled entry")}</span>
+      <span class="d">${esc(e.date || "")}</span>${prog}
+    </li>`;
+  }).join("");
+}
+
+function renderEditor(){
+  const e = byId(currentId);
+  $("editor").hidden = !e;
+  $("emptyState").hidden = !!e;
+  if (!e) return;
+
+  $("entryTitle").value = e.title || "";
+  $("entryDate").value = e.date || todayISO();
+  $("entryBody").value = e.body || "";
+  $("entryTags").value = (e.tags||[]).join(", ");
+  $("entryMeta").textContent = e.updated ? "Last edited " + new Date(e.updated).toLocaleString() : "";
+  autoGrow($("entryBody"));
+  renderChecklist(e);
+}
+
+function renderChecklist(e){
+  const cl = e.checklist || [];
+  $("checkProgress").textContent = cl.length ? `${cl.filter(c=>c.done).length} of ${cl.length} done` : "";
+  $("checkList").innerHTML = cl.map(c => `
+    <div class="check-row ${c.done?"done":""}" data-cid="${c.id}">
+      <input type="checkbox" ${c.done?"checked":""}>
+      <input type="text" class="ct" value="${esc(c.text)}" placeholder="Something to do…">
+      <button class="ghost row-del" title="Remove">✕</button>
+    </div>`).join("");
+}
+
+function autoGrow(el){ el.style.height = "auto"; el.style.height = Math.max(el.scrollHeight, 160) + "px"; }
+
+/* ---------------- editing actions ---------------- */
+function selectEntry(id){ currentId = id; render(); }
+
+function touch(e){ e.updated = new Date().toISOString(); markDirty(); }
+
+function createEntry(){
+  const e = newEntry();
+  entries.unshift(e);
+  currentId = e.id;
+  markDirty(); render();
+  $("entryTitle").focus();
+}
+
+/* ---------------- wiring ---------------- */
+$("btnNew").onclick = createEntry;
+$("btnSave").onclick = save;
+$("btnReload").onclick = async () => {
+  if (dirty && !confirm("Discard unsaved local changes and reload from GitHub?")) return;
+  dirty = false; store.del(CACHE_KEY); await load({ silent:true });
+};
+
+$("search").oninput = renderList;
+
+$("tagFilters").onclick = (ev) => {
+  const el = ev.target.closest(".tag"); if (!el) return;
+  const t = el.dataset.tag;
+  activeTag = (activeTag === t) ? null : t;
+  renderTags(); renderList();
+};
+
+$("entryList").onclick = (ev) => {
+  const li = ev.target.closest("li[data-id]"); if (!li) return;
+  selectEntry(li.dataset.id);
+};
+
+$("entryTitle").oninput = (ev) => { const e = byId(currentId); if(!e) return; e.title = ev.target.value; touch(e); renderList(); };
+$("entryDate").onchange = (ev) => { const e = byId(currentId); if(!e) return; e.date = ev.target.value; touch(e); render(); };
+$("entryBody").oninput = (ev) => { const e = byId(currentId); if(!e) return; e.body = ev.target.value; autoGrow(ev.target); touch(e); };
+$("entryTags").oninput = (ev) => {
+  const e = byId(currentId); if(!e) return;
+  e.tags = ev.target.value.split(",").map(s=>s.trim()).filter(Boolean);
+  touch(e); renderTags(); renderList();
+};
+
+$("btnAddCheck").onclick = () => addCheckItem();
+function addCheckItem(afterId){
+  const e = byId(currentId); if(!e) return;
+  e.checklist = e.checklist || [];
+  const item = { id: uid(), text:"", done:false };
+  const idx = afterId ? e.checklist.findIndex(c=>c.id===afterId) : -1;
+  if (idx >= 0) e.checklist.splice(idx+1, 0, item); else e.checklist.push(item);
+  touch(e); renderChecklist(e); renderList();
+  const el = $("checkList").querySelector(`[data-cid="${item.id}"] .ct`);
+  if (el) el.focus();
+}
+
+$("checkList").addEventListener("change", (ev) => {
+  if (ev.target.type !== "checkbox") return;
+  const e = byId(currentId); const cid = ev.target.closest(".check-row").dataset.cid;
+  const c = e.checklist.find(x=>x.id===cid); if(!c) return;
+  c.done = ev.target.checked; touch(e); renderChecklist(e); renderList();
+});
+
+$("checkList").addEventListener("input", (ev) => {
+  if (!ev.target.classList.contains("ct")) return;
+  const e = byId(currentId); const cid = ev.target.closest(".check-row").dataset.cid;
+  const c = e.checklist.find(x=>x.id===cid); if(!c) return;
+  c.text = ev.target.value; touch(e);
+});
+
+$("checkList").addEventListener("keydown", (ev) => {
+  if (!ev.target.classList.contains("ct")) return;
+  const cid = ev.target.closest(".check-row").dataset.cid;
+  if (ev.key === "Enter"){ ev.preventDefault(); addCheckItem(cid); }
+  if (ev.key === "Backspace" && ev.target.value === ""){ ev.preventDefault(); removeCheckItem(cid, true); }
+});
+
+$("checkList").addEventListener("click", (ev) => {
+  if (!ev.target.classList.contains("row-del")) return;
+  removeCheckItem(ev.target.closest(".check-row").dataset.cid);
+});
+
+function removeCheckItem(cid, focusPrev){
+  const e = byId(currentId); if(!e) return;
+  const i = e.checklist.findIndex(c=>c.id===cid); if (i<0) return;
+  e.checklist.splice(i,1); touch(e); renderChecklist(e); renderList();
+  if (focusPrev){
+    const rows = $("checkList").querySelectorAll(".ct");
+    const target = rows[Math.max(0, i-1)];
+    if (target){ target.focus(); target.setSelectionRange(target.value.length, target.value.length); }
+  }
+}
+
+$("btnDelete").onclick = () => {
+  const e = byId(currentId); if(!e) return;
+  if (!confirm(`Delete "${e.title || "Untitled entry"}"? This can't be undone once you save.`)) return;
+  entries = entries.filter(x => x.id !== e.id);
+  currentId = entries.length ? entries[0].id : null;
+  markDirty(); render();
+};
+
+$("btnDuplicate").onclick = () => {
+  const e = byId(currentId); if(!e) return;
+  const copy = newEntry({ date: todayISO(), title: e.title, body: e.body, tags: e.tags, checklist: e.checklist });
+  entries.unshift(copy); currentId = copy.id; markDirty(); render();
+};
+
+/* export / import */
+$("btnExport").onclick = (ev) => {
+  ev.preventDefault();
+  const blob = new Blob([JSON.stringify({ version:1, entries }, null, 2)], { type:"application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = `logbook-${todayISO()}.json`; a.click();
+  URL.revokeObjectURL(a.href);
+};
+$("btnImport").onclick = (ev) => { ev.preventDefault(); $("fileInput").click(); };
+$("fileInput").onchange = async (ev) => {
+  const f = ev.target.files[0]; if(!f) return;
+  try {
+    const data = JSON.parse(await f.text());
+    const incoming = data.entries || [];
+    const known = new Set(entries.map(e=>e.id));
+    entries = entries.concat(incoming.filter(e => !known.has(e.id)));
+    markDirty(); render(); toast(`Imported ${incoming.length} entries`);
+  } catch { toast("Couldn't read that file"); }
+  ev.target.value = "";
+};
+
+/* settings */
+function openSettings(){
+  $("cfgOwner").value = cfg.owner; $("cfgRepo").value = cfg.repo;
+  $("cfgBranch").value = cfg.branch || "main"; $("cfgPath").value = cfg.path || DEFAULT_PATH;
+  $("cfgToken").value = cfg.token;
+  $("settingsModal").classList.add("open");
+}
+$("btnSettings").onclick = openSettings;
+$("btnCancelCfg").onclick = () => $("settingsModal").classList.remove("open");
+$("settingsModal").onclick = (ev) => { if (ev.target === $("settingsModal")) $("settingsModal").classList.remove("open"); };
+$("btnForget").onclick = () => { cfg.token = ""; $("cfgToken").value = ""; store.set(CFG_KEY, cfg); toast("Token removed from this browser"); };
+$("btnSaveCfg").onclick = async () => {
+  cfg = {
+    owner: $("cfgOwner").value.trim(), repo: $("cfgRepo").value.trim(),
+    branch: $("cfgBranch").value.trim() || "main",
+    path: $("cfgPath").value.trim() || DEFAULT_PATH,
+    token: $("cfgToken").value.trim()
+  };
+  store.set(CFG_KEY, cfg);
+  $("settingsModal").classList.remove("open");
+  await load({ silent: !dirty });
+};
+
+/* keyboard + unload guards */
+document.addEventListener("keydown", (ev) => {
+  if ((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === "s"){ ev.preventDefault(); save(); }
+  if ((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === "k"){ ev.preventDefault(); $("search").focus(); }
+  if (ev.key === "Escape") $("settingsModal").classList.remove("open");
+});
+window.addEventListener("beforeunload", (ev) => { if (dirty){ ev.preventDefault(); ev.returnValue = ""; } });
+
+/* boot */
+(async function boot(){
+  const saved = store.get(CFG_KEY);
+  if (saved) cfg = Object.assign(cfg, saved);
+  await load();
+  if (!currentId && entries.length) currentId = entries[0].id;
+  render();
+})();
+
+})();
+</script>
+</body>
+</html>
