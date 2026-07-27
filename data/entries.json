@@ -1,18 +1,60 @@
 {
   "version": 1,
+  "updated": "2026-07-27T20:50:57.461Z",
   "entries": [
+    {
+      "id": "w4rbmap9jgeb",
+      "date": "2026-07-27",
+      "title": "07/27 Log",
+      "body": "Confirmed some setup things:\nPolarity of TX 0 has to be NOT INVERTED\nPolarity of all RX has to be NOT INVERTED\nThe DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\nDon’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n-o /data in scanConsole to save data locally not in container only\ntx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\nrx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n",
+      "tags": [
+        "DAQ"
+      ],
+      "checklist": [
+        {
+          "id": "206qo9ebmmio",
+          "text": "Reproduce a few successful scans as last Friday",
+          "done": true
+        },
+        {
+          "id": "w42uwjdfpj76",
+          "text": "Try different scans ",
+          "done": false
+        },
+        {
+          "id": "sfw3g9qwpsfk",
+          "text": "",
+          "done": false
+        }
+      ],
+      "updated": "2026-07-27T20:33:48.080Z"
+    },
     {
       "id": "welcome-entry",
       "date": "2026-07-27",
-      "title": "First entry",
-      "body": "This is your log book. Type freely here — it's plain text, and blank lines make paragraphs.\n\nUse the checklist below for anything you want to tick off, and tags to group entries (e.g. work, research, personal).\n\nDelete this entry whenever you're ready.",
-      "tags": ["setup"],
-      "checklist": [
-        { "id": "c1", "text": "Create the GitHub repo and turn on Pages", "done": true },
-        { "id": "c2", "text": "Paste a fine-grained token into Settings", "done": false },
-        { "id": "c3", "text": "Write my first real entry", "done": false }
+      "title": "Log Trial",
+      "body": "Trying this webpage",
+      "tags": [
+        "setup"
       ],
-      "updated": "2026-07-27T00:00:00.000Z"
+      "checklist": [
+        {
+          "id": "c1",
+          "text": "Create the GitHub repo and turn on Pages",
+          "done": true
+        },
+        {
+          "id": "c2",
+          "text": "Paste a fine-grained token into Settings",
+          "done": true
+        },
+        {
+          "id": "c3",
+          "text": "Write my first real entry",
+          "done": true
+        }
+      ],
+      "updated": "2026-07-27T20:28:44.397Z"
     }
   ]
 }
