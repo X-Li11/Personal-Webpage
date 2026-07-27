@@ -1,12 +1,28 @@
 {
   "version": 1,
-  "updated": "2026-07-27T21:25:24.787Z",
+  "updated": "2026-07-27T22:44:11.847Z",
+  "todoOrder": [],
   "entries": [
+    {
+      "id": "tpuohcv4t7dg",
+      "date": "2026-07-27",
+      "title": "Miscellaneous",
+      "body": "",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "j1m9btvntvgl",
+          "text": "Upload insurance for the eye examination",
+          "done": false
+        }
+      ],
+      "updated": "2026-07-27T22:01:09.058Z"
+    },
     {
       "id": "w4rbmap9jgeb",
       "date": "2026-07-27",
       "title": "07/27 Log",
-      "body": "# Microservices DAQ test with the triplet module:\n\nConfirmed some setup things:\n- Polarity of TX 0 has to be NOT INVERTED\n- Polarity of all RX has to be NOT INVERTED\n- The DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\n- Don’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n- -o /data in scanConsole to save data locally not in container only\n- tx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\n- rx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n",
+      "body": "# Microservices DAQ test with the triplet module:\n\nConfirmed some setup things:\n- Polarity of TX 0 has to be NOT INVERTED\n- Polarity of all RX has to be NOT INVERTED\n- The DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\n- Don’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n- -o /data in scanConsole to save data locally not in container only\n- tx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\n- rx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n- Need SerEnLane=7; SerEnLane=1 gives error",
       "tags": [
         "DAQ"
       ],
@@ -25,9 +41,14 @@
           "id": "sfw3g9qwpsfk",
           "text": "",
           "done": false
+        },
+        {
+          "id": "yk3199kbvg1m",
+          "text": "Write to Maximilian to ask about Streamlit",
+          "done": false
         }
       ],
-      "updated": "2026-07-27T21:16:52.581Z"
+      "updated": "2026-07-27T22:44:08.931Z"
     },
     {
       "id": "welcome-entry",
