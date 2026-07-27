@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-27T23:34:36.514Z",
+  "updated": "2026-07-27T23:35:53.587Z",
   "todoOrder": [
     "w4rbmap9jgeb::yk3199kbvg1m",
     "w4rbmap9jgeb::r5tjsgx7w195",
@@ -16,7 +16,7 @@
       "id": "w4rbmap9jgeb",
       "date": "2026-07-27",
       "title": "07/27 Log",
-      "body": "# Microservices DAQ test with the triplet module:\n\nConfirmed some setup things:\n- Polarity of TX 0 has to be NOT INVERTED\n- Polarity of all RX has to be NOT INVERTED\n- The DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\n- Don’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n- -o /data in scanConsole to save data locally not in container only\n- tx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\n- rx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n- Need SerEnLane=7; SerEnLane=1 gives error\n\n\nAnalyzed results can be examined through config db runkey ui. Check scan log for counts of different errors.\n\nThe issue now is threshold scan is giving many split event count error\n\nOne note: we only define one rx for module config, but we actually have 3. The other 2 are auto assigned after configuration. Can we manually set all 3? \nAre we reading out from the one rx we define? And it is due to we have lanes combined?\n\n# Hyy\nHeard from Stefano; need to work on it",
+      "body": "# Microservices DAQ test with the triplet module:\n\nConfirmed some setup things:\n- Polarity of TX 0 has to be NOT INVERTED\n- Polarity of all RX has to be NOT INVERTED\n- The DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\n- Don’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n- -o /data in scanConsole to save data locally not in container only\n- tx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\n- rx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n- Need SerEnLane=7; SerEnLane=1 gives error\n\n\nAnalyzed results can be examined through config db runkey ui. Check scan log for counts of different errors.\n\nThe issue now is threshold scan is giving many split event count error\n\nOne note: we only define one rx for module config, but we actually have 3. The other 2 are auto assigned after configuration. Can we manually set all 3? \nAre we reading out from the one rx we define? And it is due to we have lanes combined?\n\nStart planning for adding more connections and bringing other chips\nOrganize the Documentation better to make it readable for others\n\n# Hyy\nHeard from Stefano; need to work on it\n\n# Other\n1. Streamlit\n    1. Ask Maximilian about Streamlit \n    2. we dont need our own scripts; then later need to test how to adapt streamlit to have the functions we need; regarding SN for instance, how do we add them in with the SN we want\n2. Go through all the QC boxes and see if it’s general issue or IS implementation/specific/IS structure\n3. Check all the tests we want to include is in the runkey \n    1. Document we have with the runkey assembler UI available test\n4. Update our stages (like thermal cycle we have our own)\n5. Try the dcs commands Zhi showed\n",
       "tags": [
         "DAQ",
         "Hyy"
@@ -73,7 +73,7 @@
           "done": false
         }
       ],
-      "updated": "2026-07-27T23:33:58.797Z"
+      "updated": "2026-07-27T23:35:41.426Z"
     },
     {
       "id": "tpuohcv4t7dg",
