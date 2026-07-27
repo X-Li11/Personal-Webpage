@@ -28,11 +28,6 @@ git push -u origin main
 Then: repo **Settings → Pages → Source: Deploy from a branch → main / (root)**.
 Give it a minute and your site is live.
 
-If the site 404s and the Actions tab shows no `pages-build-deployment` run, the
-build never queued. Check that your account email is verified, that Actions are
-enabled for the repo, and re-register the source (set Source to None, Save, then
-back to the branch and Save).
-
 ## 2. Make a token so the page can save
 
 The log book reads `data/entries.json` from your repo and writes it back through
@@ -81,6 +76,19 @@ needs a paid plan).
 | Save | **Save to GitHub**, or **⌘S** |
 | Backup | **Export JSON** / **Import** |
 
+### To Do List
+
+Pinned above the entry list is a **To Do List** — every unchecked checklist item
+from every entry, gathered in one place. It isn't a real entry; it's a live view,
+so there's nothing to write in it and nothing to keep in sync.
+
+- **Reorder by priority** — drag the ⠿ handle, or focus it and use ↑/↓. Top is
+  highest priority. The order is saved in `data/entries.json` as `todoOrder`.
+- **Tick an item** and it's marked done on its source entry and drops off the list.
+- **Click the grey source line** under an item to jump to the entry it came from.
+- New items appear at the bottom until you give them a position. Empty items are
+  ignored until you type something.
+
 ### Markdown
 
 Entry bodies are Markdown. The notes area shows the rendered version by default —
@@ -88,8 +96,8 @@ click anywhere in it (or hit **Edit**) to get the raw text back, **Escape** or
 **Preview** to render again. New empty entries open straight into edit mode.
 
 Supported: `#`/`##`/`###` headings, `**bold**`, `*italic*`, `~~strikethrough~~`,
-`` `inline code` ``, fenced code blocks, bulleted and numbered lists (one level
-of nesting), `> blockquotes`, `---` rules, `[links](url)`, bare URLs, images, and
+`` `inline code` ``, fenced ``` blocks, bulleted and numbered lists (one level of
+nesting), `> blockquotes`, `---` rules, `[links](url)`, bare URLs, images, and
 pipe tables. The renderer is ~90 lines of JS in `logbook.html` — no library, no
 CDN. It escapes all HTML before parsing and only allows `http(s)`, `mailto`,
 anchor, and relative links, so pasting something odd into an entry can't execute

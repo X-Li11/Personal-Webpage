@@ -31,6 +31,7 @@
 
     <input type="text" id="search" placeholder="Search entries…" autocomplete="off">
     <div class="taglist" id="tagFilters"></div>
+    <ul class="pinned-list" id="pinnedList"></ul>
     <ul class="entry-list" id="entryList"></ul>
 
     <hr class="hr">
@@ -51,6 +52,19 @@
     <div id="emptyState" class="empty">
       <p>No entry selected.</p>
       <button class="primary" onclick="document.getElementById('btnNew').click()">Start today's entry</button>
+    </div>
+
+    <div id="todoView" hidden>
+      <div class="entry-head">
+        <input type="text" id="todoTitle" value="To Do List" disabled
+               style="border:none;background:transparent;font-size:1.5rem;font-weight:650;letter-spacing:-0.02em;padding:4px 0;color:var(--ink);-webkit-text-fill-color:var(--ink);opacity:1">
+      </div>
+      <div class="sub" id="todoMeta"></div>
+      <hr class="hr">
+      <div class="toolbar" style="margin-bottom:2px">
+        <span class="sub">Drag the handle to reorder — top is highest priority. Arrow keys work too.</span>
+      </div>
+      <div class="todo-list" id="todoList"></div>
     </div>
 
     <div id="editor" hidden>
@@ -129,7 +143,10 @@ const CACHE_KEY = "logbook.cache.v1";
 const DEFAULT_PATH = "data/entries.json";
 
 let cfg = { owner:"", repo:"", branch:"main", path:DEFAULT_PATH, token:"" };
+const TODO_ID = "__todo__";
+
 let entries = [];
+let todoOrder = [];        // priority order for the pinned To Do List, as "entryId::itemId"
 let sha = null;            // git blob sha of the data file, needed to update it
 let currentId = null;
 let dirty = false;
@@ -260,7 +277,7 @@ function parseList(lines, i, end){
 function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),2200); }
 function setStatus(text, kind){ const s=$("status"); s.className = "status" + (kind ? " "+kind : ""); $("statusText").textContent = text; }
 function markDirty(){ if(!dirty){ dirty = true; setStatus("Unsaved changes", "err"); } cacheLocal(); }
-function cacheLocal(){ store.set(CACHE_KEY, { entries, sha, dirty, savedAt: Date.now() }); }
+function cacheLocal(){ store.set(CACHE_KEY, { entries, todoOrder, sha, dirty, savedAt: Date.now() }); }
 
 /* ---------------- data model helpers ---------------- */
 function newEntry(seed = {}){
@@ -293,12 +310,12 @@ async function ghGet(){
   if (!res.ok) throw new Error(`GitHub ${res.status}: ${(await res.json().catch(()=>({}))).message || res.statusText}`);
   const json = await res.json();
   const parsed = JSON.parse(b64decode(json.content || ""));
-  return { entries: parsed.entries || [], sha: json.sha };
+  return { entries: parsed.entries || [], todoOrder: parsed.todoOrder || [], sha: json.sha };
 }
 
 async function ghPut(){
   if (!cfg.token) throw new Error("No token set — open ⚙ settings to add one.");
-  const payload = JSON.stringify({ version: 1, updated: new Date().toISOString(), entries }, null, 2) + "\n";
+  const payload = JSON.stringify({ version: 1, updated: new Date().toISOString(), todoOrder, entries }, null, 2) + "\n";
   const body = {
     message: `log book: update ${new Date().toISOString().slice(0,16).replace("T"," ")}`,
     content: b64encode(payload),
@@ -320,12 +337,13 @@ async function load({ silent } = {}){
   const cached = store.get(CACHE_KEY);
   if (!configured()){
     if (cached && cached.entries && cached.entries.length){
-      entries = cached.entries;
+      entries = cached.entries; todoOrder = cached.todoOrder || [];
     } else {
       try {
         const res = await fetch(DEFAULT_PATH + "?t=" + Date.now(), { cache:"no-store" });
-        entries = res.ok ? ((await res.json()).entries || []) : [];
-      } catch { entries = []; }
+        const j = res.ok ? await res.json() : {};
+        entries = j.entries || []; todoOrder = j.todoOrder || [];
+      } catch { entries = []; todoOrder = []; }
     }
     sortEntries(); render();
     setStatus("Local only — set up GitHub in ⚙", "err");
@@ -336,15 +354,16 @@ async function load({ silent } = {}){
     const r = await ghGet();
     if (cached && cached.dirty && !silent){
       // Unsaved local work beats the remote copy; keep it and let the user push.
-      entries = cached.entries; sha = r.sha; dirty = true;
+      entries = cached.entries; todoOrder = cached.todoOrder || []; sha = r.sha; dirty = true;
       render(); setStatus("Unsaved changes (restored)", "err");
       return;
     }
-    entries = r.entries; sha = r.sha; dirty = false;
+    entries = r.entries; todoOrder = r.todoOrder || []; sha = r.sha; dirty = false;
     sortEntries(); cacheLocal(); render();
     setStatus(r.missing ? "File not found — Save will create it" : "Synced with GitHub", r.missing ? "err" : "ok");
   } catch (err){
     entries = (cached && cached.entries) || [];
+    todoOrder = (cached && cached.todoOrder) || [];
     render();
     setStatus(String(err.message).slice(0,60), "err");
   }
@@ -376,9 +395,132 @@ function visibleEntries(){
 function render(){
   sortEntries();
   renderTags();
+  renderPinned();
   renderList();
   renderEditor();
 }
+
+/* ---------------- pinned To Do List ---------------- */
+const todoKey = (entryId, itemId) => entryId + "::" + itemId;
+
+/* Every unchecked checklist item across all entries, in saved priority order.
+   Items with no saved position sort after the ordered ones, newest entry first. */
+function todoItems(){
+  const items = [];
+  for (const e of entries)
+    for (const c of (e.checklist || []))
+      if (!c.done && (c.text || "").trim()) items.push({ key: todoKey(e.id, c.id), entry: e, item: c });
+
+  const rank = new Map(todoOrder.map((k, i) => [k, i]));
+  return items
+    .map((x, i) => ({ ...x, _r: rank.has(x.key) ? rank.get(x.key) : Infinity, _i: i }))
+    .sort((a, b) =>
+      a._r !== b._r ? a._r - b._r
+      : (b.entry.date || "").localeCompare(a.entry.date || "") || a._i - b._i);
+}
+
+function renderPinned(){
+  const n = todoItems().length;
+  $("pinnedList").innerHTML =
+    `<li data-id="${TODO_ID}" class="${currentId === TODO_ID ? "active" : ""}">
+       <span class="t">To Do List</span>
+       <span class="n">${n} open</span>
+     </li>`;
+}
+
+function renderTodo(){
+  const items = todoItems();
+  $("todoMeta").textContent = items.length
+    ? `${items.length} open item${items.length === 1 ? "" : "s"} across ${new Set(items.map(x => x.entry.id)).size} entries`
+    : "";
+  if (!items.length){
+    $("todoList").innerHTML = `<div class="empty">Nothing open — every checklist item is ticked off.</div>`;
+    return;
+  }
+  $("todoList").innerHTML = items.map((x, i) => `
+    <div class="todo-row" data-key="${x.key}">
+      <button class="todo-handle" title="Drag to reorder" aria-label="Reorder item">⠿</button>
+      <span class="todo-rank">${i + 1}</span>
+      <input type="checkbox">
+      <span class="todo-main">
+        <span class="todo-text">${esc(x.item.text)}</span>
+        <span class="todo-src" data-entry="${x.entry.id}">${esc(x.entry.title || "Untitled entry")} · ${esc(x.entry.date || "")}</span>
+      </span>
+    </div>`).join("");
+}
+
+/* Persist whatever order the rows are currently in. */
+function commitTodoOrder(){
+  const next = [...$("todoList").querySelectorAll(".todo-row")].map(r => r.dataset.key);
+  [...$("todoList").querySelectorAll(".todo-rank")].forEach((el, i) => el.textContent = i + 1);
+  if (next.join("|") === todoOrder.join("|")) return;   // nothing moved — don't dirty the file
+  todoOrder = next;
+  markDirty();
+}
+
+/* drag to reorder — pointer events, so it works with mouse and touch alike */
+let dragRow = null;
+$("todoList").addEventListener("pointerdown", (ev) => {
+  const handle = ev.target.closest(".todo-handle"); if (!handle) return;
+  ev.preventDefault();
+  dragRow = handle.closest(".todo-row");
+  dragRow.classList.add("dragging");
+  handle.setPointerCapture(ev.pointerId);
+});
+$("todoList").addEventListener("pointermove", (ev) => {
+  if (!dragRow) return;
+  const rows = [...$("todoList").querySelectorAll(".todo-row")].filter(r => r !== dragRow);
+  for (const r of rows){
+    const box = r.getBoundingClientRect();
+    const mid = box.top + box.height / 2;
+    if (ev.clientY < mid && r.compareDocumentPosition(dragRow) & Node.DOCUMENT_POSITION_FOLLOWING){
+      r.before(dragRow); break;
+    }
+    if (ev.clientY > mid && r.compareDocumentPosition(dragRow) & Node.DOCUMENT_POSITION_PRECEDING){
+      r.after(dragRow);
+    }
+  }
+});
+$("todoList").addEventListener("pointerup", (ev) => {
+  if (!dragRow) return;
+  const handle = dragRow.querySelector(".todo-handle");
+  try { handle.releasePointerCapture(ev.pointerId); } catch {}
+  dragRow.classList.remove("dragging");
+  dragRow = null;
+  commitTodoOrder();
+});
+
+/* keyboard reordering from the handle */
+$("todoList").addEventListener("keydown", (ev) => {
+  const handle = ev.target.closest(".todo-handle"); if (!handle) return;
+  const row = handle.closest(".todo-row");
+  if (ev.key === "ArrowUp" && row.previousElementSibling){
+    ev.preventDefault(); row.previousElementSibling.before(row); commitTodoOrder(); handle.focus();
+  }
+  if (ev.key === "ArrowDown" && row.nextElementSibling){
+    ev.preventDefault(); row.nextElementSibling.after(row); commitTodoOrder(); handle.focus();
+  }
+});
+
+/* ticking an item here marks it done on its source entry */
+$("todoList").addEventListener("change", (ev) => {
+  if (ev.target.type !== "checkbox") return;
+  const key = ev.target.closest(".todo-row").dataset.key;
+  const [entryId, itemId] = key.split("::");
+  const e = byId(entryId); if (!e) return;
+  const c = (e.checklist || []).find(x => x.id === itemId); if (!c) return;
+  c.done = true;
+  todoOrder = todoOrder.filter(k => k !== key);
+  touch(e);
+  render();
+  toast(`Done — “${c.text}”`);
+});
+
+/* jump to the entry an item came from */
+$("todoList").addEventListener("click", (ev) => {
+  const src = ev.target.closest(".todo-src"); if (!src) return;
+  selectEntry(src.dataset.entry);
+});
 
 function renderTags(){
   const tags = allTags();
@@ -388,6 +530,7 @@ function renderTags(){
 }
 
 function renderList(){
+  renderPinned();   // open-item count changes whenever a checklist does
   const list = visibleEntries();
   if (!list.length){
     $("entryList").innerHTML = `<li style="cursor:default;color:var(--ink-3);font-size:.85rem">No matching entries.</li>`;
@@ -405,9 +548,12 @@ function renderList(){
 }
 
 function renderEditor(){
-  const e = byId(currentId);
+  const isTodo = currentId === TODO_ID;
+  const e = isTodo ? null : byId(currentId);
+  $("todoView").hidden = !isTodo;
   $("editor").hidden = !e;
-  $("emptyState").hidden = !!e;
+  $("emptyState").hidden = !!e || isTodo;
+  if (isTodo){ renderTodo(); return; }
   if (!e) return;
 
   $("entryTitle").value = e.title || "";
@@ -489,6 +635,8 @@ $("entryList").onclick = (ev) => {
   selectEntry(li.dataset.id);
 };
 
+$("pinnedList").onclick = () => selectEntry(TODO_ID);
+
 $("entryTitle").oninput = (ev) => { const e = byId(currentId); if(!e) return; e.title = ev.target.value; touch(e); renderList(); };
 $("entryDate").onchange = (ev) => { const e = byId(currentId); if(!e) return; e.date = ev.target.value; touch(e); render(); };
 $("entryBody").oninput = (ev) => { const e = byId(currentId); if(!e) return; e.body = ev.target.value; autoGrow(ev.target); touch(e); };
@@ -526,7 +674,7 @@ $("checkList").addEventListener("input", (ev) => {
   if (!ev.target.classList.contains("ct")) return;
   const e = byId(currentId); const cid = ev.target.closest(".check-row").dataset.cid;
   const c = e.checklist.find(x=>x.id===cid); if(!c) return;
-  c.text = ev.target.value; touch(e);
+  c.text = ev.target.value; touch(e); renderPinned();
 });
 
 $("checkList").addEventListener("keydown", (ev) => {

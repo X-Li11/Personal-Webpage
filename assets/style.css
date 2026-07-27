@@ -164,6 +164,56 @@ label.field > span {
 .entry-list .d { font-size: .76rem; color: var(--ink-3); font-family: var(--mono); }
 .entry-list .prog { font-size: .74rem; color: var(--ok); margin-left: 8px; }
 
+/* ---------- pinned to-do ---------- */
+.pinned-list { list-style: none; margin: 12px 0 0; padding: 0; }
+.pinned-list li {
+  display: flex; align-items: center; gap: 8px;
+  padding: 9px 10px; border-radius: 8px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--panel-2);
+}
+.pinned-list li:hover { border-color: var(--accent); }
+.pinned-list li.active { background: var(--accent-soft); border-color: var(--accent); }
+.pinned-list .t { font-size: .92rem; font-weight: 600; flex: 1; }
+.pinned-list .n {
+  font-size: .74rem; font-family: var(--mono); color: var(--ink-3);
+  background: var(--panel); border: 1px solid var(--line);
+  border-radius: 999px; padding: 1px 8px;
+}
+
+.todo-list { margin-top: 6px; }
+.todo-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 9px 10px; border-radius: 8px;
+  border: 1px solid transparent; background: var(--panel);
+}
+.todo-row:hover { background: var(--panel-2); }
+.todo-row.dragging {
+  background: var(--panel-2); border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(0,0,0,.14); opacity: .96;
+}
+.todo-row.lifted { border-style: dashed; }
+.todo-handle {
+  flex: none; cursor: grab; touch-action: none; user-select: none;
+  color: var(--ink-3); font-size: 1rem; line-height: 1.5;
+  padding: 0 2px; border-radius: 5px; background: none; border: 0;
+}
+.todo-handle:hover, .todo-handle:focus-visible { color: var(--ink); background: var(--panel-2); }
+.todo-handle:active { cursor: grabbing; }
+.todo-row input[type="checkbox"] {
+  margin-top: 5px; width: 16px; height: 16px; accent-color: var(--accent); flex: none; cursor: pointer;
+}
+.todo-main { flex: 1; min-width: 0; }
+.todo-text { display: block; }
+.todo-src {
+  display: inline-block; margin-top: 1px;
+  font-size: .74rem; color: var(--ink-3); cursor: pointer;
+}
+.todo-src:hover { color: var(--accent); text-decoration: underline; }
+.todo-rank {
+  flex: none; font-family: var(--mono); font-size: .74rem;
+  color: var(--ink-3); width: 1.6em; text-align: right; margin-top: 3px;
+}
+
 /* ---------- entry editor ---------- */
 .entry-head { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 4px; }
 #entryTitle {
