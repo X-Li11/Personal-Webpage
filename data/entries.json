@@ -1,21 +1,12 @@
 {
   "version": 1,
-  "updated": "2026-07-27T21:09:24.437Z",
+  "updated": "2026-07-27T21:25:24.787Z",
   "entries": [
-    {
-      "id": "64p3i69pyjka",
-      "date": "2026-07-27",
-      "title": "Test Markdown",
-      "body": "# Title",
-      "tags": [],
-      "checklist": [],
-      "updated": "2026-07-27T21:09:21.502Z"
-    },
     {
       "id": "w4rbmap9jgeb",
       "date": "2026-07-27",
       "title": "07/27 Log",
-      "body": "Creating this website for future working log.\n\nDoing Microservices DAQ test with the triplet module:\nConfirmed some setup things:\nPolarity of TX 0 has to be NOT INVERTED\nPolarity of all RX has to be NOT INVERTED\nThe DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\nDon’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n-o /data in scanConsole to save data locally not in container only\ntx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\nrx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n",
+      "body": "# Microservices DAQ test with the triplet module:\n\nConfirmed some setup things:\n- Polarity of TX 0 has to be NOT INVERTED\n- Polarity of all RX has to be NOT INVERTED\n- The DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\n- Don’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n- -o /data in scanConsole to save data locally not in container only\n- tx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\n- rx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n",
       "tags": [
         "DAQ"
       ],
@@ -36,7 +27,7 @@
           "done": false
         }
       ],
-      "updated": "2026-07-27T21:08:29.070Z"
+      "updated": "2026-07-27T21:16:52.581Z"
     },
     {
       "id": "welcome-entry",
