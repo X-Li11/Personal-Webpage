@@ -189,6 +189,43 @@ label.field > span {
 .check-row.done .ct { text-decoration: line-through; color: var(--ink-3); }
 .row-del { opacity: 0; transition: opacity .12s; flex: none; }
 
+/* ---------- rendered markdown ---------- */
+.md {
+  padding: 10px 2px 4px;
+  cursor: text;
+  min-height: 120px;
+}
+.md.placeholder { color: var(--ink-3); }
+.md > *:first-child { margin-top: 0; }
+.md > *:last-child { margin-bottom: 0; }
+.md h1, .md h2, .md h3 { line-height: 1.3; letter-spacing: -0.01em; margin: 1.2em 0 .5em; }
+.md h1 { font-size: 1.35rem; }
+.md h2 { font-size: 1.15rem; }
+.md h3 { font-size: 1rem; color: var(--ink-2); }
+.md p { margin: 0 0 .85em; }
+.md ul, .md ol { margin: 0 0 .85em; padding-left: 1.35em; }
+.md li { margin: .2em 0; }
+.md li::marker { color: var(--ink-3); }
+.md blockquote {
+  margin: 0 0 .85em; padding: 2px 0 2px 14px;
+  border-left: 3px solid var(--line); color: var(--ink-2);
+}
+.md code {
+  font-family: var(--mono); font-size: .87em;
+  background: var(--panel-2); padding: 1px 5px; border-radius: 4px;
+}
+.md pre {
+  background: var(--panel-2); border: 1px solid var(--line);
+  padding: 12px 14px; border-radius: 8px; overflow-x: auto; margin: 0 0 .85em;
+}
+.md pre code { background: none; padding: 0; font-size: .85rem; }
+.md hr { border: 0; border-top: 1px solid var(--line); margin: 1.4em 0; }
+.md a { text-decoration: underline; text-underline-offset: 2px; }
+.md del { color: var(--ink-3); }
+.md table { border-collapse: collapse; margin: 0 0 .85em; font-size: .92rem; }
+.md th, .md td { border: 1px solid var(--line); padding: 5px 10px; text-align: left; }
+.md th { background: var(--panel-2); }
+
 .sub { font-size: .78rem; color: var(--ink-3); }
 .hr { height: 1px; background: var(--line); border: 0; margin: 18px 0; }
 
