@@ -1,30 +1,25 @@
 {
   "version": 1,
-  "updated": "2026-07-27T22:44:11.847Z",
-  "todoOrder": [],
+  "updated": "2026-07-27T23:34:36.514Z",
+  "todoOrder": [
+    "w4rbmap9jgeb::yk3199kbvg1m",
+    "w4rbmap9jgeb::r5tjsgx7w195",
+    "w4rbmap9jgeb::ij86ra471qiz",
+    "w4rbmap9jgeb::3gyg8f2b3fkb",
+    "w4rbmap9jgeb::k3u9rmhgt8el",
+    "w4rbmap9jgeb::w42uwjdfpj76",
+    "w4rbmap9jgeb::cmh46yi71ykd",
+    "tpuohcv4t7dg::j1m9btvntvgl"
+  ],
   "entries": [
-    {
-      "id": "tpuohcv4t7dg",
-      "date": "2026-07-27",
-      "title": "Miscellaneous",
-      "body": "",
-      "tags": [],
-      "checklist": [
-        {
-          "id": "j1m9btvntvgl",
-          "text": "Upload insurance for the eye examination",
-          "done": false
-        }
-      ],
-      "updated": "2026-07-27T22:01:09.058Z"
-    },
     {
       "id": "w4rbmap9jgeb",
       "date": "2026-07-27",
       "title": "07/27 Log",
-      "body": "# Microservices DAQ test with the triplet module:\n\nConfirmed some setup things:\n- Polarity of TX 0 has to be NOT INVERTED\n- Polarity of all RX has to be NOT INVERTED\n- The DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\n- Don’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n- -o /data in scanConsole to save data locally not in container only\n- tx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\n- rx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n- Need SerEnLane=7; SerEnLane=1 gives error",
+      "body": "# Microservices DAQ test with the triplet module:\n\nConfirmed some setup things:\n- Polarity of TX 0 has to be NOT INVERTED\n- Polarity of all RX has to be NOT INVERTED\n- The DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\n- Don’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n- -o /data in scanConsole to save data locally not in container only\n- tx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\n- rx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n- Need SerEnLane=7; SerEnLane=1 gives error\n\n\nAnalyzed results can be examined through config db runkey ui. Check scan log for counts of different errors.\n\nThe issue now is threshold scan is giving many split event count error\n\nOne note: we only define one rx for module config, but we actually have 3. The other 2 are auto assigned after configuration. Can we manually set all 3? \nAre we reading out from the one rx we define? And it is due to we have lanes combined?\n\n# Hyy\nHeard from Stefano; need to work on it",
       "tags": [
-        "DAQ"
+        "DAQ",
+        "Hyy"
       ],
       "checklist": [
         {
@@ -46,9 +41,54 @@
           "id": "yk3199kbvg1m",
           "text": "Write to Maximilian to ask about Streamlit",
           "done": false
+        },
+        {
+          "id": "k3u9rmhgt8el",
+          "text": "Figure out what is the hardware routing of the Zaza board",
+          "done": false
+        },
+        {
+          "id": "rgnyut5utipf",
+          "text": "Figure out where the analyzed results are saved to ",
+          "done": true
+        },
+        {
+          "id": "r5tjsgx7w195",
+          "text": "Figure out the definition of Split Event Count Error",
+          "done": false
+        },
+        {
+          "id": "ij86ra471qiz",
+          "text": "Hyy work",
+          "done": false
+        },
+        {
+          "id": "cmh46yi71ykd",
+          "text": "try DCS commands",
+          "done": false
+        },
+        {
+          "id": "3gyg8f2b3fkb",
+          "text": "Ask Caterina about the QC Box test, LLS stage etc",
+          "done": false
         }
       ],
-      "updated": "2026-07-27T22:44:08.931Z"
+      "updated": "2026-07-27T23:33:58.797Z"
+    },
+    {
+      "id": "tpuohcv4t7dg",
+      "date": "2026-07-27",
+      "title": "Miscellaneous",
+      "body": "",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "j1m9btvntvgl",
+          "text": "Upload insurance for the eye examination",
+          "done": false
+        }
+      ],
+      "updated": "2026-07-27T22:01:09.058Z"
     },
     {
       "id": "welcome-entry",
