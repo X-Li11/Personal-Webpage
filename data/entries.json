@@ -1,12 +1,11 @@
 {
   "version": 1,
-  "updated": "2026-07-27T23:35:53.587Z",
+  "updated": "2026-07-28T22:42:34.495Z",
   "todoOrder": [
     "w4rbmap9jgeb::yk3199kbvg1m",
     "w4rbmap9jgeb::r5tjsgx7w195",
     "w4rbmap9jgeb::ij86ra471qiz",
     "w4rbmap9jgeb::3gyg8f2b3fkb",
-    "w4rbmap9jgeb::k3u9rmhgt8el",
     "w4rbmap9jgeb::w42uwjdfpj76",
     "w4rbmap9jgeb::cmh46yi71ykd",
     "tpuohcv4t7dg::j1m9btvntvgl"
@@ -45,7 +44,7 @@
         {
           "id": "k3u9rmhgt8el",
           "text": "Figure out what is the hardware routing of the Zaza board",
-          "done": false
+          "done": true
         },
         {
           "id": "rgnyut5utipf",
@@ -73,7 +72,7 @@
           "done": false
         }
       ],
-      "updated": "2026-07-27T23:35:41.426Z"
+      "updated": "2026-07-28T20:40:33.735Z"
     },
     {
       "id": "tpuohcv4t7dg",
@@ -86,9 +85,14 @@
           "id": "j1m9btvntvgl",
           "text": "Upload insurance for the eye examination",
           "done": false
+        },
+        {
+          "id": "7jo29gk4qzr1",
+          "text": "Prepare slides for 8/7 Group Meeting",
+          "done": false
         }
       ],
-      "updated": "2026-07-27T22:01:09.058Z"
+      "updated": "2026-07-28T22:42:31.909Z"
     },
     {
       "id": "welcome-entry",
