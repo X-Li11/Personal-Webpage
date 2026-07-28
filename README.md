@@ -109,6 +109,58 @@ unpushed. Each save is one commit, so your whole log book has version history.
 
 Visitors without a token can still read the log book; they just can't save.
 
+## Notes (`notes.html`)
+
+Separate from the log book: longer-form notes, one Markdown file each.
+
+```
+notes/2026-07-27-some-title.md   one file per note, YAML front matter on top
+notes/images/                    pasted screenshots
+assets/md.js                     shared Markdown + LaTeX renderer
+assets/katex/                    vendored KaTeX (see below)
+```
+
+Because each note is a real `.md` file, the same notes open in Obsidian, VS Code,
+or anything else. Front matter carries the metadata:
+
+```markdown
+---
+title: "Vector calculus"
+date: 2026-07-20
+tags: [math, reading]
+---
+```
+
+- **LaTeX** — `$inline$` and `$$display$$`, plus `\(...\)` and `\[...\]`.
+  Rendered with KaTeX. A literal `$5` in prose is left alone, and `$` inside code
+  spans or fences is never treated as maths.
+- **Images** — paste or drag a screenshot into the editor, or use 📎. It's
+  uploaded to `notes/images/` and a `![](images/…)` link is inserted. Links are
+  relative to the note, so they render correctly both on the site and in GitHub's
+  own Markdown view.
+- **Saving** — edits are held locally (an amber dot marks unsaved notes) until you
+  hit **Save to GitHub** or ⌘S. Each note is its own commit.
+- **Editing elsewhere** — the page compares each file's git sha against its cache,
+  so a note you changed in Obsidian is picked up on the next load automatically.
+- The GitHub settings are shared with the log book: set the token on either page
+  and both are connected.
+
+### KaTeX
+
+The maths renderer is vendored into `assets/katex/` rather than loaded from a CDN,
+so the site works offline and has no third-party dependency. To fetch it:
+
+```bash
+mkdir -p assets/katex
+curl -sL https://registry.npmjs.org/katex/-/katex-0.16.11.tgz \
+  | tar xz --strip-components=2 -C assets/katex \
+    package/dist/katex.min.js package/dist/katex.min.css package/dist/fonts
+rm -f assets/katex/fonts/*.ttf assets/katex/fonts/*.woff   # woff2 is enough
+```
+
+About 600 KB. If `assets/katex/` is missing, formulas fall back to readable raw
+LaTeX rather than breaking the page.
+
 ## Customising
 
 - **Homepage text and links** — edit `index.html` directly; the cards under

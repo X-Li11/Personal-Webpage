@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notes · Xiangchen Li</title>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<script src="assets/katex/katex.min.js"></script>
+<script src="assets/md.js"></script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Xiangchen Li</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="logbook.html">Log book</a>
+      <a href="notes.html" class="active">Notes</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap lb">
+
+  <!-- ============ sidebar ============ -->
+  <aside class="panel sidebar">
+    <div class="toolbar">
+      <button class="primary" id="btnNew">+ New note</button>
+      <div class="spacer"></div>
+      <button class="ghost" id="btnSettings" title="GitHub settings">⚙</button>
+    </div>
+
+    <input type="text" id="search" placeholder="Search notes…" autocomplete="off">
+    <div class="taglist" id="tagFilters"></div>
+    <ul class="entry-list" id="noteList"></ul>
+
+    <hr class="hr">
+    <div class="toolbar" style="margin:0">
+      <button class="primary" id="btnSave">Save to GitHub</button>
+      <button class="ghost" id="btnReload" title="Reload from GitHub">↻</button>
+    </div>
+    <div style="margin-top:10px"><span class="status" id="status"><span class="dot"></span><span id="statusText">Loading…</span></span></div>
+  </aside>
+
+  <!-- ============ editor ============ -->
+  <section class="panel" id="editorPanel">
+    <div id="emptyState" class="empty">
+      <p>No note selected.</p>
+      <button class="primary" onclick="document.getElementById('btnNew').click()">Write a new note</button>
+    </div>
+
+    <div id="editor" hidden>
+      <div class="entry-head">
+        <input type="text" id="noteTitle" placeholder="Untitled note" autocomplete="off"
+               style="font-size:1.5rem;font-weight:650;letter-spacing:-0.02em;border:none;background:transparent;padding:4px 0">
+        <input type="date" id="noteDate">
+      </div>
+      <div class="sub" id="noteMeta"></div>
+
+      <hr class="hr">
+
+      <div class="toolbar" style="margin-bottom:2px">
+        <span class="sub" id="mdHint">Click the text to edit</span>
+        <div class="spacer"></div>
+        <button id="btnAttach">📎 Image</button>
+        <button id="btnPreview">Edit</button>
+        <input type="file" id="imgInput" accept="image/*" hidden multiple>
+      </div>
+      <textarea id="noteBody" rows="18"
+        placeholder="Markdown, plus LaTeX:  inline $e^{i\pi}+1=0$  or a display block with $$ … $$&#10;&#10;Paste or drag a screenshot straight in." hidden></textarea>
+      <div class="md" id="notePreview"></div>
+
+      <hr class="hr">
+
+      <label class="field" style="margin:0">
+        <span>Tags — comma separated</span>
+        <input type="text" id="noteTags" placeholder="research, reading, ideas" autocomplete="off">
+      </label>
+
+      <hr class="hr">
+      <div class="toolbar" style="margin:0">
+        <button class="danger" id="btnDelete">Delete note</button>
+        <div class="spacer"></div>
+        <a id="ghLink" class="btn" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ settings modal ============ -->
+<div class="modal-bg" id="settingsModal">
+  <div class="modal">
+    <h3>GitHub settings</h3>
+    <span class="sub">Notes are Markdown files in your repo. This is the same setting the log book uses — fill it in on either page and both are connected.</span>
+    <label class="field"><span>Owner (your GitHub username)</span><input type="text" id="cfgOwner" placeholder="X-Li11"></label>
+    <label class="field"><span>Repository</span><input type="text" id="cfgRepo" placeholder="Personal-Webpage"></label>
+    <label class="field"><span>Branch</span><input type="text" id="cfgBranch" placeholder="main"></label>
+    <label class="field"><span>Notes folder</span><input type="text" id="cfgNotesDir" placeholder="notes"></label>
+    <label class="field"><span>Fine-grained token — Contents: Read and write</span><input type="password" id="cfgToken" placeholder="github_pat_…"></label>
+    <div class="toolbar" style="margin:0">
+      <button class="ghost" id="btnForget">Forget token</button>
+      <div class="spacer"></div>
+      <button id="btnCancelCfg">Cancel</button>
+      <button class="primary" id="btnSaveCfg">Save &amp; connect</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+"use strict";
+
+/* ---------------- state ----------------
+   One Markdown file per note under notes/. Metadata rides along in YAML
+   front matter, so the same files open cleanly in Obsidian or VS Code.
+   Nothing here is a database: the repo is the source of truth.          */
+
+const CFG_KEY = "logbook.cfg.v1";     // shared with the log book, token and all
+const CACHE_KEY = "notes.cache.v1";
+const DEFAULT_DIR = "notes";
+
+let cfg = { owner:"", repo:"", branch:"main", path:"data/entries.json", notesDir:DEFAULT_DIR, token:"" };
+let notes = [];          // {path, sha, title, date, tags[], body, dirty, isNew}
+let currentPath = null;
+let activeTag = null;
+
+const $ = (id) => document.getElementById(id);
+const store = {
+  get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
+  set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+  del(k){ try { localStorage.removeItem(k); } catch {} }
+};
+const esc = MD.esc;
+const todayISO = () => { const d=new Date(); return new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10); };
+const uid = () => Math.random().toString(36).slice(2,8);
+
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove("show"),2600); }
+function setStatus(text, kind){ $("status").className = "status" + (kind ? " "+kind : ""); $("statusText").textContent = text; }
+const dirtyCount = () => notes.filter(n => n.dirty).length;
+function refreshStatus(){
+  const d = dirtyCount();
+  if (!configured()) return setStatus("Not connected — open ⚙", "err");
+  if (d) return setStatus(`${d} unsaved note${d === 1 ? "" : "s"}`, "err");
+  setStatus("Synced with GitHub", "ok");
+}
+function markDirty(n){ n.dirty = true; cacheLocal(); refreshStatus(); renderList(); }
+function cacheLocal(){ store.set(CACHE_KEY, notes.map(n => ({ ...n }))); }
+
+/* ---------------- front matter ---------------- */
+function parseNote(text, path){
+  const out = { title:"", date:"", tags:[], body:text || "" };
+  const m = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(text || "");
+  if (m){
+    out.body = (text || "").slice(m[0].length);
+    for (const line of m[1].split(/\r?\n/)){
+      const kv = /^(\w+)\s*:\s*(.*)$/.exec(line.trim()); if (!kv) continue;
+      const [, k, raw] = kv;
+      const v = raw.replace(/^["']|["']$/g, "");
+      if (k === "tags"){
+        out.tags = v.replace(/^\[|\]$/g, "").split(",").map(s => s.trim().replace(/^["']|["']$/g, "")).filter(Boolean);
+      } else if (k === "title" || k === "date"){ out[k] = v; }
+    }
+  }
+  if (!out.title) out.title = (path || "").split("/").pop().replace(/\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}-/, "").replace(/-/g, " ");
+  if (!out.date){
+    const d = /(\d{4}-\d{2}-\d{2})/.exec(path || "");
+    out.date = d ? d[1] : todayISO();
+  }
+  return out;
+}
+function serializeNote(n){
+  const fm = [
+    "---",
+    `title: ${JSON.stringify(n.title || "Untitled note")}`,
+    `date: ${n.date || todayISO()}`,
+    `tags: [${(n.tags || []).join(", ")}]`,
+    "---",
+    ""
+  ].join("\n");
+  return fm + "\n" + (n.body || "").replace(/\s*$/, "") + "\n";
+}
+
+/* ---------------- GitHub I/O ---------------- */
+const configured = () => cfg.owner && cfg.repo;
+const dir = () => (cfg.notesDir || DEFAULT_DIR).replace(/^\/|\/$/g, "");
+const apiBase = () => `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents`;
+const headers = (extra) => Object.assign(
+  { "Accept":"application/vnd.github+json" },
+  cfg.token ? { "Authorization":"Bearer " + cfg.token } : {},
+  extra || {});
+
+const b64encode = (str) => btoa(String.fromCharCode(...new TextEncoder().encode(str)));
+const b64decode = (b64) => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g,"")), c => c.charCodeAt(0)));
+
+async function gh(path, init){
+  const res = await fetch(`${apiBase()}/${path}`, Object.assign({ headers: headers(), cache:"no-store" }, init || {}));
+  if (res.status === 404) return null;
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(json.message || `GitHub ${res.status}`);
+  return json;
+}
+
+async function listNotes(){
+  const listing = await gh(`${dir()}?ref=${encodeURIComponent(cfg.branch || "main")}&t=${Date.now()}`);
+  if (!listing) return [];                                  // folder doesn't exist yet
+  return listing.filter(f => f.type === "file" && /\.md$/i.test(f.name));
+}
+
+async function fetchNote(file){
+  const json = await gh(`${file.path}?ref=${encodeURIComponent(cfg.branch || "main")}&t=${Date.now()}`);
+  const parsed = parseNote(b64decode(json.content || ""), file.path);
+  return { path: file.path, sha: file.sha, dirty: false, isNew: false, ...parsed };
+}
+
+async function putFile(path, contentB64, sha, message){
+  const body = { message, content: contentB64, branch: cfg.branch || "main" };
+  if (sha) body.sha = sha;
+  const res = await fetch(`${apiBase()}/${path}`, {
+    method: "PUT",
+    headers: headers({ "Content-Type":"application/json" }),
+    body: JSON.stringify(body)
+  });
+  const json = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(json.message || `GitHub ${res.status}`);
+  return json.content;
+}
+
+/* ---------------- load ---------------- */
+async function load(){
+  const cached = store.get(CACHE_KEY) || [];
+  if (!configured()){
+    notes = cached;
+    render(); refreshStatus();
+    return;
+  }
+  setStatus("Loading…");
+  try {
+    const files = await listNotes();
+    const byPath = new Map(cached.map(n => [n.path, n]));
+    const kept = [];
+    for (const f of files){
+      const c = byPath.get(f.path);
+      if (c && c.dirty) { kept.push(c); continue; }            // local edit wins
+      if (c && c.sha === f.sha) { kept.push(c); continue; }    // unchanged, use cache
+      kept.push(await fetchNote(f));                           // new or changed on GitHub
+    }
+    for (const c of cached) if (c.isNew && !c.path) kept.push(c);   // unsaved new notes
+    notes = kept;
+    sortNotes(); cacheLocal(); render(); refreshStatus();
+  } catch (err){
+    notes = cached; render();
+    setStatus(String(err.message).slice(0, 60), "err");
+  }
+}
+
+/* ---------------- save ---------------- */
+function slugify(s){
+  return (s || "untitled").toLowerCase().trim()
+    .replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").slice(0, 60) || "untitled";
+}
+function pathFor(n){
+  let base = `${dir()}/${n.date || todayISO()}-${slugify(n.title)}`;
+  let p = `${base}.md`, i = 2;
+  while (notes.some(o => o !== n && o.path === p)) p = `${base}-${i++}.md`;
+  return p;
+}
+
+async function saveAll(){
+  if (!configured()) return openSettings();
+  if (!cfg.token) return toast("Add a token in ⚙ before saving");
+  const pending = notes.filter(n => n.dirty);
+  if (!pending.length) return toast("Nothing to save");
+
+  $("btnSave").disabled = true;
+  let ok = 0;
+  for (const n of pending){
+    try {
+      if (!n.path){
+        n.path = pathFor(n);
+        if (currentPath === n._tmp) currentPath = n.path;   // keep the open note selected
+        delete n._tmp;
+      }
+      setStatus(`Saving ${n.path.split("/").pop()}…`);
+      const content = await putFile(n.path, b64encode(serializeNote(n)), n.sha,
+                                    `notes: ${n.sha ? "update" : "add"} ${n.title || n.path}`);
+      n.sha = content.sha; n.dirty = false; n.isNew = false; ok++;
+    } catch (err){
+      setStatus(String(err.message).slice(0, 60), "err");
+      toast(`Couldn't save “${n.title}” — ${err.message}`);
+      break;
+    }
+  }
+  $("btnSave").disabled = false;
+  cacheLocal(); render(); refreshStatus();
+  if (ok) toast(`Saved ${ok} note${ok === 1 ? "" : "s"} to GitHub`);
+}
+
+async function deleteNote(){
+  const n = byPath(currentPath); if (!n) return;
+  if (!confirm(`Delete “${n.title}”? This removes the file from your repo.`)) return;
+  if (n.sha && cfg.token){
+    try {
+      await fetch(`${apiBase()}/${n.path}`, {
+        method: "DELETE",
+        headers: headers({ "Content-Type":"application/json" }),
+        body: JSON.stringify({ message: `notes: delete ${n.title}`, sha: n.sha, branch: cfg.branch || "main" })
+      });
+    } catch { toast("Couldn't delete on GitHub — removed locally"); }
+  }
+  notes = notes.filter(x => x !== n);
+  currentPath = notes.length ? notes[0].path : null;
+  cacheLocal(); render(); refreshStatus();
+}
+
+/* ---------------- images ---------------- */
+async function uploadImage(file){
+  if (!cfg.token) { toast("Add a token in ⚙ to upload images"); return null; }
+  const ext = (file.name.match(/\.(png|jpe?g|gif|webp|svg)$/i) || [,"png"])[1].toLowerCase();
+  const name = `${todayISO()}-${uid()}.${ext}`;
+  const buf = new Uint8Array(await file.arrayBuffer());
+  let bin = ""; for (const b of buf) bin += String.fromCharCode(b);
+  await putFile(`${dir()}/images/${name}`, btoa(bin), null, `notes: add image ${name}`);
+  return `images/${name}`;
+}
+
+async function insertImages(files){
+  const n = byPath(currentPath); if (!n) return;
+  const ta = $("noteBody");
+  for (const file of files){
+    if (!/^image\//.test(file.type)) continue;
+    const marker = `![uploading ${file.name || "image"}…]()`;
+    insertAtCursor(ta, marker + "\n");
+    n.body = ta.value; markDirty(n);
+    try {
+      const rel = await uploadImage(file);
+      if (!rel) { ta.value = ta.value.replace(marker + "\n", ""); n.body = ta.value; continue; }
+      ta.value = ta.value.replace(marker, `![](${rel})`);
+      n.body = ta.value; markDirty(n);
+      toast("Image uploaded");
+    } catch (err){
+      ta.value = ta.value.replace(marker + "\n", "");
+      n.body = ta.value; markDirty(n);
+      toast("Upload failed — " + err.message);
+    }
+  }
+}
+
+function insertAtCursor(ta, text){
+  const s = ta.selectionStart ?? ta.value.length, e = ta.selectionEnd ?? s;
+  ta.value = ta.value.slice(0, s) + text + ta.value.slice(e);
+  ta.selectionStart = ta.selectionEnd = s + text.length;
+  autoGrow(ta);
+}
+
+/* ---------------- rendering ---------------- */
+const byPath = (p) => notes.find(n => n.path === p || (!n.path && p === n._tmp));
+function sortNotes(){ notes.sort((a,b) => (b.date||"").localeCompare(a.date||"") || (a.title||"").localeCompare(b.title||"")); }
+const allTags = () => [...new Set(notes.flatMap(n => n.tags || []))].sort();
+
+function render(){ sortNotes(); renderTags(); renderList(); renderEditor(); }
+
+function renderTags(){
+  $("tagFilters").innerHTML = allTags().map(t =>
+    `<span class="tag${t === activeTag ? " active" : ""}" data-tag="${esc(t)}">${esc(t)}</span>`).join("");
+}
+
+function visibleNotes(){
+  const q = $("search").value.trim().toLowerCase();
+  return notes.filter(n => {
+    if (activeTag && !(n.tags || []).includes(activeTag)) return false;
+    if (!q) return true;
+    return [n.title, n.body, n.date, (n.tags||[]).join(" ")].join(" ").toLowerCase().includes(q);
+  });
+}
+
+function renderList(){
+  const list = visibleNotes();
+  if (!list.length){
+    $("noteList").innerHTML = `<li style="cursor:default;color:var(--ink-3);font-size:.85rem">No notes yet.</li>`;
+    return;
+  }
+  $("noteList").innerHTML = list.map(n => `
+    <li data-path="${esc(n.path || n._tmp)}" class="${(n.path || n._tmp) === currentPath ? "active" : ""}">
+      <span class="t">${esc(n.title || "Untitled note")}${n.dirty ? ' <span style="color:var(--warn)">•</span>' : ""}</span>
+      <span class="d">${esc(n.date || "")}</span>
+    </li>`).join("");
+}
+
+function renderEditor(){
+  const n = byPath(currentPath);
+  $("editor").hidden = !n;
+  $("emptyState").hidden = !!n;
+  if (!n) return;
+  $("noteTitle").value = n.title || "";
+  $("noteDate").value = n.date || todayISO();
+  $("noteBody").value = n.body || "";
+  $("noteTags").value = (n.tags || []).join(", ");
+  $("noteMeta").textContent = n.path ? n.path : "not saved yet — file name is chosen on first save";
+  const gh = $("ghLink");
+  if (n.path && n.sha){
+    gh.href = `https://github.com/${cfg.owner}/${cfg.repo}/blob/${cfg.branch || "main"}/${n.path}`;
+    gh.style.display = "";
+  } else gh.style.display = "none";
+  setEditing(!(n.body || "").trim());
+}
+
+let editing = false;
+function setEditing(on, focus){
+  editing = !!on;
+  $("noteBody").hidden = !editing;
+  $("notePreview").hidden = editing;
+  $("btnPreview").textContent = editing ? "Preview" : "Edit";
+  $("mdHint").textContent = editing ? "Markdown + LaTeX — paste a screenshot to attach it" : "Click the text to edit";
+  if (editing){ autoGrow($("noteBody")); if (focus) $("noteBody").focus(); }
+  else renderPreview();
+}
+function renderPreview(){
+  const n = byPath(currentPath); if (!n) return;
+  const had = MD.renderInto($("notePreview"), n.body, {
+    placeholder: "<p>Nothing written yet — click here to start.</p>",
+    imgPrefix: dir() + "/"          // images/x.png in the file -> notes/images/x.png from the site root
+  });
+  $("notePreview").classList.toggle("placeholder", !had);
+}
+function autoGrow(el){ el.style.height = "auto"; el.style.height = Math.max(el.scrollHeight, 260) + "px"; }
+
+/* ---------------- wiring ---------------- */
+$("btnNew").onclick = () => {
+  const n = { path:"", _tmp:"new-" + uid(), sha:null, title:"", date:todayISO(), tags:[], body:"", dirty:true, isNew:true };
+  notes.unshift(n); currentPath = n._tmp;
+  cacheLocal(); render(); refreshStatus(); $("noteTitle").focus();
+};
+$("btnSave").onclick = saveAll;
+$("btnDelete").onclick = deleteNote;
+$("btnReload").onclick = async () => {
+  if (dirtyCount() && !confirm("Reload from GitHub? Unsaved notes stay, everything else is refreshed.")) return;
+  await load();
+};
+
+$("search").oninput = renderList;
+$("tagFilters").onclick = (ev) => {
+  const el = ev.target.closest(".tag"); if (!el) return;
+  activeTag = activeTag === el.dataset.tag ? null : el.dataset.tag;
+  renderTags(); renderList();
+};
+$("noteList").onclick = (ev) => {
+  const li = ev.target.closest("li[data-path]"); if (!li) return;
+  currentPath = li.dataset.path; render();
+};
+
+$("noteTitle").oninput = (ev) => { const n = byPath(currentPath); if(!n) return; n.title = ev.target.value; markDirty(n); };
+$("noteDate").onchange = (ev) => { const n = byPath(currentPath); if(!n) return; n.date = ev.target.value; markDirty(n); render(); };
+$("noteBody").oninput  = (ev) => { const n = byPath(currentPath); if(!n) return; n.body = ev.target.value; autoGrow(ev.target); markDirty(n); };
+$("noteTags").oninput  = (ev) => {
+  const n = byPath(currentPath); if(!n) return;
+  n.tags = ev.target.value.split(",").map(s => s.trim()).filter(Boolean);
+  markDirty(n); renderTags();
+};
+
+$("btnPreview").onclick = () => setEditing(!editing, true);
+$("notePreview").onclick = (ev) => { if (ev.target.closest("a")) return; setEditing(true, true); };
+$("noteBody").addEventListener("keydown", (ev) => {
+  if (ev.key === "Escape"){ ev.stopPropagation(); setEditing(false); }
+});
+
+/* paste / drop / pick an image */
+$("btnAttach").onclick = () => $("imgInput").click();
+$("imgInput").onchange = (ev) => { insertImages([...ev.target.files]); ev.target.value = ""; };
+$("noteBody").addEventListener("paste", (ev) => {
+  const files = [...(ev.clipboardData?.files || [])].filter(f => /^image\//.test(f.type));
+  if (!files.length) return;
+  ev.preventDefault();
+  insertImages(files);
+});
+for (const target of [$("noteBody"), $("notePreview")]){
+  target.addEventListener("dragover", (ev) => { ev.preventDefault(); });
+  target.addEventListener("drop", (ev) => {
+    const files = [...(ev.dataTransfer?.files || [])].filter(f => /^image\//.test(f.type));
+    if (!files.length) return;
+    ev.preventDefault();
+    if (!editing) setEditing(true, true);
+    insertImages(files);
+  });
+}
+
+/* settings */
+function openSettings(){
+  $("cfgOwner").value = cfg.owner; $("cfgRepo").value = cfg.repo;
+  $("cfgBranch").value = cfg.branch || "main";
+  $("cfgNotesDir").value = cfg.notesDir || DEFAULT_DIR;
+  $("cfgToken").value = cfg.token;
+  $("settingsModal").classList.add("open");
+}
+$("btnSettings").onclick = openSettings;
+$("btnCancelCfg").onclick = () => $("settingsModal").classList.remove("open");
+$("settingsModal").onclick = (ev) => { if (ev.target === $("settingsModal")) $("settingsModal").classList.remove("open"); };
+$("btnForget").onclick = () => { cfg.token = ""; $("cfgToken").value = ""; store.set(CFG_KEY, cfg); toast("Token removed from this browser"); };
+$("btnSaveCfg").onclick = async () => {
+  cfg = Object.assign({}, cfg, {
+    owner: $("cfgOwner").value.trim(), repo: $("cfgRepo").value.trim(),
+    branch: $("cfgBranch").value.trim() || "main",
+    notesDir: $("cfgNotesDir").value.trim() || DEFAULT_DIR,
+    token: $("cfgToken").value.trim()
+  });
+  store.set(CFG_KEY, cfg);
+  $("settingsModal").classList.remove("open");
+  await load();
+};
+
+document.addEventListener("keydown", (ev) => {
+  if ((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === "s"){ ev.preventDefault(); saveAll(); }
+  if ((ev.metaKey || ev.ctrlKey) && ev.key.toLowerCase() === "k"){ ev.preventDefault(); $("search").focus(); }
+  if (ev.key === "Escape") $("settingsModal").classList.remove("open");
+});
+window.addEventListener("beforeunload", (ev) => { if (dirtyCount()){ ev.preventDefault(); ev.returnValue = ""; } });
+
+window.__notes = { parseNote, serializeNote, slugify, get notes(){ return notes; } };   // for the test suite
+
+(async function boot(){
+  const saved = store.get(CFG_KEY);
+  if (saved) cfg = Object.assign(cfg, saved);
+  if (!cfg.notesDir) cfg.notesDir = DEFAULT_DIR;
+  await load();
+  if (!currentPath && notes.length) currentPath = notes[0].path || notes[0]._tmp;
+  render();
+})();
+
+})();
+</script>
+</body>
+</html>

@@ -276,6 +276,24 @@ label.field > span {
 .md th, .md td { border: 1px solid var(--line); padding: 5px 10px; text-align: left; }
 .md th { background: var(--panel-2); }
 
+/* ---------- maths ---------- */
+.math-block {
+  display: block; text-align: center;
+  margin: 1.1em 0; overflow-x: auto; overflow-y: hidden;
+}
+.math-inline { white-space: nowrap; }
+.math-raw {
+  font-family: var(--mono); font-size: .9em;
+  background: var(--accent-soft); border-radius: 4px; padding: 0 4px;
+}
+.katex { font-size: 1.03em; }
+.katex-display { margin: 0 !important; }
+
+.md img {
+  max-width: 100%; border-radius: 8px;
+  border: 1px solid var(--line); margin: .4em 0;
+}
+
 .sub { font-size: .78rem; color: var(--ink-3); }
 .hr { height: 1px; background: var(--line); border: 0; margin: 18px 0; }
 

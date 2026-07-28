@@ -1,0 +1,3 @@
+assets/katex/fonts/*.ttf
+assets/katex/fonts/*.woff
+.DS_Store
