@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-28T22:42:34.495Z",
+  "updated": "2026-07-28T23:11:17.067Z",
   "todoOrder": [
     "w4rbmap9jgeb::yk3199kbvg1m",
     "w4rbmap9jgeb::r5tjsgx7w195",
@@ -11,6 +11,35 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "i7w2rh67o9kr",
+      "date": "2026-07-28",
+      "title": "07/28 Log",
+      "body": "# DAQ\n\nAuroraActiveLane has to be 1, otherwise get this kind of errors \n```\n[01:07:53:793][ error  ][Itkpixv2DataProcessor][688]: [0x237b4] The ES bit is 0 while the core column number read is zero. Data processed so far are corrupted... Last block 80e2481288122a\n```\n\n\n\n",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-07-28T23:09:21.501Z"
+    },
+    {
+      "id": "tpuohcv4t7dg",
+      "date": "2026-07-27",
+      "title": "Miscellaneous",
+      "body": "",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "j1m9btvntvgl",
+          "text": "Upload insurance for the eye examination",
+          "done": false
+        },
+        {
+          "id": "7jo29gk4qzr1",
+          "text": "Prepare slides for 8/7 Group Meeting",
+          "done": false
+        }
+      ],
+      "updated": "2026-07-28T22:42:31.909Z"
+    },
     {
       "id": "w4rbmap9jgeb",
       "date": "2026-07-27",
@@ -73,26 +102,6 @@
         }
       ],
       "updated": "2026-07-28T20:40:33.735Z"
-    },
-    {
-      "id": "tpuohcv4t7dg",
-      "date": "2026-07-27",
-      "title": "Miscellaneous",
-      "body": "",
-      "tags": [],
-      "checklist": [
-        {
-          "id": "j1m9btvntvgl",
-          "text": "Upload insurance for the eye examination",
-          "done": false
-        },
-        {
-          "id": "7jo29gk4qzr1",
-          "text": "Prepare slides for 8/7 Group Meeting",
-          "done": false
-        }
-      ],
-      "updated": "2026-07-28T22:42:31.909Z"
     },
     {
       "id": "welcome-entry",
