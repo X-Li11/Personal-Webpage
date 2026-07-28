@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-28T23:11:17.067Z",
+  "updated": "2026-07-28T23:47:15.186Z",
   "todoOrder": [
     "w4rbmap9jgeb::yk3199kbvg1m",
     "w4rbmap9jgeb::r5tjsgx7w195",
@@ -15,10 +15,10 @@
       "id": "i7w2rh67o9kr",
       "date": "2026-07-28",
       "title": "07/28 Log",
-      "body": "# DAQ\n\nAuroraActiveLane has to be 1, otherwise get this kind of errors \n```\n[01:07:53:793][ error  ][Itkpixv2DataProcessor][688]: [0x237b4] The ES bit is 0 while the core column number read is zero. Data processed so far are corrupted... Last block 80e2481288122a\n```\n\n\n\n",
+      "body": "# DAQ\n\nAuroraActiveLane has to be 1, otherwise get this kind of errors \n```\n[01:07:53:793][ error  ][Itkpixv2DataProcessor][688]: [0x237b4] The ES bit is 0 while the core column number read is zero. Data processed so far are corrupted... Last block 80e2481288122a\n```\n\n20UPIM04202209_3chips.json for testing connectivity of the other two chips\n```\nbin/scanConsole -c /configs/modules/20UPIM04202209_TESTONWAFER/20UPIM04202209_3chips.json -r /configs/controller/controller_itkpixv2_dev0.json -s /configs/scans/itkpixv2/std_digitalscan.json -p\n```\n",
       "tags": [],
       "checklist": [],
-      "updated": "2026-07-28T23:09:21.501Z"
+      "updated": "2026-07-28T23:16:17.906Z"
     },
     {
       "id": "tpuohcv4t7dg",
