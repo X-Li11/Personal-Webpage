@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="assets/katex/katex.min.css">
 <script src="assets/katex/katex.min.js"></script>
 <script src="assets/md.js"></script>
+<script src="assets/zip.js"></script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📝</text></svg>">
 </head>
 <body>
@@ -84,6 +85,7 @@
       <div class="toolbar" style="margin:0">
         <button class="danger" id="btnDelete">Delete note</button>
         <div class="spacer"></div>
+        <button id="btnDownload" title="Save this note as a file you can send to someone">⤓ Download</button>
         <a id="ghLink" class="btn" target="_blank" rel="noopener">View on GitHub</a>
       </div>
     </div>
@@ -357,6 +359,56 @@ function insertAtCursor(ta, text){
   autoGrow(ta);
 }
 
+/* ---------------- download ----------------
+   A plain .md when the note has no local images. When it does, a .zip holding
+   the note plus an images/ folder, so the whole thing can be handed to someone
+   without giving them a link to this site.                                   */
+
+const localImages = (body) =>
+  [...new Set([...(body || "").matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)]
+    .map(m => m[1])
+    .filter(u => !/^[a-z][a-z0-9+.\-]*:/i.test(u) && !u.startsWith("/")))];
+
+function saveBlob(blob, filename){
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+
+async function downloadNote(){
+  const n = byPath(currentPath); if (!n) return;
+  const base = (n.path ? n.path.split("/").pop().replace(/\.md$/, "") : slugify(n.title)) || "note";
+  const text = serializeNote(n);
+  const imgs = localImages(n.body);
+
+  if (!imgs.length){
+    saveBlob(new Blob([text], { type: "text/markdown;charset=utf-8" }), base + ".md");
+    return toast("Downloaded " + base + ".md");
+  }
+
+  const btn = $("btnDownload"); btn.disabled = true;
+  const old = btn.textContent; btn.textContent = "Bundling…";
+  try {
+    const files = [{ name: base + ".md", data: text }];
+    for (const rel of imgs){
+      const clean = rel.replace(/^\.\//, "");
+      const json = await gh(`${dir()}/${clean}?ref=${encodeURIComponent(cfg.branch || "main")}`);
+      if (!json || !json.content) continue;                      // missing image: skip it
+      const bin = atob(json.content.replace(/\s/g, ""));
+      files.push({ name: clean, data: Uint8Array.from(bin, c => c.charCodeAt(0)) });
+    }
+    saveBlob(ZIP.create(files), base + ".zip");
+    toast(`Downloaded ${base}.zip — note plus ${files.length - 1} image${files.length === 2 ? "" : "s"}`);
+  } catch (err){
+    toast("Couldn't bundle images — " + err.message);
+    saveBlob(new Blob([text], { type: "text/markdown;charset=utf-8" }), base + ".md");
+  } finally {
+    btn.disabled = false; btn.textContent = old;
+  }
+}
+
 /* ---------------- rendering ---------------- */
 const byPath = (p) => notes.find(n => n.path === p || (!n.path && p === n._tmp));
 function sortNotes(){ notes.sort((a,b) => (b.date||"").localeCompare(a.date||"") || (a.title||"").localeCompare(b.title||"")); }
@@ -437,6 +489,7 @@ $("btnNew").onclick = () => {
 };
 $("btnSave").onclick = saveAll;
 $("btnDelete").onclick = deleteNote;
+$("btnDownload").onclick = downloadNote;
 $("btnReload").onclick = async () => {
   if (dirtyCount() && !confirm("Reload from GitHub? Unsaved notes stay, everything else is refreshed.")) return;
   await load();
@@ -519,7 +572,7 @@ document.addEventListener("keydown", (ev) => {
 });
 window.addEventListener("beforeunload", (ev) => { if (dirtyCount()){ ev.preventDefault(); ev.returnValue = ""; } });
 
-window.__notes = { parseNote, serializeNote, slugify, get notes(){ return notes; } };   // for the test suite
+window.__notes = { parseNote, serializeNote, slugify, localImages, downloadNote, get notes(){ return notes; } };   // for the test suite
 
 (async function boot(){
   const saved = store.get(CFG_KEY);

@@ -138,6 +138,10 @@ tags: [math, reading]
   uploaded to `notes/images/` and a `![](images/…)` link is inserted. Links are
   relative to the note, so they render correctly both on the site and in GitHub's
   own Markdown view.
+- **Download** — the ⤓ button saves the note as a file you can send to someone
+  without giving them a link to this site. A note with no images downloads as a
+  plain `.md`; a note with images downloads as a `.zip` containing the Markdown
+  plus an `images/` folder, so the links still resolve for whoever opens it.
 - **Saving** — edits are held locally (an amber dot marks unsaved notes) until you
   hit **Save to GitHub** or ⌘S. Each note is its own commit.
 - **Editing elsewhere** — the page compares each file's git sha against its cache,
