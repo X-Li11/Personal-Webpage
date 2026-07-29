@@ -319,7 +319,37 @@ async function deleteNote(){
   cacheLocal(); render(); refreshStatus();
 }
 
-/* ---------------- images ---------------- */
+/* ---------------- images ----------------
+   An image is committed the moment you paste it, but GitHub Pages needs a
+   minute to redeploy before the site itself will serve the file. Two safety
+   nets so the preview never shows a broken image:
+     1. images uploaded in this session render straight from the local blob;
+     2. anything the site 404s on falls back to raw.githubusercontent.com,
+        which serves from the repo with no deploy step.                      */
+
+const sessionImages = new Map();   // "images/x.png" -> object URL
+
+const rawUrl = (relToRoot) =>
+  `https://raw.githubusercontent.com/${cfg.owner}/${cfg.repo}/${cfg.branch || "main"}/${relToRoot}`;
+
+function wireImageFallbacks(root){
+  for (const img of root.querySelectorAll("img")){
+    const src = img.getAttribute("src") || "";
+    if (/^[a-z][a-z0-9+.\-]*:/i.test(src)) continue;              // already absolute
+    const prefix = dir() + "/";
+    const rel = src.startsWith(prefix) ? src.slice(prefix.length) : src;
+
+    const blob = sessionImages.get(rel);
+    if (blob){ img.src = blob; continue; }                        // just pasted, show it now
+
+    img.addEventListener("error", () => {
+      if (img.dataset.fellBack || !cfg.owner || !cfg.repo) return;
+      img.dataset.fellBack = "1";
+      img.src = rawUrl(src);                                      // not deployed yet — read the repo
+    }, { once: true });
+  }
+}
+
 async function uploadImage(file){
   if (!cfg.token) { toast("Add a token in ⚙ to upload images"); return null; }
   const ext = (file.name.match(/\.(png|jpe?g|gif|webp|svg)$/i) || [,"png"])[1].toLowerCase();
@@ -327,7 +357,9 @@ async function uploadImage(file){
   const buf = new Uint8Array(await file.arrayBuffer());
   let bin = ""; for (const b of buf) bin += String.fromCharCode(b);
   await putFile(`${dir()}/images/${name}`, btoa(bin), null, `notes: add image ${name}`);
-  return `images/${name}`;
+  const rel = `images/${name}`;
+  try { sessionImages.set(rel, URL.createObjectURL(file)); } catch {}
+  return rel;
 }
 
 async function insertImages(files){
@@ -477,6 +509,7 @@ function renderPreview(){
     placeholder: "<p>Nothing written yet — click here to start.</p>",
     imgPrefix: dir() + "/"          // images/x.png in the file -> notes/images/x.png from the site root
   });
+  wireImageFallbacks($("notePreview"));
   $("notePreview").classList.toggle("placeholder", !had);
 }
 function autoGrow(el){ el.style.height = "auto"; el.style.height = Math.max(el.scrollHeight, 260) + "px"; }
