@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-29T22:41:53.817Z",
+  "updated": "2026-07-29T22:43:32.082Z",
   "todoOrder": [
     "w4rbmap9jgeb::yk3199kbvg1m",
     "w4rbmap9jgeb::r5tjsgx7w195",
@@ -15,7 +15,7 @@
       "id": "2nq9l9t16fhd",
       "date": "2026-07-29",
       "title": "07/29 Log",
-      "body": "# Discussion With Zhi\n- Try vary the SerEnLane; it might be which data lane enabled. So, can try only enable 1. Let's say = 1/2/4. And check.\n- Note that the order of 0/4/8/12 might be swapped. So, figure this out\n- Using chip 1 to understand the mapping better. With Different ports, try the corresponding RX and TX settings and see if we see any communication.\n- The 1/2/3 after 0 and 5/6/7 after 4 are all logical lanes that share the same physical lane with 0/4. So, we have to set RX to 0/4 etc to get response.\n\n- Previous trial of SerEnLane=1 not working could be we not selecting the RX right. Change RX and see.\n- Chip not enabled doesn't mean we don't expect link alignment.\n\n# Test Log\nBefore Configuration, just powering up module, we see 0 link aligned\n\n1. Chip 1 enabled only; RX=12, TX=0; AuroraActiveLane=1; SerEnLane=7\n1. Chip 1 enabled only; RX=12, TX=0; AuroraActiveLane=1; SerEnLane=1\n1. Chip 1 enabled only; RX=12, TX=0; AuroraActiveLane=1; SerEnLane=2\n\n| Test Case | Enabled Chip(s) | RX | TX | AuroraActiveLane | SerEnLane | Result |\n|-----------|-----------------|----|----|------------------|-----------|--------|\n| 1 | Chip 1 only | 12 | 0 | 1 | 7 | Good link seen on 4, 8, 12|\n| 2 | Chip 1 only | 12 | 0 | 1 | 1 | |\n| 3 | Chip 1 only | 12 | 0 | 1 | 2 | |",
+      "body": "# Discussion With Zhi\n- Try vary the SerEnLane; it might be which data lane enabled. So, can try only enable 1. Let's say = 1/2/4. And check.\n- Note that the order of 0/4/8/12 might be swapped. So, figure this out\n- Using chip 1 to understand the mapping better. With Different ports, try the corresponding RX and TX settings and see if we see any communication.\n- The 1/2/3 after 0 and 5/6/7 after 4 are all logical lanes that share the same physical lane with 0/4. So, we have to set RX to 0/4 etc to get response.\n\n- Previous trial of SerEnLane=1 not working could be we not selecting the RX right. Change RX and see.\n- Chip not enabled doesn't mean we don't expect link alignment.\n\n# Test Log\nBefore Configuration, just powering up module, we see 0 link aligned\n\n1. Chip 1 enabled only; RX=12, TX=0; AuroraActiveLane=1; SerEnLane=7\n1. Chip 1 enabled only; RX=12, TX=0; AuroraActiveLane=1; SerEnLane=1\n1. Chip 1 enabled only; RX=12, TX=0; AuroraActiveLane=1; SerEnLane=2\n\n| Test Case | Enabled Chip(s) | RX | TX | AuroraActiveLane | SerEnLane | Result |\n|-----------|-----------------|----|----|------------------|-----------|--------|\n| 1 | Chip 1 only | 12 | 0 | 1 | 7 | Good link seen on 4, 8, 12|\n| 2 | Chip 1 only | 12 | 0 | 1 | 1 | Generally Good but see some error*|\n| 3 | Chip 1 only | 12 | 0 | 1 | 2 | |\n\n*\n```\n[00:42:47:858][ error  ][Itkpixv2DataProcessor][617]: [0x237b4] The ES bit is 0 while the core column number read is zero. Data processed so far are corrupted... Last block 6042284847110922\n```",
       "tags": [],
       "checklist": [
         {
@@ -29,7 +29,7 @@
           "done": false
         }
       ],
-      "updated": "2026-07-29T22:41:51.126Z"
+      "updated": "2026-07-29T22:43:30.701Z"
     },
     {
       "id": "i7w2rh67o9kr",
