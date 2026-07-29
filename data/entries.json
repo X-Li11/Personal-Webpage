@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-29T00:21:26.829Z",
+  "updated": "2026-07-29T20:25:57.838Z",
   "todoOrder": [
     "w4rbmap9jgeb::yk3199kbvg1m",
     "w4rbmap9jgeb::r5tjsgx7w195",
@@ -11,6 +11,15 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "2nq9l9t16fhd",
+      "date": "2026-07-29",
+      "title": "07/29",
+      "body": "# Discussion With Zhi\n- Try vary the SerEnLane; it might be which data lane enabled. So, can try only enable 1. Let's say = 1/2/4. And check. And also change the corresponding 1 to 0 for SerSelOut0/1/2/3.\n- Note that the order of 0/4/8/12 might be swapped. So, figure this out\n- Using chip 1 to understand the mapping better. With Different ports, try the corresponding RX and TX settings and see if we see any communication.\n- The 1/2/3 after 0 and 5/6/7 after 4 are all logical lanes that share the same physical lane with 0/4. So, we have to set RX to 0/4 etc to get response.",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-07-29T20:25:52.812Z"
+    },
     {
       "id": "i7w2rh67o9kr",
       "date": "2026-07-28",
