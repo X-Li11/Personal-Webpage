@@ -10,3 +10,9 @@ IS: Inner System
 OB: Outer Barrel
 OEC: Outer Endcap
 CLApp: Cell Loading App
+
+Components/Connectors:
+pigtail: ribbon cable
+![](images/2026-07-30-ygfaf2.png)
+PCB: Printed Circuit Board
+![](images/2026-07-30-e17tiz.png)
