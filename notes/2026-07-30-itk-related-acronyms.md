@@ -16,3 +16,5 @@ pigtail: ribbon cable
 ![](images/2026-07-30-ygfaf2.png)
 PCB: Printed Circuit Board
 ![](images/2026-07-30-e17tiz.png)
+Twinax cable
+![](images/2026-07-30-p702xw.png)
