@@ -10,6 +10,7 @@ IS: Inner System
 OB: Outer Barrel
 OEC: Outer Endcap
 CLApp: Cell Loading App
+MQMT: Module QC measurement tools
 
 Components/Connectors:
 pigtail: ribbon cable
