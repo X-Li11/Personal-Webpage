@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-29T23:56:51.793Z",
+  "updated": "2026-07-31T20:42:17.311Z",
   "todoOrder": [
     "w4rbmap9jgeb::yk3199kbvg1m",
     "w4rbmap9jgeb::r5tjsgx7w195",
@@ -11,6 +11,15 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "hd1z1zwxezt2",
+      "date": "2026-07-31",
+      "title": "MAPS lecture",
+      "body": "MAPS in HEP experiment\n\nITS2/3 part of ALICE\n\nmultiple scattering\n\nHybrid vs MAPS\n- Hybrid: Separate sending chip and readout chip (fast readout but high material budget) (pp)\n- MAPS: slower readout (microseconds) extreme spatial resolution at limited rate (PbPb)",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-07-31T20:42:12.369Z"
+    },
     {
       "id": "2nq9l9t16fhd",
       "date": "2026-07-29",
