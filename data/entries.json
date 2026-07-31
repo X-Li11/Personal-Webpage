@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-31T22:45:42.317Z",
+  "updated": "2026-07-31T22:47:08.688Z",
   "todoOrder": [
     "w4rbmap9jgeb::yk3199kbvg1m",
     "w4rbmap9jgeb::r5tjsgx7w195",
@@ -15,10 +15,10 @@
       "id": "u2j4nx2eu2fg",
       "date": "2026-07-31",
       "title": "07/31 Log",
-      "body": "bin/scanConsole -c /configs/modules/20UPIM04202209_TESTONWAFER/20UPIM04202209_R0_warm_test.json -r /configs/controller/controller_itkpixv2_dev0.json -s /configs/scans/itkpixv2/std_digitalscan.json -p\n\n\n**Different Ports trial with Chip 1 with Digital Scan to configure the module**\n\n| Test Case | Enabled Chip(s) | Connected DP Port | RX | TX | AuroraActiveLane | SerEnLane | Result |\n|-----------|-----------------|-----------------|----|----|------------------|-----------|--------|\n| 1 | Chip 1 only | 1 | 76 | 6 | 1 | 1  |  No data read back; have 1 link aligned at 3rd row (see screenshot in notes) |\n| 2 | Chip 1 only | 1 | 72 | 6 | 1 | 2  |  No data read back; have 1 link aligned at 3rd row (see screenshot in notes) |\n| 3 | Chip 1 only | 1 | 72 | 6 | 1 | 7  |  No data read back; have 3 links aligned at 3rd row (see screenshot in notes) |\n| 4 | Chip 1 only | 3 | 132 | 0 | 1 | 7  |  Expect Uplink 5, 12, 13 aligned (RX 20, 128, 132) |\n| 4 | Chip 1 only | 3 |  |  | 1 | 7  |  Expect Uplink 5, 12, 13 aligned (RX 20, 128, 132) |",
+      "body": "bin/scanConsole -c /configs/modules/20UPIM04202209_TESTONWAFER/20UPIM04202209_R0_warm_test.json -r /configs/controller/controller_itkpixv2_dev0.json -s /configs/scans/itkpixv2/std_digitalscan.json -p\n\n\n**Different Ports trial with Chip 1 with Digital Scan to configure the module**\n\n| Test Case | Enabled Chip(s) | Connected DP Port | RX | TX | AuroraActiveLane | SerEnLane | Expectation | Result |\n|-----------|-----------------|-----------------|----|----|------------------|-----------|-----------|--------|\n| 1 | Chip 1 only | 1 | 76 | 6 | 1 | 1  |  | No data read back; have 1 link aligned at 3rd row (see screenshot in notes) |\n| 2 | Chip 1 only | 1 | 72 | 6 | 1 | 2  |  | No data read back; have 1 link aligned at 3rd row (see screenshot in notes) |\n| 3 | Chip 1 only | 1 | 72 | 6 | 1 | 7  |  | No data read back; have 3 links aligned at 3rd row (see screenshot in notes) |\n| 4 | Chip 1 only | 3 | 132 | 0 | 1 | 7  |  If TX order is correct; Expect Uplink 5, 12, 13 aligned (RX 20, 128, 132) | |\n| 4 | Chip 1 only | 3 | 132 | 2 | 1 | 7  |  If TX order is flipped; Expect Uplink 5, 12, 13 aligned (RX 20, 128, 132) | |",
       "tags": [],
       "checklist": [],
-      "updated": "2026-07-31T22:44:56.080Z"
+      "updated": "2026-07-31T22:47:07.285Z"
     },
     {
       "id": "hd1z1zwxezt2",
