@@ -14,4 +14,4 @@ Case 3:
 ![](images/2026-07-29-2ysqif.png)
 
 
-![uploading image.png…]()
+![](images/2026-07-31-oaaow0.png)
