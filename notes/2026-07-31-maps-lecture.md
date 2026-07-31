@@ -22,3 +22,8 @@ QGP -> Heavy Quark (like charm) -> displacement
 PiXeL detector for STAR
 
 can't get very very small in radius (first, beam pipe exist, radiation as well, and most relevant beam background)
+
+ITS2->ITS3
+Fully silicon 
+
+EIC: Electron-Ion Collider at BNL
