@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-31T20:45:27.420Z",
+  "updated": "2026-07-31T22:44:21.619Z",
   "todoOrder": [
     "w4rbmap9jgeb::yk3199kbvg1m",
     "w4rbmap9jgeb::r5tjsgx7w195",
@@ -12,13 +12,22 @@
   ],
   "entries": [
     {
+      "id": "u2j4nx2eu2fg",
+      "date": "2026-07-31",
+      "title": "07/31 Log",
+      "body": "bin/scanConsole -c /configs/modules/20UPIM04202209_TESTONWAFER/20UPIM04202209_R0_warm_test.json -r /configs/controller/controller_itkpixv2_dev0.json -s /configs/scans/itkpixv2/std_digitalscan.json -p\n\n\n**Different Ports trial with Chip 1 with Digital Scan to configure the module**\n\n| Test Case | Enabled Chip(s) | Connected DP Port | RX | TX | AuroraActiveLane | SerEnLane | Result |\n|-----------|-----------------|-----------------|----|----|------------------|-----------|--------|\n| 1 | Chip 1 only | 1 | 76 | 6 | 1 | 1  |  No data read back; have 1 link aligned at 3rd row (see screenshot in notes) |\n| 2 | Chip 1 only | 1 | 72 | 6 | 1 | 2  |  No data read back; have 1 link aligned at 3rd row (see screenshot in notes) |\n| 3 | Chip 1 only | 1 | 72 | 6 | 1 | 7  |  No data read back; have 3 links aligned at 3rd row (see screenshot in notes) |\n| 4 | Chip 1 only | 3 |  | 6 | 1 | 7  |  Expect Uplink 5, 12, 13 aligned (RX 20, 128, 132) |\n| 4 | Chip 1 only | 3 |  | 6 | 1 | 7  |  Expect Uplink 5, 12, 13 aligned (RX 20, 128, 132) |",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-07-31T22:44:18.639Z"
+    },
+    {
       "id": "hd1z1zwxezt2",
       "date": "2026-07-31",
       "title": "MAPS lecture",
-      "body": "MAPS in HEP experiment\n\nITS2/3 part of ALICE\n\nmultiple scattering\n\nHybrid vs MAPS\n- Hybrid: Separate sending chip and readout chip (fast readout but high material budget) (pp)\n- MAPS: slower readout (microseconds) extreme spatial resolution at limited rate (PbPb)\n\nFirst MAPS detector: STAR\nRHIC (Relativistic Heavy Ion Collider) 2000-2026 at BNL\nbuilt to detect QGP; 3.83 km length; pp collision $$\\sqrt{s}=510 GeV$$\n",
+      "body": "\n",
       "tags": [],
       "checklist": [],
-      "updated": "2026-07-31T20:45:23.189Z"
+      "updated": "2026-07-31T20:45:45.586Z"
     },
     {
       "id": "2nq9l9t16fhd",
