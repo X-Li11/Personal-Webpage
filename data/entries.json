@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-07-31T20:44:21.319Z",
+  "updated": "2026-07-31T20:45:15.582Z",
   "todoOrder": [
     "w4rbmap9jgeb::yk3199kbvg1m",
     "w4rbmap9jgeb::r5tjsgx7w195",
@@ -15,10 +15,10 @@
       "id": "hd1z1zwxezt2",
       "date": "2026-07-31",
       "title": "MAPS lecture",
-      "body": "MAPS in HEP experiment\n\nITS2/3 part of ALICE\n\nmultiple scattering\n\nHybrid vs MAPS\n- Hybrid: Separate sending chip and readout chip (fast readout but high material budget) (pp)\n- MAPS: slower readout (microseconds) extreme spatial resolution at limited rate (PbPb)\n\nFirst MAPS detector: STAR\nRHIC (Relativistic Heavy Ion Collider) 2000-2026 at BNL\nbuilt to detect QGP\n",
+      "body": "MAPS in HEP experiment\n\nITS2/3 part of ALICE\n\nmultiple scattering\n\nHybrid vs MAPS\n- Hybrid: Separate sending chip and readout chip (fast readout but high material budget) (pp)\n- MAPS: slower readout (microseconds) extreme spatial resolution at limited rate (PbPb)\n\nFirst MAPS detector: STAR\nRHIC (Relativistic Heavy Ion Collider) 2000-2026 at BNL\nbuilt to detect QGP; 3.83 km length; pp collision $\\sqrt{s}=510 GeV$\n",
       "tags": [],
       "checklist": [],
-      "updated": "2026-07-31T20:44:18.855Z"
+      "updated": "2026-07-31T20:45:11.085Z"
     },
     {
       "id": "2nq9l9t16fhd",
