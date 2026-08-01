@@ -95,14 +95,4 @@ Now, try multiple DP cables.
 | 7 | Chip 1 and Chip 2 (enabled) | Port 4 / 3 | RX 192 / 128 | TX 4 / 2 | 1 | 2 / 2 | | Same failure as before |
 | 8 | Chip 1 and Chip 3 (enabled) | Port 4 / 3 | RX 192 / 128 | TX 4 / 2 | 1 | 2 / 2 | | Same failure as above |
 
-Case 8 errors:
-```
-[02:20:18:533][  info  ][Itkpixv2DataProcessor][35916]: [0x237b4]             Chip tag bitflips: 0
-[02:20:18:533][  info  ][Itkpixv2DataProcessor][35916]: [0x237b4]        Chip unrecognized tags: 1
-[02:20:18:533][  info  ][Itkpixv2DataProcessor][35916]: [0x237b4]   Unfinished streams (no EOS): 525
-[02:20:18:533][  info  ][Itkpixv2DataProcessor][35916]: [0x237b4]   Unfinished streams (w/ EOS): 42
-[02:20:18:533][  info  ][Itkpixv2DataProcessor][35916]: [0x237b4]               Corrupt streams: 601
-[02:20:18:533][  info  ][Itkpixv2DataProcessor][35916]: [0x237b4]            Split events count: 259
-```
-
 ![](images/2026-07-31-oaaow0.png)
