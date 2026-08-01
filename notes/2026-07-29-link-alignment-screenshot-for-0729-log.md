@@ -1,5 +1,5 @@
 ---
-title: "Link Alignment Screenshot for 07/29 Log"
+title: "FELIX Triplet Testing Summary"
 date: 2026-07-29
 tags: []
 ---
