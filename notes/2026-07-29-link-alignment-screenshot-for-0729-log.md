@@ -82,7 +82,9 @@ DP Port 6: nothing against the pattern we saw; just overall bad connections.
 # Summary 
 each lpGBT corresponds to each row in elink check (order is correct now with fiber order white/grey/brown/green). 
 
-With a given DP connected, we define which data lane we write out with SerEnLane. The 1/2/4 represents the Lane (line) 3/2/1 in Table 1. And use Table 1, we find what UPLINK and DOWNLINK we have with the data lane. And use our own table to translate UPLINK DOWNLINK to RX TX to write to the connectivity file. For TX special note, the order in our table is swapped within each lpGBT, but that's WRONG. Don't swap. So, DOWNLINK 0/1/2/3/4/5/6/7/ = TX 0/2/4/6/8/10/12/14.
+With a given DP connected, we define which data lane we write out with SerEnLane. The 1/2/4 represents the Lane (line) 3/2/1 in Table 1. And use Table 1, we find what UPLINK and DOWNLINK we have with the data lane. And use our own table to translate UPLINK DOWNLINK to RX TX to write to the connectivity file. For TX, note that the order in our table is swapped within each lpGBT, but that's WRONG. Don't swap. So, DOWNLINK 0/1/2/3/4/5/6/7/ = TX 0/2/4/6/8/10/12/14.
+
+And we have many lanes having problem. As we keep using the same DP cable from the same chip 1, the problem is must be on DP-ERF8 adapter or Optoboard side (less likely). Problematic ones are DP Port 1 lane 1 and 3; DP Port 5 lane 1 and 2; DP Port 6 all three lanes have some problems 
 
 ![](images/2026-07-31-veu8t9.png)
 
