@@ -86,6 +86,9 @@ With a given DP connected, we define which data lane we write out with SerEnLane
 
 ![](images/2026-07-31-veu8t9.png)
 
+![](images/2026-07-31-ct8jdx.png)
+
+
 
 Now, try multiple DP cables.
 
