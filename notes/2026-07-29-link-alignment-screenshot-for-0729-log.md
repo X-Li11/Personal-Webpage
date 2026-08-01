@@ -1,6 +1,6 @@
 ---
 title: "FELIX Triplet Testing Summary"
-date: 2026-07-29
+date: 2026-07-31
 tags: []
 ---
 
@@ -17,6 +17,7 @@ tags: []
 Swapped row 1 and row 2 by swapping the fibers to let row2 being lpGBT3
 DP Port 3:
 UPLINK 4, 5, 12, 13. RX 16, 20, 128, 132.
+
 | Test Case | Enabled Chip(s) | Connected DP Port | RX | TX | AuroraActiveLane | SerEnLane | Expectation | Result |
 |-----------|-----------------|-----------------|----|----|------------------|-----------|-----------|--------|
 | 6 | Chip 1 only | 3 | 132 | 2 | 1 | 1 |  | Good communication! ; link at row 2 position 4 |
