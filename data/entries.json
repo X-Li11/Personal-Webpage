@@ -1,18 +1,36 @@
 {
   "version": 1,
-  "updated": "2026-08-01T04:41:44.590Z",
+  "updated": "2026-08-03T06:46:02.775Z",
   "todoOrder": [
-    "w4rbmap9jgeb::yk3199kbvg1m",
-    "w4rbmap9jgeb::r5tjsgx7w195",
     "w4rbmap9jgeb::ij86ra471qiz",
+    "blp7dhky5jl5::rxpeckxn5opv",
     "w4rbmap9jgeb::3gyg8f2b3fkb",
-    "w4rbmap9jgeb::w42uwjdfpj76",
     "w4rbmap9jgeb::cmh46yi71ykd",
     "tpuohcv4t7dg::j1m9btvntvgl",
     "i7w2rh67o9kr::9c3l70yv9x68",
     "tpuohcv4t7dg::7jo29gk4qzr1"
   ],
   "entries": [
+    {
+      "id": "blp7dhky5jl5",
+      "date": "2026-08-02",
+      "title": "08/02",
+      "body": "",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "rxpeckxn5opv",
+          "text": "Start deploying CLApp",
+          "done": false
+        },
+        {
+          "id": "bs8l8njh81cl",
+          "text": "Read Hyy Paper and brainstorm",
+          "done": false
+        }
+      ],
+      "updated": "2026-08-03T06:45:59.764Z"
+    },
     {
       "id": "u2j4nx2eu2fg",
       "date": "2026-07-31",
@@ -67,6 +85,69 @@
       "updated": "2026-07-29T00:21:25.163Z"
     },
     {
+      "id": "w4rbmap9jgeb",
+      "date": "2026-07-27",
+      "title": "07/27 Log",
+      "body": "# Microservices DAQ test with the triplet module:\n\nConfirmed some setup things:\n- Polarity of TX 0 has to be NOT INVERTED\n- Polarity of all RX has to be NOT INVERTED\n- The DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\n- Don’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n- -o /data in scanConsole to save data locally not in container only\n- tx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\n- rx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n- Need SerEnLane=7; SerEnLane=1 gives error\n\n\nAnalyzed results can be examined through config db runkey ui. Check scan log for counts of different errors.\n\nThe issue now is threshold scan is giving many split event count error\n\nOne note: we only define one rx for module config, but we actually have 3. The other 2 are auto assigned after configuration. Can we manually set all 3? \nAre we reading out from the one rx we define? And it is due to we have lanes combined?\n\nStart planning for adding more connections and bringing other chips\nOrganize the Documentation better to make it readable for others\n\n# Hyy\nHeard from Stefano; need to work on it\n\n# Other\n1. Streamlit\n    1. Ask Maximilian about Streamlit \n    2. we dont need our own scripts; then later need to test how to adapt streamlit to have the functions we need; regarding SN for instance, how do we add them in with the SN we want\n2. Go through all the QC boxes and see if it’s general issue or IS implementation/specific/IS structure\n3. Check all the tests we want to include is in the runkey \n    1. Document we have with the runkey assembler UI available test\n4. Update our stages (like thermal cycle we have our own)\n5. Try the dcs commands Zhi showed\n",
+      "tags": [
+        "DAQ",
+        "Hyy"
+      ],
+      "checklist": [
+        {
+          "id": "206qo9ebmmio",
+          "text": "Reproduce a few successful scans as last Friday",
+          "done": true
+        },
+        {
+          "id": "w42uwjdfpj76",
+          "text": "Try different scans ",
+          "done": true
+        },
+        {
+          "id": "sfw3g9qwpsfk",
+          "text": "",
+          "done": false
+        },
+        {
+          "id": "yk3199kbvg1m",
+          "text": "Write to Maximilian to ask about Streamlit",
+          "done": true
+        },
+        {
+          "id": "k3u9rmhgt8el",
+          "text": "Figure out what is the hardware routing of the Zaza board",
+          "done": true
+        },
+        {
+          "id": "rgnyut5utipf",
+          "text": "Figure out where the analyzed results are saved to ",
+          "done": true
+        },
+        {
+          "id": "r5tjsgx7w195",
+          "text": "Figure out the definition of Split Event Count Error",
+          "done": true
+        },
+        {
+          "id": "ij86ra471qiz",
+          "text": "Hyy work",
+          "done": false
+        },
+        {
+          "id": "cmh46yi71ykd",
+          "text": "try DCS commands",
+          "done": false
+        },
+        {
+          "id": "3gyg8f2b3fkb",
+          "text": "Ask Caterina about the QC Box test, LLS stage etc",
+          "done": false
+        }
+      ],
+      "updated": "2026-08-03T06:44:32.154Z"
+    },
+    {
       "id": "tpuohcv4t7dg",
       "date": "2026-07-27",
       "title": "Miscellaneous",
@@ -85,69 +166,6 @@
         }
       ],
       "updated": "2026-07-28T22:42:31.909Z"
-    },
-    {
-      "id": "w4rbmap9jgeb",
-      "date": "2026-07-27",
-      "title": "07/27 Log",
-      "body": "# Microservices DAQ test with the triplet module:\n\nConfirmed some setup things:\n- Polarity of TX 0 has to be NOT INVERTED\n- Polarity of all RX has to be NOT INVERTED\n- The DP cable must plug to the 2nd port of the Zaza board (tried 1st and 3rd, no communication)\n- Don’t even see the single elink at 8 when plugged to 1st Port now (Why do we see it before?)\n- -o /data in scanConsole to save data locally not in container only\n- tx in connectivity has to be 0 (2 will show no communication; 1 will be an even worse error due to it’s not defined in felix_config.json as tx)\n- rx on connectivity can be 4, 8, 12. 16 won’t work (not sure if it’s cuz 17 is not included in the felix_config.json)\n- Need SerEnLane=7; SerEnLane=1 gives error\n\n\nAnalyzed results can be examined through config db runkey ui. Check scan log for counts of different errors.\n\nThe issue now is threshold scan is giving many split event count error\n\nOne note: we only define one rx for module config, but we actually have 3. The other 2 are auto assigned after configuration. Can we manually set all 3? \nAre we reading out from the one rx we define? And it is due to we have lanes combined?\n\nStart planning for adding more connections and bringing other chips\nOrganize the Documentation better to make it readable for others\n\n# Hyy\nHeard from Stefano; need to work on it\n\n# Other\n1. Streamlit\n    1. Ask Maximilian about Streamlit \n    2. we dont need our own scripts; then later need to test how to adapt streamlit to have the functions we need; regarding SN for instance, how do we add them in with the SN we want\n2. Go through all the QC boxes and see if it’s general issue or IS implementation/specific/IS structure\n3. Check all the tests we want to include is in the runkey \n    1. Document we have with the runkey assembler UI available test\n4. Update our stages (like thermal cycle we have our own)\n5. Try the dcs commands Zhi showed\n",
-      "tags": [
-        "DAQ",
-        "Hyy"
-      ],
-      "checklist": [
-        {
-          "id": "206qo9ebmmio",
-          "text": "Reproduce a few successful scans as last Friday",
-          "done": true
-        },
-        {
-          "id": "w42uwjdfpj76",
-          "text": "Try different scans ",
-          "done": false
-        },
-        {
-          "id": "sfw3g9qwpsfk",
-          "text": "",
-          "done": false
-        },
-        {
-          "id": "yk3199kbvg1m",
-          "text": "Write to Maximilian to ask about Streamlit",
-          "done": false
-        },
-        {
-          "id": "k3u9rmhgt8el",
-          "text": "Figure out what is the hardware routing of the Zaza board",
-          "done": true
-        },
-        {
-          "id": "rgnyut5utipf",
-          "text": "Figure out where the analyzed results are saved to ",
-          "done": true
-        },
-        {
-          "id": "r5tjsgx7w195",
-          "text": "Figure out the definition of Split Event Count Error",
-          "done": false
-        },
-        {
-          "id": "ij86ra471qiz",
-          "text": "Hyy work",
-          "done": false
-        },
-        {
-          "id": "cmh46yi71ykd",
-          "text": "try DCS commands",
-          "done": false
-        },
-        {
-          "id": "3gyg8f2b3fkb",
-          "text": "Ask Caterina about the QC Box test, LLS stage etc",
-          "done": false
-        }
-      ],
-      "updated": "2026-07-28T20:40:33.735Z"
     },
     {
       "id": "welcome-entry",
