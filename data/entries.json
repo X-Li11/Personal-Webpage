@@ -1,21 +1,24 @@
 {
   "version": 1,
-  "updated": "2026-08-03T06:46:02.775Z",
+  "updated": "2026-08-03T23:29:18.145Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
-    "w4rbmap9jgeb::3gyg8f2b3fkb",
     "w4rbmap9jgeb::cmh46yi71ykd",
+    "tpuohcv4t7dg::7jo29gk4qzr1",
     "tpuohcv4t7dg::j1m9btvntvgl",
     "i7w2rh67o9kr::9c3l70yv9x68",
-    "tpuohcv4t7dg::7jo29gk4qzr1"
+    "w4rbmap9jgeb::3gyg8f2b3fkb",
+    "blp7dhky5jl5::bs8l8njh81cl",
+    "blp7dhky5jl5::bsoornj8l5g9",
+    "blp7dhky5jl5::wkxz7eb5lhuk"
   ],
   "entries": [
     {
       "id": "blp7dhky5jl5",
       "date": "2026-08-02",
-      "title": "08/02",
-      "body": "",
+      "title": "08/03",
+      "body": "Have figured out the way to setup proxy to ssh tunnel the felix3-atlas so I can access Microservices UI through my laptop.",
       "tags": [],
       "checklist": [
         {
@@ -27,9 +30,19 @@
           "id": "bs8l8njh81cl",
           "text": "Read Hyy Paper and brainstorm",
           "done": false
+        },
+        {
+          "id": "bsoornj8l5g9",
+          "text": "Schedule a Meeting with Susanne",
+          "done": false
+        },
+        {
+          "id": "wkxz7eb5lhuk",
+          "text": "KOTO...",
+          "done": false
         }
       ],
-      "updated": "2026-08-03T06:45:59.764Z"
+      "updated": "2026-08-03T23:08:00.476Z"
     },
     {
       "id": "u2j4nx2eu2fg",
@@ -39,15 +52,6 @@
       "tags": [],
       "checklist": [],
       "updated": "2026-08-01T00:28:20.988Z"
-    },
-    {
-      "id": "hd1z1zwxezt2",
-      "date": "2026-07-31",
-      "title": "MAPS lecture",
-      "body": "\n",
-      "tags": [],
-      "checklist": [],
-      "updated": "2026-07-31T20:45:45.586Z"
     },
     {
       "id": "2nq9l9t16fhd",
