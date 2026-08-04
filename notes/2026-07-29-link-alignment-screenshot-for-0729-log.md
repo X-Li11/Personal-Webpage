@@ -4,6 +4,9 @@ date: 2026-07-31
 tags: []
 ---
 
+## Link to Progress report
+https://docs.google.com/presentation/d/1fG0iR9hZy2R5pW_s3uivbrxzRLw8J_8iBMePG8ditZE/edit?usp=sharing
+
 **Different Ports trial with Chip 1 with Digital Scan to configure the module**
 
 | Test Case | Enabled Chip(s) | Connected DP Port | RX | TX | AuroraActiveLane | SerEnLane | Expectation | Result |
