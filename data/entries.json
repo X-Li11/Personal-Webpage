@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-05T00:17:09.089Z",
+  "updated": "2026-08-05T00:17:26.068Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -19,9 +19,17 @@
       "date": "2026-08-04",
       "title": "08/04 Hyy",
       "body": "CERNBox quota full. Need to switch to s3df later. Now, just doing fewer toys (3k instead of 10k for the additional grid points)",
-      "tags": [],
-      "checklist": [],
-      "updated": "2026-08-05T00:17:08.267Z"
+      "tags": [
+        "Hyy"
+      ],
+      "checklist": [
+        {
+          "id": "41j6p6jc7x20",
+          "text": "Hyy toys generation on s3df",
+          "done": false
+        }
+      ],
+      "updated": "2026-08-05T00:17:24.653Z"
     },
     {
       "id": "blp7dhky5jl5",
