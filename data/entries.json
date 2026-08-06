@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-05T18:48:59.324Z",
+  "updated": "2026-08-06T21:56:29.703Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -18,7 +18,7 @@
       "id": "xb8j32x96tai",
       "date": "2026-08-04",
       "title": "08/04 Hyy",
-      "body": "CERNBox quota full. Need to switch to s3df later. Now, just doing fewer toys (3k instead of 10k for the additional grid points)\n\n",
+      "body": "CERNBox quota full. Need to switch to s3df later. Now, just doing fewer toys (3k instead of 10k for the additional grid points)\n\nHow to define the significance (normally just sqrt?)",
       "tags": [
         "Hyy"
       ],
@@ -29,7 +29,7 @@
           "done": false
         }
       ],
-      "updated": "2026-08-05T00:18:06.226Z"
+      "updated": "2026-08-06T21:56:28.895Z"
     },
     {
       "id": "blp7dhky5jl5",
