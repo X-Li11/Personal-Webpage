@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-06T23:43:20.533Z",
+  "updated": "2026-08-07T22:35:11.155Z",
   "todoOrder": [
     "tpuohcv4t7dg::7jo29gk4qzr1",
     "w4rbmap9jgeb::ij86ra471qiz",
@@ -16,10 +16,19 @@
   ],
   "entries": [
     {
+      "id": "x35bndb2ue1m",
+      "date": "2026-08-07",
+      "title": "",
+      "body": "",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-08-07T22:33:43.834Z"
+    },
+    {
       "id": "lzvzftfulg9y",
       "date": "2026-08-06",
-      "title": "08/06",
-      "body": "",
+      "title": "08/06 DAQ To Try ",
+      "body": "Swap DP Cables (try shorter DP cables)\nTry fine tuning the threshold scan settings and see how the error rate depends on the threshold. \nTry changing the wait time, Zhi says it's independent.\nAsk Riccardo\n\n\nIMPORTANT: need to filter out auto read register data from felix software after FELIX conifguration but before starting felix-star processes, flx-config -d 0 set DECODING_MASK64B66BKBLOCK=0x0",
       "tags": [],
       "checklist": [
         {
@@ -28,7 +37,7 @@
           "done": false
         }
       ],
-      "updated": "2026-08-06T23:35:10.868Z"
+      "updated": "2026-08-07T22:35:08.142Z"
     },
     {
       "id": "xb8j32x96tai",
