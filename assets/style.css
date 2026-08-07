@@ -90,6 +90,10 @@ button.primary:hover { filter: brightness(1.06); background: var(--accent); }
 button.ghost { border-color: transparent; background: transparent; color: var(--ink-3); padding: 4px 8px; }
 button.ghost:hover { background: var(--panel-2); color: var(--ink); }
 button.danger:hover { color: #c0392b; border-color: #c0392b; }
+button.locked {
+  background: var(--accent-soft); border-color: var(--accent);
+}
+button.locked:hover { background: var(--accent-soft); }
 
 input[type="text"], input[type="date"], input[type="password"], textarea, select {
   font: inherit;

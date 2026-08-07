@@ -74,6 +74,7 @@ needs a paid plan).
 | Tags | comma-separated at the bottom; click a chip in the sidebar to filter |
 | Search | the search box, or **⌘K** |
 | Save | **Save to GitHub**, or **⌘S** |
+| Lock reading mode | the 🔓/🔒 button — see below |
 | Backup | **Export JSON** / **Import** |
 
 ### To Do List
@@ -88,6 +89,17 @@ so there's nothing to write in it and nothing to keep in sync.
 - **Click the grey source line** under an item to jump to the entry it came from.
 - New items appear at the bottom until you give them a position. Empty items are
   ignored until you type something.
+
+### Lock
+
+Both the log book and the notes page have a **🔓 / 🔒** button next to Edit.
+Locked, nothing opens the editor — clicking the text does nothing, and the
+Edit button (and 📎 on notes) is disabled. It's there so you can read a note
+without a stray click dropping you into raw Markdown.
+
+The lock is remembered per browser and survives reloads, and the two pages
+keep separate locks. Starting a new entry or note unlocks automatically, since
+you clearly mean to type.
 
 ### Markdown
 

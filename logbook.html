@@ -82,6 +82,7 @@
         <strong style="font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3)">Notes</strong>
         <span class="sub" id="mdHint">Markdown — click the text to edit</span>
         <div class="spacer"></div>
+        <button id="btnLock" title="Lock: stop clicks from opening the editor">🔓</button>
         <button id="btnPreview">Preview</button>
       </div>
       <textarea id="entryBody" rows="8" placeholder="What happened today?  **bold**, # heading, - list, `code`" hidden></textarea>
@@ -461,18 +462,42 @@ function renderEditor(){
 
 /* body: markdown preview <-> raw editor */
 let editing = false;
+
+/* Lock — when on, nothing opens the editor: not a stray click on the text,
+   not the Preview/Edit button. Deliberately sticky across reloads.        */
+const LOCK_KEY = "logbook.lock.v1";
+let locked = store.get(LOCK_KEY) === true;
+
+function setLock(on){
+  locked = !!on;
+  store.set(LOCK_KEY, locked);
+  if (locked && editing) setEditing(false);
+  updateLockUI();
+}
+function updateLockUI(){
+  const b = $("btnLock");
+  b.textContent = locked ? "🔒" : "🔓";
+  b.classList.toggle("locked", locked);
+  b.title = locked ? "Locked — click to allow editing" : "Lock: stop clicks from opening the editor";
+  $("btnPreview").disabled = locked;
+  $("entryPreview").style.cursor = locked ? "default" : "text";
+  if (!editing) $("mdHint").textContent = locked ? "Locked — read only" : "Click the text to edit";
+}
+
 function setEditing(on, focus){
+  if (on && locked) on = false;          // the lock wins over everything
   editing = !!on;
   $("entryBody").hidden = !editing;
   $("entryPreview").hidden = editing;
   $("btnPreview").textContent = editing ? "Preview" : "Edit";
-  $("mdHint").textContent = editing ? "Markdown supported" : "Click the text to edit";
+  $("mdHint").textContent = editing ? "Markdown supported" : (locked ? "Locked — read only" : "Click the text to edit");
   if (editing){
     autoGrow($("entryBody"));
     if (focus) $("entryBody").focus();
   } else {
     renderPreview();
   }
+  updateLockUI();
 }
 function renderPreview(){
   const e = byId(currentId); if (!e) return;
@@ -500,6 +525,7 @@ function selectEntry(id){ currentId = id; render(); }
 function touch(e){ e.updated = new Date().toISOString(); markDirty(); }
 
 function createEntry(){
+  if (locked) setLock(false);          // you asked for a new entry — you mean to type
   const e = newEntry();
   entries.unshift(e);
   currentId = e.id;
@@ -534,8 +560,13 @@ $("pinnedList").onclick = () => selectEntry(TODO_ID);
 $("entryTitle").oninput = (ev) => { const e = byId(currentId); if(!e) return; e.title = ev.target.value; touch(e); renderList(); };
 $("entryDate").onchange = (ev) => { const e = byId(currentId); if(!e) return; e.date = ev.target.value; touch(e); render(); };
 $("entryBody").oninput = (ev) => { const e = byId(currentId); if(!e) return; e.body = ev.target.value; autoGrow(ev.target); touch(e); };
+$("btnLock").onclick = () => setLock(!locked);
 $("btnPreview").onclick = () => setEditing(!editing, true);
-$("entryPreview").onclick = (ev) => { if (ev.target.closest("a")) return; setEditing(true, true); };
+$("entryPreview").onclick = (ev) => {
+  if (ev.target.closest("a")) return;
+  if (locked) return toast("Locked — unlock 🔒 to edit");
+  setEditing(true, true);
+};
 $("entryBody").addEventListener("keydown", (ev) => {
   if (ev.key === "Escape"){ ev.stopPropagation(); setEditing(false); }
 });

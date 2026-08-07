@@ -67,6 +67,7 @@
         <span class="sub" id="mdHint">Click the text to edit</span>
         <div class="spacer"></div>
         <button id="btnAttach">📎 Image</button>
+        <button id="btnLock" title="Lock: stop clicks from opening the editor">🔓</button>
         <button id="btnPreview">Edit</button>
         <input type="file" id="imgInput" accept="image/*" hidden multiple>
       </div>
@@ -494,14 +495,40 @@ function renderEditor(){
 }
 
 let editing = false;
+
+/* Lock — when on, nothing opens the editor: not a stray click on the text,
+   not the Edit button. Deliberately sticky across reloads.                */
+const LOCK_KEY = "notes.lock.v1";
+let locked = store.get(LOCK_KEY) === true;
+
+function setLock(on){
+  locked = !!on;
+  store.set(LOCK_KEY, locked);
+  if (locked && editing) setEditing(false);
+  updateLockUI();
+}
+function updateLockUI(){
+  const b = $("btnLock");
+  b.textContent = locked ? "🔒" : "🔓";
+  b.classList.toggle("locked", locked);
+  b.title = locked ? "Locked — click to allow editing" : "Lock: stop clicks from opening the editor";
+  $("btnPreview").disabled = locked;
+  $("btnAttach").disabled = locked;
+  $("notePreview").style.cursor = locked ? "default" : "text";
+  if (!editing) $("mdHint").textContent = locked ? "Locked — read only" : "Click the text to edit";
+}
+
 function setEditing(on, focus){
+  if (on && locked) on = false;          // the lock wins over everything
   editing = !!on;
   $("noteBody").hidden = !editing;
   $("notePreview").hidden = editing;
   $("btnPreview").textContent = editing ? "Preview" : "Edit";
-  $("mdHint").textContent = editing ? "Markdown + LaTeX — paste a screenshot to attach it" : "Click the text to edit";
+  $("mdHint").textContent = editing ? "Markdown + LaTeX — paste a screenshot to attach it"
+                                    : (locked ? "Locked — read only" : "Click the text to edit");
   if (editing){ autoGrow($("noteBody")); if (focus) $("noteBody").focus(); }
   else renderPreview();
+  updateLockUI();
 }
 function renderPreview(){
   const n = byPath(currentPath); if (!n) return;
@@ -516,6 +543,7 @@ function autoGrow(el){ el.style.height = "auto"; el.style.height = Math.max(el.s
 
 /* ---------------- wiring ---------------- */
 $("btnNew").onclick = () => {
+  if (locked) setLock(false);          // you asked for a new note — you mean to type
   const n = { path:"", _tmp:"new-" + uid(), sha:null, title:"", date:todayISO(), tags:[], body:"", dirty:true, isNew:true };
   notes.unshift(n); currentPath = n._tmp;
   cacheLocal(); render(); refreshStatus(); $("noteTitle").focus();
@@ -548,8 +576,13 @@ $("noteTags").oninput  = (ev) => {
   markDirty(n); renderTags();
 };
 
+$("btnLock").onclick = () => setLock(!locked);
 $("btnPreview").onclick = () => setEditing(!editing, true);
-$("notePreview").onclick = (ev) => { if (ev.target.closest("a")) return; setEditing(true, true); };
+$("notePreview").onclick = (ev) => {
+  if (ev.target.closest("a") || ev.target.closest("img")) return;
+  if (locked) return toast("Locked — unlock 🔒 to edit");
+  setEditing(true, true);
+};
 $("noteBody").addEventListener("keydown", (ev) => {
   if (ev.key === "Escape"){ ev.stopPropagation(); setEditing(false); }
 });
@@ -569,6 +602,7 @@ for (const target of [$("noteBody"), $("notePreview")]){
     const files = [...(ev.dataTransfer?.files || [])].filter(f => /^image\//.test(f.type));
     if (!files.length) return;
     ev.preventDefault();
+    if (locked) return toast("Locked — unlock 🔒 to attach images");
     if (!editing) setEditing(true, true);
     insertImages(files);
   });
