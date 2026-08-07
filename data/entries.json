@@ -1,8 +1,7 @@
 {
   "version": 1,
-  "updated": "2026-08-07T22:49:29.638Z",
+  "updated": "2026-08-07T23:28:00.652Z",
   "todoOrder": [
-    "tpuohcv4t7dg::7jo29gk4qzr1",
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
     "w4rbmap9jgeb::cmh46yi71ykd",
@@ -70,7 +69,7 @@
         },
         {
           "id": "bs8l8njh81cl",
-          "text": "Read Hyy Paper and brainstorm",
+          "text": "Read Hyy Paper and brainstorm and prepare comments/questions",
           "done": false
         },
         {
@@ -84,7 +83,7 @@
           "done": false
         }
       ],
-      "updated": "2026-08-04T19:29:12.132Z"
+      "updated": "2026-08-07T23:27:59.712Z"
     },
     {
       "id": "u2j4nx2eu2fg",
@@ -129,6 +128,26 @@
         }
       ],
       "updated": "2026-07-29T00:21:25.163Z"
+    },
+    {
+      "id": "tpuohcv4t7dg",
+      "date": "2026-07-27",
+      "title": "Miscellaneous",
+      "body": "",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "j1m9btvntvgl",
+          "text": "Upload insurance for the eye examination",
+          "done": false
+        },
+        {
+          "id": "7jo29gk4qzr1",
+          "text": "Prepare slides for 8/7 Group Meeting",
+          "done": true
+        }
+      ],
+      "updated": "2026-08-07T23:27:28.182Z"
     },
     {
       "id": "w4rbmap9jgeb",
@@ -192,26 +211,6 @@
         }
       ],
       "updated": "2026-08-03T06:44:32.154Z"
-    },
-    {
-      "id": "tpuohcv4t7dg",
-      "date": "2026-07-27",
-      "title": "Miscellaneous",
-      "body": "",
-      "tags": [],
-      "checklist": [
-        {
-          "id": "j1m9btvntvgl",
-          "text": "Upload insurance for the eye examination",
-          "done": false
-        },
-        {
-          "id": "7jo29gk4qzr1",
-          "text": "Prepare slides for 8/7 Group Meeting",
-          "done": false
-        }
-      ],
-      "updated": "2026-07-28T22:42:31.909Z"
     },
     {
       "id": "welcome-entry",
