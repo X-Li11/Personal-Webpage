@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-10T20:30:00.475Z",
+  "updated": "2026-08-10T20:37:07.561Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -17,10 +17,10 @@
       "id": "g4udeob5h6us",
       "date": "2026-08-10",
       "title": "08/10",
-      "body": "Swapped DP cable for Chip 1 to the short miniDP (labeled CH1).\n\n",
+      "body": "Swapped DP cable for Chip 1 to the short miniDP (labeled CH1).\n\nbin/scanConsole -c /configs/modules/20UPIM04202209_TESTONWAFER/20UPIM04202209_R0_warm_test.json -r /configs/controller/controller_itkpixv2_dev0.json -s /configs/scans/itkpixv2/std_digitalscan.json -p -o /data",
       "tags": [],
       "checklist": [],
-      "updated": "2026-08-10T20:25:35.585Z"
+      "updated": "2026-08-10T20:32:34.814Z"
     },
     {
       "id": "x35bndb2ue1m",
