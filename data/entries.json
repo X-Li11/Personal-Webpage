@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-10T22:01:37.995Z",
+  "updated": "2026-08-10T22:06:08.440Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -17,10 +17,10 @@
       "id": "g4udeob5h6us",
       "date": "2026-08-10",
       "title": "08/10",
-      "body": "Swapped DP cable for Chip 1 to the short miniDP (labeled CH1).\n\nbin/scanConsole -c /configs/modules/20UPIM04202209_TESTONWAFER/20UPIM04202209_R0_warm_test.json -r /configs/controller/controller_itkpixv2_dev0.json -s /configs/scans/itkpixv2/std_digitalscan.json -p -o /data\n\n\nsee Data transmission errors -> run BERT with correct elink show 0.1 % error still high -> try run equalization\n\n\n/optoboard_felix/lls/inner_system\n/optoboard_felix/src\n\nexport PYTHONPATH=\"/optoboard-system/optoboard_felix/src/:/optoboard-system/optoboard_felix/lls/inner_system/:${PYTHONPATH}\"\n\n./venv/lib/python3.12/site-packages/optoboard_felix/InitOpto/InitOpto.py\n\npython ./venv/lib/python3.12/site-packages/optoboard_felix/InitOpto/InitOpto.py --optoboard_serial 4400069 --vtrx_v 1.3 --flx_G 0 --flx_d 0 --configure 0 -i --commToolName ",
+      "body": "Swapped DP cable for Chip 1 to the short miniDP (labeled CH1).\n\nbin/scanConsole -c /configs/modules/20UPIM04202209_TESTONWAFER/20UPIM04202209_R0_warm_test.json -r /configs/controller/controller_itkpixv2_dev0.json -s /configs/scans/itkpixv2/std_digitalscan.json -p -o /data\n\n\nsee Data transmission errors -> run BERT with correct elink show 0.1 % error still high -> try run equalization\n\nHave changed volumes inside compose.yaml for optoboard to mount the following directories to the container\n/optoboard_felix/lls/inner_system\n/optoboard_felix/src\n\nexport PYTHONPATH=\"/optoboard_felix/src/:/optoboard_felix/lls/inner_system/:${PYTHONPATH}\"\n\n./venv/lib/python3.12/site-packages/optoboard_felix/InitOpto/InitOpto.py\n\npython ./venv/lib/python3.12/site-packages/optoboard_felix/InitOpto/InitOpto.py --optoboard_serial 4400069 --vtrx_v 1.3 --flx_G 0 --flx_d 0 --configure 0 -i --commToolName ",
       "tags": [],
       "checklist": [],
-      "updated": "2026-08-10T22:01:36.689Z"
+      "updated": "2026-08-10T22:06:07.131Z"
     },
     {
       "id": "x35bndb2ue1m",
