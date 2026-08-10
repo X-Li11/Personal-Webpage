@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-10T20:22:27.281Z",
+  "updated": "2026-08-10T20:25:37.101Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -13,6 +13,15 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "g4udeob5h6us",
+      "date": "2026-08-10",
+      "title": "08/10",
+      "body": "Swapped DP cable for Chip 1 to the short miniDP (labeled CH1).\n\n",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-08-10T20:25:35.585Z"
+    },
     {
       "id": "x35bndb2ue1m",
       "date": "2026-08-07",
