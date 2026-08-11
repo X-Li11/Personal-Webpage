@@ -1,7 +1,7 @@
 ---
 title: "FELIX Triplet Testing Summary"
 date: 2026-07-31
-tags: []
+tags: [DAQ]
 ---
 
 ## Link to Progress report
