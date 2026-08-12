@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-12T00:25:48.421Z",
+  "updated": "2026-08-12T00:26:06.241Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -29,9 +29,14 @@
           "id": "ymeqe6i1loy5",
           "text": "Message Stefano on MM",
           "done": false
+        },
+        {
+          "id": "i6ai95bzm1jv",
+          "text": "Study the LUCID luminosity measurement",
+          "done": false
         }
       ],
-      "updated": "2026-08-12T00:25:46.295Z"
+      "updated": "2026-08-12T00:26:04.841Z"
     },
     {
       "id": "g4udeob5h6us",
