@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-10T22:06:08.440Z",
+  "updated": "2026-08-12T00:25:48.421Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -13,6 +13,26 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "yr7vy19aktzc",
+      "date": "2026-08-11",
+      "title": "08/11",
+      "body": "Finished setup for CLApp, have the Web UI now. Unable to use the suggested Local Support to test\n\n",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "xn2lr5crle7l",
+          "text": "Email Maximilian about the CLApp",
+          "done": false
+        },
+        {
+          "id": "ymeqe6i1loy5",
+          "text": "Message Stefano on MM",
+          "done": false
+        }
+      ],
+      "updated": "2026-08-12T00:25:46.295Z"
+    },
     {
       "id": "g4udeob5h6us",
       "date": "2026-08-10",
