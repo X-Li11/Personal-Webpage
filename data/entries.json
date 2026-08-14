@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-14T22:00:00.772Z",
+  "updated": "2026-08-14T22:52:43.798Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -17,10 +17,10 @@
       "id": "30u0dwt8kvsl",
       "date": "2026-08-14",
       "title": "08/14 Testing + 08/13 Summary",
-      "body": "08/13:\nUsed prbs7 to test polarity (\nRun BERT Scan to check Error Rate\nopto.lpgbt1.bert_by_elink(\"EPRX10\", 9) for lpGBT1 elink 1.\nopto.lpgbt1.bert(",
+      "body": "08/13:\nUsed prbs7 to test polarity (\nRun BERT Scan to check Error Rate\nopto.lpgbt1.bert_by_elink(\"EPRX10\", 9) for lpGBT1 elink 1.\nopto.lpgbt1.bert(\n\ndigital scan has 0 error\ntot scan has 0 error\nanalog scan has ~1000-2000 errors on all 3 chips\ndiscbumpbond scan has ~2000 for chip 1 and 50 for chip 3 and none for chip 2\nthreshold scan has ~55000 for chip 1, 30000 for chip 2, and 45000 for chip 3\n\n",
       "tags": [],
       "checklist": [],
-      "updated": "2026-08-14T20:52:12.696Z"
+      "updated": "2026-08-14T22:52:42.966Z"
     },
     {
       "id": "yr7vy19aktzc",
