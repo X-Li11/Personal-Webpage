@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-14T20:35:11.607Z",
+  "updated": "2026-08-14T22:00:00.772Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -17,10 +17,10 @@
       "id": "30u0dwt8kvsl",
       "date": "2026-08-14",
       "title": "08/14 Testing + 08/13 Summary",
-      "body": "08/13:\nUsed prbs7 to test polarity (\nRun BERT Scan to check Error Rate\n",
+      "body": "08/13:\nUsed prbs7 to test polarity (\nRun BERT Scan to check Error Rate\nopto.lpgbt1.bert_by_elink(\"EPRX10\", 9) for lpGBT1 elink 1.\nopto.lpgbt1.bert(",
       "tags": [],
       "checklist": [],
-      "updated": "2026-08-14T20:32:50.235Z"
+      "updated": "2026-08-14T20:52:12.696Z"
     },
     {
       "id": "yr7vy19aktzc",
