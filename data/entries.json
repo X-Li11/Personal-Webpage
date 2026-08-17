@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-14T22:52:43.798Z",
+  "updated": "2026-08-17T19:42:39.361Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -13,6 +13,26 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "4dj1chu23ztv",
+      "date": "2026-08-17",
+      "title": "08/17",
+      "body": "",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "j42ospj349a6",
+          "text": "Schedule meeting with Susanne",
+          "done": false
+        },
+        {
+          "id": "xhs3yt914m54",
+          "text": "get back to Stefano (check toys)",
+          "done": false
+        }
+      ],
+      "updated": "2026-08-17T19:42:37.792Z"
+    },
     {
       "id": "30u0dwt8kvsl",
       "date": "2026-08-14",
