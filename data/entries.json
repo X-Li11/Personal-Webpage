@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-19T23:08:49.460Z",
+  "updated": "2026-08-19T23:09:00.193Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -17,10 +17,10 @@
       "id": "88cm36t11xug",
       "date": "2026-08-19",
       "title": "08/19",
-      "body": "Download FELIX software and source the setup.sh inside. And ready to fflashprog\ndriver was not loaded\nchanged FELIX_HARDWARE Parameter to let the container find the device \n\nhttps://docs.google.com/spreadsheets/d/1Pwd701gPv42Qr5iK69TW-2J_TkXoWfZ8FoAvdfPedA0/edit?gid=2125215179#gid=2125215179\n\nhttps://confluence.slac.stanford.edu/spaces/Atlas/pages/353752832/Optoboard+Optobox+Optopanel#Optoboard/Optobox/Optopanel-Test-OptopanelatSLAC:",
+      "body": "Download FELIX software and source the setup.sh inside. And ready to fflashprog\ndriver was not loaded\nchanged FELIX_HARDWARE Parameter to let the container find the device \n\nhttps://docs.google.com/spreadsheets/d/1Pwd701gPv42Qr5iK69TW-2J_TkXoWfZ8FoAvdfPedA0/edit?gid=2125215179#gid=2125215179\n\nhttps://confluence.slac.stanford.edu/spaces/Atlas/pages/353752832/Optoboard+Optobox+Optopanel#Optoboard/Optobox/Optopanel-Test-OptopanelatSLAC:\n\nhttps://docs.google.com/spreadsheets/d/1OyE1UaKwtu-as8rF7zhp8mKxoGqp7EO4/edit?gid=16654341#gid=16654341",
       "tags": [],
       "checklist": [],
-      "updated": "2026-08-19T23:08:48.552Z"
+      "updated": "2026-08-19T23:08:59.679Z"
     },
     {
       "id": "4dj1chu23ztv",
