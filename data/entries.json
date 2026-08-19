@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-17T19:43:34.878Z",
+  "updated": "2026-08-19T21:36:08.619Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -13,6 +13,15 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "88cm36t11xug",
+      "date": "2026-08-19",
+      "title": "08/19",
+      "body": "Download FELIX software and source the setup.sh inside. And ready to fflashprog",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-08-19T21:36:06.222Z"
+    },
     {
       "id": "4dj1chu23ztv",
       "date": "2026-08-17",
