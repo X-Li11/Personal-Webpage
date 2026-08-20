@@ -109,3 +109,19 @@ Now, try multiple DP cables.
 | 8 | Chip 1 and Chip 3 (enabled) | Port 4 / 3 | RX 192 / 128 | TX 4 / 2 | 1 | 2 / 2 | | Same failure as above |
 
 ![](images/2026-07-31-oaaow0.png)
+
+
+# Threshold scan parameters 
+double V = (m_vcalPar[1]*vcal*Unit::Milli)/Physics::ElectronCharge;
+return V*m_injCap*Unit::Femto;
+
+Q=CV
+V/Q = 1/C
+0.2*vcal*10^{-3}/(1.602*10^{-19}) = unit of 1/F
+m_injCap * Unit::Femto = 7.902*10^{-15} = unit of F
+InjCap = 7.902
+- Number of e- = vcal * 0.2/1.602*7.902*10 ~ 10*vcal
+
+Index used by BERT scan:
+FD_OL_ChipNumber_EG: 
+FELIX DEVICE _ Optical link (from FELIX perspective) _ Chip number (FELIX doesn't care; so dropped when running Felix scripts) _ EGROUP (EGROUP 0-5 within each lpGBT)
