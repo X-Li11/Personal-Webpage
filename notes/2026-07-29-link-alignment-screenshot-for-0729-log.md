@@ -125,3 +125,114 @@ InjCap = 7.902
 Index used by BERT scan:
 FD_OL_ChipNumber_EG: 
 FELIX DEVICE _ Optical link (from FELIX perspective) _ Chip number (FELIX doesn't care; so dropped when running Felix scripts) _ EGROUP (EGROUP 0-5 within each lpGBT)
+
+
+# Continuation of FELIX test with Zaza Board
+https://docs.google.com/spreadsheets/d/1JZ3dQQYu6x9h4FR9W1P30Yhx-7oqX5if51dmEP0GThc/edit?usp=sharing
+
+Understand the downlink to DP cable mapping better. Uplinks look correct.
+
+# Testing DP Line - Downlink - TX Mapping
+
+| Test Case | Enabled Chip(s) | Connected DP Port | RX | TX | SerEnLane | Result |
+|-----------|-----------------|-----------------|----|----|-----------|--------|
+| 1 | Chip 1 | DP 4 | 196 (UPLINK 19)  | 4  | 1 (Line3 DP) | No communication |
+| 2 | Chip 1 | DP 4 | 196 (UPLINK 19)  | 6  | 1 (Line3 DP) | No communication |
+| 3 | Chip 1 | DP 4 | 192 (UPLINK 18)  | 4 | 2 (Line2 DP) | Correct communication |
+| 4 | Chip 1 | DP 4 | 192 (UPLINK 18)  | 6 | 2 (Line2 DP) | No communication |
+| 5 | Chip 1 | DP 4 | 196 (UPLINK 19)  | 4 | 1 (Line3 DP) | Correct but bad communication |
+| 6 | Chip 1 | DP 4 | 84 (UPLINK 11)  | 4 | 4 (Line1 DP) | Correct communication |
+| 7 | Chip 1 | DP 4 | 80 (UPLINK 10)  | 4 | 8 (Line0 DP) | No Communication |
+| 8 | Chip 1 | DP 3 | 132 (UPLINK 13)  | 2 | 1 (Line3 DP) | Correct communication |
+| 9 | Chip 1 | DP 3 | 132 (UPLINK 13)  | 0 | 1 (Line3 DP) | No communication |
+| 10 | Chip 1 | DP 2 | 12 (UPLINK 3)  | 0 | 1 (Line3 DP) | Correct communication |
+| 11 | Chip 1 | DP 1 | 76 (UPLINK 9)  | 6 | 1 (Line3 DP) | Correct communication |
+| 12 | Chip 1 | DP 5 | 212 (UPLINK 23)  | 14 | 1 (Line3 DP) | No communication |
+| 13 | Chip 1 | DP 5 | 212 (UPLINK 23)  | 12 | 1 (Line3 DP) | failed starting TX12 is not defined |
+| 14 | Chip 1 | DP 5 | 212 (UPLINK 23)  | 10 | 1 (Line3 DP) | No Communication |
+| 15 | Chip 1 | DP 6 | 148 (UPLINK 17)  | 8 | 1 (Line3 DP) |  failed starting TX8 is not defined |
+| 15 | Chip 1 | DP 6 | 148 (UPLINK 17)  | 10 | 1 (Line3 DP) |  Correct but Bad Communication |
+
+Confirmed Summary: 
+
+| DP Port | TX | 
+|---------|----|
+| 1 | 6 |
+| 2 | 0 |
+| 3 | 2 |
+| 4 | 4 |
+| 5 | ? |
+| 6 | 10 |
+
+If we use TX 0/2/4/6/8/10/12/14 = DOWNLINK 0/1/2/3/4/5/6/7
+Then we have this mapping:
+
+| DP Port | DOWNLINK on ERF8 |  Match with "Straight Mapping" |
+|---------|----|----------|
+| 1 | 3 | Y |
+| 2 | 0 | N |
+| 3 | 1 | N |
+| 4 | 2 | Y |
+| 5 | ? | |
+| 6 | 5 | N |
+
+If we use TX 0/2/4/6/8/10/12/14 = DOWNLINK 1/0/3/2/5/4/7/6
+Then we have this mapping:
+
+| DP Port | DOWNLINK on ERF8 |  Match with "Straight Mapping" |
+|---------|----| ----------|
+| 1 | 2 | N | 
+| 2 | 1 | Y |
+| 3 | 0 | Y |
+| 4 | 3 | N |
+| 5 | ? | |
+| 6 | 4 | Y |
+
+DP 5 is TX=12?? 12 is not defined in felix_config.json
+
+# Test Threshold scan/Analog Scan error rate dependence on threshold settings
+| Test Case | Enabled Chip(s) | Connected DP Port | RX | TX | SerEnLane | Scan Type | Error Rate |
+|-----------|-----------------|-----------------|----|----|-----------|--------|--------|
+| 1 | Chip 1 | 2 | 12 (UPLINK 3) | 0 | 1 | Threshold scan with 300 InjV and 100 for wait time | Split events count: 42299 |
+| 2 | Chip 1 | 2 | 12 (UPLINK 3) | 0 | 1 | Threshold scan with 100 InjV and 100 for wait time | Split events count: 1 |
+| 3 | Chip 1 | 2 | 12 (UPLINK 3) | 0 | 1 | Threshold scan with 100 InjV and 10 for wait time | Split events count: 1 |
+| 4 | Chip 1 | 2 | 12 (UPLINK 3) | 0 | 1 | Threshold scan with 200 InjV and 10 for wait time | Split events count: 14752 |
+
+
+ 
+Swapped DP cable for Chip1 (to the short mini DP)
+first confirmed digital scan is good with setup chip 1 through 
+
+| Test Case | Enabled Chip(s) | Connected DP Port | RX | TX | SerEnLane | Result |
+|-----------|-----------------|-----------------|----|----|-----------|--------|
+| 1 | Chip 1 | DP 2 | 12 (UPLINK 3)  | 0 | 1 (Line3 DP) | bad but exist communication |
+| 2 | Chip 1 | DP 2 | 8 (UPLINK 2)  | 0 | 2 (Line2 DP) | ok but exist communication |
+| 3 | Chip 1 | DP 2 | 4 (UPLINK 1)  | 0 | 4 (Line1 DP) | ok but exist communication |
+
+case 1 was good before with the long DP cable. 
+Case 1 error counts now (case 3 is similar):
+```
+2:39:32:044][  info  ][Itkpixv2DataProcessor][106649]: [0x237b4] Finished raw data processor thread
+[22:39:32:044][  info  ][Itkpixv2DataProcessor][106649]: [0x237b4]             Chip tag bitflips: 1
+[22:39:32:044][  info  ][Itkpixv2DataProcessor][106649]: [0x237b4]        Chip unrecognized tags: 0
+[22:39:32:044][  info  ][Itkpixv2DataProcessor][106649]: [0x237b4]   Unfinished streams (no EOS): 433
+[22:39:32:044][  info  ][Itkpixv2DataProcessor][106649]: [0x237b4]   Unfinished streams (w/ EOS): 7
+[22:39:32:044][  info  ][Itkpixv2DataProcessor][106649]: [0x237b4]               Corrupt streams: 1357
+[22:39:32:044][  info  ][Itkpixv2DataProcessor][106649]: [0x237b4]            Split events count: 139
+```
+case 2 error counts (retry appears the same level):
+```
+22:43:50:848][  info  ][Itkpixv2DataProcessor][106994]: [0x237b4]             Chip tag bitflips: 0
+[22:43:50:848][  info  ][Itkpixv2DataProcessor][106994]: [0x237b4]        Chip unrecognized tags: 0
+[22:43:50:848][  info  ][Itkpixv2DataProcessor][106994]: [0x237b4]   Unfinished streams (no EOS): 6
+[22:43:50:848][  info  ][Itkpixv2DataProcessor][106994]: [0x237b4]   Unfinished streams (w/ EOS): 0
+[22:43:50:848][  info  ][Itkpixv2DataProcessor][106994]: [0x237b4]               Corrupt streams: 22
+[22:43:50:848][  info  ][Itkpixv2DataProcessor][106994]: [0x237b4]            Split events count: 2
+```
+
+
+# Note on elink egroup numbering
+
+- elink/RX is FELIX language we have 4 elinks per egroup (and 6 egroup per lpGBT). 
+- We only use the first elink to carry data, so on lpGBT/GBCR level, elink and egroup is same thing.
+- As we skip elink 1-3, we have RX 0, 4, 8, 12 etc
