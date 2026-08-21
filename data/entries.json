@@ -1,13 +1,11 @@
 {
   "version": 1,
-  "updated": "2026-08-20T00:06:01.861Z",
+  "updated": "2026-08-21T15:38:48.013Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
     "w4rbmap9jgeb::cmh46yi71ykd",
-    "i7w2rh67o9kr::9c3l70yv9x68",
     "w4rbmap9jgeb::3gyg8f2b3fkb",
-    "blp7dhky5jl5::bs8l8njh81cl",
     "blp7dhky5jl5::bsoornj8l5g9",
     "blp7dhky5jl5::wkxz7eb5lhuk",
     "tpuohcv4t7dg::j1m9btvntvgl"
@@ -24,9 +22,14 @@
           "id": "bcgbfcn6e2sj",
           "text": "Read the powering",
           "done": false
+        },
+        {
+          "id": "daazlf3s6cre",
+          "text": "Schedule Meeting with Zhi next week to go over LLS",
+          "done": false
         }
       ],
-      "updated": "2026-08-20T00:06:00.448Z"
+      "updated": "2026-08-21T15:38:46.667Z"
     },
     {
       "id": "4dj1chu23ztv",
@@ -38,25 +41,25 @@
         {
           "id": "j42ospj349a6",
           "text": "Schedule meeting with Susanne",
-          "done": false
+          "done": true
         },
         {
           "id": "xhs3yt914m54",
           "text": "get back to Stefano (check toys)",
-          "done": false
+          "done": true
         },
         {
           "id": "bc3tp3kd4zap",
           "text": "Work on slides for sharing with Su Dong and Zhi",
-          "done": false
+          "done": true
         },
         {
           "id": "5s680zth59gg",
           "text": "1on1 Analysis chat with Caterina (Try the comparison skill and also LUCID)",
-          "done": false
+          "done": true
         }
       ],
-      "updated": "2026-08-17T19:43:34.258Z"
+      "updated": "2026-08-20T22:21:23.808Z"
     },
     {
       "id": "30u0dwt8kvsl",
@@ -77,20 +80,20 @@
         {
           "id": "xn2lr5crle7l",
           "text": "Email Maximilian about the CLApp",
-          "done": false
+          "done": true
         },
         {
           "id": "ymeqe6i1loy5",
           "text": "Message Stefano on MM",
-          "done": false
+          "done": true
         },
         {
           "id": "i6ai95bzm1jv",
           "text": "Study the LUCID luminosity measurement",
-          "done": false
+          "done": true
         }
       ],
-      "updated": "2026-08-12T00:26:04.841Z"
+      "updated": "2026-08-20T22:21:28.623Z"
     },
     {
       "id": "g4udeob5h6us",
@@ -157,7 +160,7 @@
         {
           "id": "bs8l8njh81cl",
           "text": "Read Hyy Paper and brainstorm and prepare comments/questions",
-          "done": false
+          "done": true
         },
         {
           "id": "bsoornj8l5g9",
@@ -170,7 +173,7 @@
           "done": false
         }
       ],
-      "updated": "2026-08-07T23:27:59.712Z"
+      "updated": "2026-08-20T22:21:04.107Z"
     },
     {
       "id": "u2j4nx2eu2fg",
@@ -211,10 +214,10 @@
         {
           "id": "9c3l70yv9x68",
           "text": "Continue testing with the Connectivity file for the 3 chip setup",
-          "done": false
+          "done": true
         }
       ],
-      "updated": "2026-07-29T00:21:25.163Z"
+      "updated": "2026-08-20T22:20:57.990Z"
     },
     {
       "id": "tpuohcv4t7dg",
