@@ -10,7 +10,9 @@ IS: Inner System
 OB: Outer Barrel
 OEC: Outer Endcap
 CLApp: Cell Loading App
-MQMT: Module QC measurement tools
+MQMT: Module QC Measurement tools
+MQAT: Module QC Analysis tools
+MOPS: Monitoring of Pixel System
 
 Components/Connectors:
 pigtail: ribbon cable
