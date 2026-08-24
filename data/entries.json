@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-21T15:38:48.013Z",
+  "updated": "2026-08-24T21:10:59.965Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -12,6 +12,30 @@
   ],
   "entries": [
     {
+      "id": "kqwzx7i4yo08",
+      "date": "2026-08-24",
+      "title": "08/24",
+      "body": "EE 216 Principles and Models of Semiconductor Devices\nCS259Q Quantum Computing\nAP228 Quantum Hardware\nAP207 208 Laboratory Electronics\n\nPHYS266 Statistical Methods in Experimental Physics",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "q3krxknkyvfu",
+          "text": "Course Registration",
+          "done": false
+        }
+      ],
+      "updated": "2026-08-24T20:34:16.665Z"
+    },
+    {
+      "id": "390ys487biam",
+      "date": "2026-08-21",
+      "title": "08/21",
+      "body": "",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-08-21T17:34:33.387Z"
+    },
+    {
       "id": "88cm36t11xug",
       "date": "2026-08-19",
       "title": "08/19",
@@ -22,14 +46,9 @@
           "id": "bcgbfcn6e2sj",
           "text": "Read the powering",
           "done": false
-        },
-        {
-          "id": "daazlf3s6cre",
-          "text": "Schedule Meeting with Zhi next week to go over LLS",
-          "done": false
         }
       ],
-      "updated": "2026-08-21T15:38:46.667Z"
+      "updated": "2026-08-20T00:06:00.448Z"
     },
     {
       "id": "4dj1chu23ztv",
@@ -301,33 +320,6 @@
         }
       ],
       "updated": "2026-08-03T06:44:32.154Z"
-    },
-    {
-      "id": "welcome-entry",
-      "date": "2026-07-27",
-      "title": "Log Trial",
-      "body": "Trying this webpage",
-      "tags": [
-        "setup"
-      ],
-      "checklist": [
-        {
-          "id": "c1",
-          "text": "Create the GitHub repo and turn on Pages",
-          "done": true
-        },
-        {
-          "id": "c2",
-          "text": "Paste a fine-grained token into Settings",
-          "done": true
-        },
-        {
-          "id": "c3",
-          "text": "Write my first real entry",
-          "done": true
-        }
-      ],
-      "updated": "2026-07-27T20:28:44.397Z"
     }
   ]
 }
