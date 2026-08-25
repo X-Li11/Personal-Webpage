@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-24T21:10:59.965Z",
+  "updated": "2026-08-25T18:29:44.274Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -88,31 +88,6 @@
       "tags": [],
       "checklist": [],
       "updated": "2026-08-14T22:52:42.966Z"
-    },
-    {
-      "id": "yr7vy19aktzc",
-      "date": "2026-08-11",
-      "title": "08/11",
-      "body": "Finished setup for CLApp, have the Web UI now. Unable to use the suggested Local Support to test\n\n",
-      "tags": [],
-      "checklist": [
-        {
-          "id": "xn2lr5crle7l",
-          "text": "Email Maximilian about the CLApp",
-          "done": true
-        },
-        {
-          "id": "ymeqe6i1loy5",
-          "text": "Message Stefano on MM",
-          "done": true
-        },
-        {
-          "id": "i6ai95bzm1jv",
-          "text": "Study the LUCID luminosity measurement",
-          "done": true
-        }
-      ],
-      "updated": "2026-08-20T22:21:28.623Z"
     },
     {
       "id": "g4udeob5h6us",
