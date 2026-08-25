@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-25T18:53:55.553Z",
+  "updated": "2026-08-25T20:17:15.551Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -15,10 +15,10 @@
       "id": "k2219mp9apf5",
       "date": "2026-08-25",
       "title": "08/25 Triplet Testing",
-      "body": "#Plan\n\n☐ Not completed\n☑ Verify link alignment good with the new power supply (Good)\n\n\nTry threshold scan for more InjVcalMax\nTry Analog scan with different settings\nToT parameters fix if time permits\nTry cool down and see if any other errors show up\n\nStill using DP Port 2/1/6 for chip 1/2/3\nUsing RX4/76/148 AND TX 0/0/0\n\n\n",
+      "body": "#Plan\n\n☑ Verify link alignment good with the new power supply (Good)\n☑ threshold scan for more InjVcalMax\n☑ Try Analog scan with different settings\nToT parameters fix if time permits\nTry cool down and see if any other errors show up\n\nStill using DP Port 2/1/6 for chip 1/2/3\nUsing RX4/76/148 AND TX 0/0/0\n\n\n",
       "tags": [],
       "checklist": [],
-      "updated": "2026-08-25T18:53:51.961Z"
+      "updated": "2026-08-25T20:17:08.646Z"
     },
     {
       "id": "kqwzx7i4yo08",
@@ -34,15 +34,6 @@
         }
       ],
       "updated": "2026-08-24T20:34:16.665Z"
-    },
-    {
-      "id": "390ys487biam",
-      "date": "2026-08-21",
-      "title": "08/21",
-      "body": "",
-      "tags": [],
-      "checklist": [],
-      "updated": "2026-08-21T17:34:33.387Z"
     },
     {
       "id": "88cm36t11xug",
