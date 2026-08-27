@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-27T20:31:04.785Z",
+  "updated": "2026-08-27T20:58:37.257Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -24,10 +24,10 @@
       "id": "k2219mp9apf5",
       "date": "2026-08-25",
       "title": "08/25+08/27 Triplet Testing",
-      "body": "#Plan\n\n☑ Verify link alignment good with the new power supply (Good)\n☑ threshold scan for more InjVcalMax\n☑ Try Analog scan with different settings\nToT parameters fix if time permits\nTry cool down and see if any other errors show up\n\nStill using DP Port 2/1/6 for chip 1/2/3\nUsing RX4/76/148 AND TX 0/0/0\n\nCool down test temperature used (module temperature after power on):\n\n| Run# | Set temperature (°C) | Module Temperature (°C) | Time Taken\n|---|-----------|-------------|-------|\n| 1 | 10 | 22 | 20:23:23 - 20:28:31 |\n| 2 | 0 | 13 | 20:53:03 - 20:58:07 |\n| 3 | -5 | 9 | 21:15:53 - 21:21:02 |\n| 4|  | 0 | 21:38:28:689 - 21:43:32 |\n| 5| | -10 | 21:53:50 - 21:58:55 | \n| 6 | | -20 |  22:11:07 - 22:16:17 | \n| 7 | | -25 |  22:22:21 - 22:27:26| \n\n\n\n",
+      "body": "#Plan\n\n☑ Verify link alignment good with the new power supply (Good)\n☑ threshold scan for more InjVcalMax\n☑ Try Analog scan with different settings\nToT parameters fix if time permits\nTry cool down and see if any other errors show up\n\nStill using DP Port 2/1/6 for chip 1/2/3\nUsing RX4/76/148 AND TX 0/0/0\n\nCool down test temperature used (module temperature after power on):\n\n| Run# | Set temperature (°C) | Module Temperature (°C) | Time Taken\n|---|-----------|-------------|-------|\n| 1 | 10 | 22 | 20:23:23 - 20:28:31 |\n| 2 | 0 | 13 | 20:53:03 - 20:58:07 |\n| 3 | -5 | 9 | 21:15:53 - 21:21:02 |\n| 4|  | 0 | 21:38:28:689 - 21:43:32 |\n| 5| | -10 | 21:53:50 - 21:58:55 | \n| 6 | | -20 |  22:11:07 - 22:16:17 | \n| 7 | | -25 |  22:22:21 - 22:27:26| \n\nFind configs and check if they agree (on pdb go through module-bare module-fe chip and see attached)\n\n\n\n",
       "tags": [],
       "checklist": [],
-      "updated": "2026-08-27T20:31:03.677Z"
+      "updated": "2026-08-27T20:58:36.646Z"
     },
     {
       "id": "kqwzx7i4yo08",
