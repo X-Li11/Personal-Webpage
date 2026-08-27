@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-27T19:05:00.581Z",
+  "updated": "2026-08-27T19:08:44.855Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -11,6 +11,15 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "39g1ykru721o",
+      "date": "2026-08-27",
+      "title": "",
+      "body": "connector board scheme and top/bottom swap on the optoboard MTP\nThen, missing Link Alignment for 4 out of 5 optoboards: fixed by FEC in our setup script. Only the first was enabled like F000000.\nThen, we see Link Alignment for all 5 optoboards on the 1st lpGBT but unable to configure the  optoboards: need to run fstars (to-felix to-host register) with Felix device 1 and cid 00001 specified.\n",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-08-27T19:08:43.280Z"
+    },
     {
       "id": "k2219mp9apf5",
       "date": "2026-08-25",
