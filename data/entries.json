@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-28T22:11:30.586Z",
+  "updated": "2026-08-28T22:14:09.268Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -15,10 +15,10 @@
       "id": "vk0xh9zg6syc",
       "date": "2026-08-28",
       "title": "Questions regarding PDB",
-      "body": "On PDB for LLS, our flavor is not reflected in SN now.\nWe only separate RING and STAVE: RL vs SL; version logged in the N1 but N2 not used for flavor? \n20UPIRL1000001",
+      "body": "On PDB for LLS, our flavor is not reflected in SN now.\nWe only separate RING and STAVE: RL vs SL; version logged in the N1 but N2 not used for flavor? Like not separating L0 and L1; R0.5 R1 R0/1. \n20UPIRL1000001\nChecked EDMS, it indeed only has this one digit, is this agreed plan?",
       "tags": [],
       "checklist": [],
-      "updated": "2026-08-28T22:11:29.563Z"
+      "updated": "2026-08-28T22:14:07.252Z"
     },
     {
       "id": "39g1ykru721o",
