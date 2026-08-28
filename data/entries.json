@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-28T18:05:06.989Z",
+  "updated": "2026-08-28T22:11:30.586Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -11,6 +11,15 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "vk0xh9zg6syc",
+      "date": "2026-08-28",
+      "title": "Questions regarding PDB",
+      "body": "On PDB for LLS, our flavor is not reflected in SN now.\nWe only separate RING and STAVE: RL vs SL; version logged in the N1 but N2 not used for flavor? \n20UPIRL1000001",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-08-28T22:11:29.563Z"
+    },
     {
       "id": "39g1ykru721o",
       "date": "2026-08-27",
