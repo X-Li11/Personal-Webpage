@@ -4,7 +4,8 @@ date: 2026-07-28
 tags: [DAQ]
 ---
 
-#Thermal Chamber related:
+
+# Thermal Chamber related:
 ## Dew-Point Chart (°C)
 
 Rows show **air temperature**. Columns show **relative humidity**.  
@@ -44,3 +45,5 @@ Current elink alignment after connecting DP3 to Port 6; DP2 to Port 1.
 
 
 ![](images/2026-07-29-h867e6.png)
+
+![](images/2026-08-28-z6upn0.png)
