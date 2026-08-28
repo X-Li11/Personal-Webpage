@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-27T21:47:31.912Z",
+  "updated": "2026-08-28T18:05:06.989Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -58,36 +58,6 @@
         }
       ],
       "updated": "2026-08-20T00:06:00.448Z"
-    },
-    {
-      "id": "4dj1chu23ztv",
-      "date": "2026-08-17",
-      "title": "08/17",
-      "body": "",
-      "tags": [],
-      "checklist": [
-        {
-          "id": "j42ospj349a6",
-          "text": "Schedule meeting with Susanne",
-          "done": true
-        },
-        {
-          "id": "xhs3yt914m54",
-          "text": "get back to Stefano (check toys)",
-          "done": true
-        },
-        {
-          "id": "bc3tp3kd4zap",
-          "text": "Work on slides for sharing with Su Dong and Zhi",
-          "done": true
-        },
-        {
-          "id": "5s680zth59gg",
-          "text": "1on1 Analysis chat with Caterina (Try the comparison skill and also LUCID)",
-          "done": true
-        }
-      ],
-      "updated": "2026-08-20T22:21:23.808Z"
     },
     {
       "id": "30u0dwt8kvsl",
