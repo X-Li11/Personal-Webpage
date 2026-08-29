@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-28T23:19:25.363Z",
+  "updated": "2026-08-29T06:30:38.517Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -17,8 +17,19 @@
       "title": "Questions regarding PDB",
       "body": "On PDB for LLS, our flavor is not reflected in SN now.\nWe only separate RING and STAVE: RL vs SL; version logged in the N1 but N2 not used for flavor? Like not separating L0 and L1; R0.5 R1 R0/1. \n20UPIRL1000001\nChecked EDMS, it indeed only has this one digit, is this agreed plan? (confirm with Zhi)\n\nconfirm we indeed know the SN for the type0 ring when we start module loading (confirm with Cooper)\n\nAsk if we have schematic graphs for staves\n\nhttps://optoboard-system.docs.cern.ch/hardware/optobox/powerboard/\n12V or 9V? (ask Brendon)",
       "tags": [],
-      "checklist": [],
-      "updated": "2026-08-28T22:39:58.833Z"
+      "checklist": [
+        {
+          "id": "pw2qimbl3ruz",
+          "text": "Email Cooper and Eric about new SN Digit (And Caterina",
+          "done": false
+        },
+        {
+          "id": "5yq2eqdi43f6",
+          "text": "Email Cooper and Eric about transition to new schema (And Caterina",
+          "done": false
+        }
+      ],
+      "updated": "2026-08-29T06:30:37.531Z"
     },
     {
       "id": "39g1ykru721o",
