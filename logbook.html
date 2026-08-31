@@ -264,13 +264,57 @@ async function load({ silent } = {}){
   }
 }
 
+/* Entries deleted here since the last successful save. Without this, merging
+   the remote copy in after a conflict would resurrect them.                */
+let deletedIds = new Set();
+
+const isConflict = (err) => /does not match|409|conflict/i.test(String(err && err.message));
+
+/* Two tabs or two devices both edited the file, so our sha is stale and
+   GitHub refuses the write. Rather than fail, fetch the remote copy, merge
+   it with ours entry by entry — newest `updated` wins — and save that.     */
+function mergeEntries(remote, local){
+  const out = new Map();
+  for (const e of remote) if (!deletedIds.has(e.id)) out.set(e.id, e);
+  for (const e of local){
+    const other = out.get(e.id);
+    if (!other || (e.updated || "") >= (other.updated || "")) out.set(e.id, e);
+  }
+  return [...out.values()];
+}
+
+async function saveWithMerge(){
+  try {
+    await ghPut();
+    return { merged: false };
+  } catch (err){
+    if (!isConflict(err)) throw err;
+    setStatus("Merging changes from GitHub…");
+    const r = await ghGet();
+    const before = entries.length;
+    entries = mergeEntries(r.entries || [], entries);
+    const live = new Set(entries.flatMap(e => (e.checklist || []).map(c => todoKey(e.id, c.id))));
+    todoOrder = [...todoOrder, ...(r.todoOrder || []).filter(k => !todoOrder.includes(k))]
+                  .filter(k => live.has(k));
+    sha = r.sha;
+    sortEntries();
+    await ghPut();                                   // retry with the fresh sha
+    return { merged: true, gained: entries.length - before };
+  }
+}
+
 async function save(){
   if (!configured()){ openSettings(); return; }
   const btn = $("btnSave"); btn.disabled = true; setStatus("Saving…");
   try {
-    await ghPut();
-    dirty = false; cacheLocal();
-    setStatus("Synced with GitHub", "ok"); toast("Saved to GitHub");
+    const { merged, gained } = await saveWithMerge();
+    dirty = false; deletedIds = new Set(); cacheLocal(); render();
+    setStatus("Synced with GitHub", "ok");
+    toast(merged
+      ? (gained > 0
+          ? `Saved — merged in ${gained} entr${gained === 1 ? "y" : "ies"} from another device`
+          : "Saved — merged changes from another device")
+      : "Saved to GitHub");
   } catch (err){
     setStatus(String(err.message).slice(0,60), "err"); toast("Save failed — " + err.message);
   } finally { btn.disabled = false; }
@@ -629,6 +673,7 @@ $("btnDelete").onclick = () => {
   const e = byId(currentId); if(!e) return;
   if (!confirm(`Delete "${e.title || "Untitled entry"}"? This can't be undone once you save.`)) return;
   entries = entries.filter(x => x.id !== e.id);
+  deletedIds.add(e.id);                  // so a later merge doesn't bring it back
   currentId = entries.length ? entries[0].id : null;
   markDirty(); render();
 };

@@ -280,7 +280,7 @@ async function saveAll(){
   if (!pending.length) return toast("Nothing to save");
 
   $("btnSave").disabled = true;
-  let ok = 0;
+  let ok = 0, skipped = 0;
   for (const n of pending){
     try {
       if (!n.path){
@@ -289,8 +289,15 @@ async function saveAll(){
         delete n._tmp;
       }
       setStatus(`Saving ${n.path.split("/").pop()}…`);
-      const content = await putFile(n.path, b64encode(serializeNote(n)), n.sha,
-                                    `notes: ${n.sha ? "update" : "add"} ${n.title || n.path}`);
+      let content;
+      try {
+        content = await putFile(n.path, b64encode(serializeNote(n)), n.sha,
+                                `notes: ${n.sha ? "update" : "add"} ${n.title || n.path}`);
+      } catch (err){
+        if (!isConflict(err)) throw err;
+        content = await resolveConflict(n);      // changed on GitHub since we loaded it
+        if (!content){ skipped++; continue; }    // keeping GitHub's version instead
+      }
       n.sha = content.sha; n.dirty = false; n.isNew = false; ok++;
     } catch (err){
       setStatus(String(err.message).slice(0, 60), "err");
@@ -301,6 +308,38 @@ async function saveAll(){
   $("btnSave").disabled = false;
   cacheLocal(); render(); refreshStatus();
   if (ok) toast(`Saved ${ok} note${ok === 1 ? "" : "s"} to GitHub`);
+  if (skipped) toast(`${skipped} note${skipped === 1 ? "" : "s"} left as they are on GitHub`);
+}
+
+const isConflict = (err) => /does not match|409|conflict/i.test(String(err && err.message));
+
+/* This note changed on GitHub after we loaded it — another device, another
+   tab, or an edit in Obsidian. Never silently clobber: if the two versions
+   are identical we just adopt the new sha, otherwise it's the user's call. */
+async function resolveConflict(n){
+  const remote = await gh(`${n.path}?ref=${encodeURIComponent(cfg.branch || "main")}&t=${Date.now()}`);
+  if (!remote) return null;
+  const remoteText = b64decode(remote.content || "");
+
+  if (remoteText.trim() === serializeNote(n).trim()){
+    return { sha: remote.sha };                 // same content, stale sha only
+  }
+
+  const keepMine = confirm(
+    `“${n.title}” was changed on GitHub after you opened it.\n\n` +
+    `OK — overwrite GitHub with your version.\n` +
+    `Cancel — keep GitHub's version and discard your local edits.\n\n` +
+    `(Cancel is safe: use ⤓ Download first if you want to keep a copy of yours.)`
+  );
+
+  if (!keepMine){
+    const parsed = parseNote(remoteText, n.path);
+    Object.assign(n, parsed, { sha: remote.sha, dirty: false, isNew: false });
+    if (currentPath === n.path) renderEditor();
+    return null;
+  }
+  return await putFile(n.path, b64encode(serializeNote(n)), remote.sha,
+                       `notes: update ${n.title || n.path} (overwrite)`);
 }
 
 async function deleteNote(){
