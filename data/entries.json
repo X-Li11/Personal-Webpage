@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-29T06:30:38.517Z",
+  "updated": "2026-08-31T19:26:21.760Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -52,7 +52,7 @@
     {
       "id": "kqwzx7i4yo08",
       "date": "2026-08-24",
-      "title": "08/24",
+      "title": "08/24 courses",
       "body": "EE 216 Principles and Models of Semiconductor Devices\nCS259Q Quantum Computing\nAP228 Quantum Hardware\nAP207 208 Laboratory Electronics\n\nPHYS266 Statistical Methods in Experimental Physics",
       "tags": [],
       "checklist": [
@@ -62,7 +62,7 @@
           "done": false
         }
       ],
-      "updated": "2026-08-24T20:34:16.665Z"
+      "updated": "2026-08-31T18:10:19.415Z"
     },
     {
       "id": "88cm36t11xug",
@@ -110,7 +110,7 @@
       "id": "lzvzftfulg9y",
       "date": "2026-08-06",
       "title": "08/06 DAQ To Try ",
-      "body": "Swap DP Cables (try shorter DP cables)\nTry fine tuning the threshold scan settings and see how the error rate depends on the threshold. \nTry changing the wait time, Zhi says it's independent.\nAsk Riccardo\nThe DP to TX is weird but we take it as granted\nCan test chip 2 3 stand alone by having chip 1 connected but not enabled!\n\nIMPORTANT: need to filter out auto read register data from felix software after FELIX conifguration but before starting felix-star processes, flx-config -d 0 set DECODING_MASK64B66BKBLOCK=0x0 before set ServiceBlockEn=1 (from Berkeley FELIX guide)",
+      "body": "Swap DP Cables (try shorter DP cables)\nTry fine tuning the threshold scan settings and see how the error rate depends on the threshold. \nTry changing the wait time, Zhi says it's independent.\nAsk Riccardo\nThe DP to TX is weird but we take it as granted\nCan test chip 2 3 stand alone by having chip 1 connected but not enabled!\n\nIMPORTANT: need to filter out auto read register data from felix software after FELIX conifguration but before starting felix-star processes, flx-config -d 0 set DECODING_MASK64B66BKBLOCK=0x0 before set ServiceBlockEn=1 (from Berkeley FELIX guide)\n\n1_",
       "tags": [],
       "checklist": [
         {
@@ -119,7 +119,7 @@
           "done": false
         }
       ],
-      "updated": "2026-08-07T22:40:17.597Z"
+      "updated": "2026-08-31T18:49:30.534Z"
     },
     {
       "id": "xb8j32x96tai",
