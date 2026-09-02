@@ -1,12 +1,11 @@
 {
   "version": 1,
-  "updated": "2026-09-01T23:33:41.820Z",
+  "updated": "2026-09-02T20:37:04.217Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
     "w4rbmap9jgeb::cmh46yi71ykd",
     "w4rbmap9jgeb::3gyg8f2b3fkb",
-    "blp7dhky5jl5::bsoornj8l5g9",
     "blp7dhky5jl5::wkxz7eb5lhuk",
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
@@ -21,20 +20,30 @@
         {
           "id": "pw2qimbl3ruz",
           "text": "Email Cooper and Eric about new SN Digit (And Caterina",
-          "done": false
+          "done": true
         },
         {
           "id": "5yq2eqdi43f6",
           "text": "Email Cooper and Eric about transition to new schema (And Caterina",
-          "done": false
+          "done": true
         },
         {
           "id": "j9vza0gfzmxq",
           "text": "Get back to Monika on Mattermost",
+          "done": true
+        },
+        {
+          "id": "68qg5j6p3j8o",
+          "text": "Meeting with Susanne on 09/10",
+          "done": false
+        },
+        {
+          "id": "ttacmbux3pfd",
+          "text": "Upcoming discussion with module group regarding module grading (Monika shared",
           "done": false
         }
       ],
-      "updated": "2026-09-01T23:33:41.103Z"
+      "updated": "2026-09-02T20:37:02.378Z"
     },
     {
       "id": "39g1ykru721o",
@@ -79,10 +88,10 @@
         {
           "id": "bcgbfcn6e2sj",
           "text": "Read the powering",
-          "done": false
+          "done": true
         }
       ],
-      "updated": "2026-08-20T00:06:00.448Z"
+      "updated": "2026-09-02T19:22:38.970Z"
     },
     {
       "id": "30u0dwt8kvsl",
@@ -163,7 +172,7 @@
         {
           "id": "bsoornj8l5g9",
           "text": "Schedule a Meeting with Susanne",
-          "done": false
+          "done": true
         },
         {
           "id": "wkxz7eb5lhuk",
@@ -171,7 +180,7 @@
           "done": false
         }
       ],
-      "updated": "2026-08-20T22:21:04.107Z"
+      "updated": "2026-09-02T20:36:11.783Z"
     },
     {
       "id": "u2j4nx2eu2fg",
