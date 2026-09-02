@@ -1,11 +1,9 @@
 {
   "version": 1,
-  "updated": "2026-09-02T20:37:04.217Z",
+  "updated": "2026-09-02T20:55:30.620Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
-    "w4rbmap9jgeb::cmh46yi71ykd",
-    "w4rbmap9jgeb::3gyg8f2b3fkb",
     "blp7dhky5jl5::wkxz7eb5lhuk",
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
@@ -227,26 +225,6 @@
       "updated": "2026-08-20T22:20:57.990Z"
     },
     {
-      "id": "tpuohcv4t7dg",
-      "date": "2026-07-27",
-      "title": "Miscellaneous",
-      "body": "",
-      "tags": [],
-      "checklist": [
-        {
-          "id": "j1m9btvntvgl",
-          "text": "Upload insurance for the eye examination",
-          "done": false
-        },
-        {
-          "id": "7jo29gk4qzr1",
-          "text": "Prepare slides for 8/7 Group Meeting",
-          "done": true
-        }
-      ],
-      "updated": "2026-08-07T23:27:28.182Z"
-    },
-    {
       "id": "w4rbmap9jgeb",
       "date": "2026-07-27",
       "title": "07/27 Log",
@@ -299,15 +277,35 @@
         {
           "id": "cmh46yi71ykd",
           "text": "try DCS commands",
-          "done": false
+          "done": true
         },
         {
           "id": "3gyg8f2b3fkb",
           "text": "Ask Caterina about the QC Box test, LLS stage etc",
-          "done": false
+          "done": true
         }
       ],
-      "updated": "2026-08-03T06:44:32.154Z"
+      "updated": "2026-09-02T20:37:14.233Z"
+    },
+    {
+      "id": "tpuohcv4t7dg",
+      "date": "2026-07-27",
+      "title": "Miscellaneous",
+      "body": "",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "j1m9btvntvgl",
+          "text": "Upload insurance for the eye examination",
+          "done": false
+        },
+        {
+          "id": "7jo29gk4qzr1",
+          "text": "Prepare slides for 8/7 Group Meeting",
+          "done": true
+        }
+      ],
+      "updated": "2026-08-07T23:27:28.182Z"
     }
   ]
 }
