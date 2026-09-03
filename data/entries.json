@@ -1,13 +1,24 @@
 {
   "version": 1,
-  "updated": "2026-09-02T20:55:30.620Z",
+  "updated": "2026-09-03T18:16:13.224Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
-    "blp7dhky5jl5::wkxz7eb5lhuk",
+    "vk0xh9zg6syc::68qg5j6p3j8o",
+    "vk0xh9zg6syc::ttacmbux3pfd",
+    "kqwzx7i4yo08::q3krxknkyvfu",
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "g0pzl800iuvq",
+      "date": "2026-09-03",
+      "title": "",
+      "body": "",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-09-03T18:15:55.862Z"
+    },
     {
       "id": "vk0xh9zg6syc",
       "date": "2026-08-28",
@@ -39,9 +50,19 @@
           "id": "ttacmbux3pfd",
           "text": "Upcoming discussion with module group regarding module grading (Monika shared",
           "done": false
+        },
+        {
+          "id": "dedngjjdixmc",
+          "text": "Upcoming meeting with Eric & Cooper & Caterina",
+          "done": false
+        },
+        {
+          "id": "rwxinbiwj74d",
+          "text": "",
+          "done": false
         }
       ],
-      "updated": "2026-09-02T20:37:02.378Z"
+      "updated": "2026-09-03T18:16:11.725Z"
     },
     {
       "id": "39g1ykru721o",
@@ -175,10 +196,10 @@
         {
           "id": "wkxz7eb5lhuk",
           "text": "KOTO...",
-          "done": false
+          "done": true
         }
       ],
-      "updated": "2026-09-02T20:36:11.783Z"
+      "updated": "2026-09-03T18:15:45.300Z"
     },
     {
       "id": "u2j4nx2eu2fg",
