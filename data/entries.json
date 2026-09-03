@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-03T19:46:29.333Z",
+  "updated": "2026-09-03T20:52:45.352Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -15,7 +15,7 @@
       "id": "g0pzl800iuvq",
       "date": "2026-09-03",
       "title": "LLS Testing plan",
-      "body": "To test:\nsingle module (repeat what was done before - threshold scan analog scan etc)\nmultiple module possible cross talk debug\nask Brendon for commands first\nschedule time with Alic and Prajita\nGoal is to get us more prepared to run LLS test on our own after Alic and Zhi are gone (and Brendon not around)\n",
+      "body": "To test:\nsingle module (repeat what was done before - threshold scan analog scan etc)\nmultiple module possible cross talk debug\nask Brendon for commands first\nschedule time with Alic and Prajita\nGoal is to get us more prepared to run LLS test on our own after Alic and Zhi are gone (and Brendon not around)\n\nAlso follow up on Timon's firmware version issue\n",
       "tags": [],
       "checklist": [
         {
@@ -24,13 +24,13 @@
           "done": false
         }
       ],
-      "updated": "2026-09-03T19:46:28.873Z"
+      "updated": "2026-09-03T20:52:44.738Z"
     },
     {
       "id": "vk0xh9zg6syc",
       "date": "2026-08-28",
       "title": "Questions regarding PDB",
-      "body": "On PDB for LLS, our flavor is not reflected in SN now.\nWe only separate RING and STAVE: RL vs SL; version logged in the N1 but N2 not used for flavor? Like not separating L0 and L1; R0.5 R1 R0/1. \n20UPIRL1000001\nChecked EDMS, it indeed only has this one digit, is this agreed plan? (confirm with Zhi)\n\nconfirm we indeed know the SN for the type0 ring when we start module loading (confirm with Cooper)\n\nAsk if we have schematic graphs for staves\n\nhttps://optoboard-system.docs.cern.ch/hardware/optobox/powerboard/\n12V or 9V? (ask Brendon)",
+      "body": "On PDB for LLS, our flavor is not reflected in SN now.\nWe only separate RING and STAVE: RL vs SL; version logged in the N1 but N2 not used for flavor? Like not separating L0 and L1; R0.5 R1 R0/1. \n20UPIRL1000001\nChecked EDMS, it indeed only has this one digit, is this agreed plan? (confirm with Zhi)\n\nconfirm we indeed know the SN for the type0 ring when we start module loading (confirm with Cooper)\n\nAsk if we have schematic graphs for staves\n\nhttps://optoboard-system.docs.cern.ch/hardware/optobox/powerboard/\n12V or 9V? 9V\n\nAsk for institute permission for IS_TYPE0, Can't register dummy components to test. \n\n\n",
       "tags": [],
       "checklist": [
         {
@@ -69,7 +69,7 @@
           "done": false
         }
       ],
-      "updated": "2026-09-03T18:16:11.725Z"
+      "updated": "2026-09-03T20:47:59.316Z"
     },
     {
       "id": "39g1ykru721o",
