@@ -1,10 +1,11 @@
 {
   "version": 1,
-  "updated": "2026-09-03T18:16:13.224Z",
+  "updated": "2026-09-03T19:45:53.310Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::68qg5j6p3j8o",
+    "vk0xh9zg6syc::dedngjjdixmc",
     "vk0xh9zg6syc::ttacmbux3pfd",
     "kqwzx7i4yo08::q3krxknkyvfu",
     "tpuohcv4t7dg::j1m9btvntvgl"
@@ -13,11 +14,11 @@
     {
       "id": "g0pzl800iuvq",
       "date": "2026-09-03",
-      "title": "",
-      "body": "",
+      "title": "LLS Testing plan",
+      "body": "To test:\nsingle module (repeat what was done before - threshold scan analog scan etc)\nmultiple module possible cross talk debug\nask Brendon for commands first\nschedule time with Alic and Prajita\n",
       "tags": [],
       "checklist": [],
-      "updated": "2026-09-03T18:15:55.862Z"
+      "updated": "2026-09-03T19:45:36.114Z"
     },
     {
       "id": "vk0xh9zg6syc",
