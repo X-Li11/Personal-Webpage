@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-03T20:53:08.530Z",
+  "updated": "2026-09-04T20:26:00.375Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -12,6 +12,31 @@
   ],
   "entries": [
     {
+      "id": "n5nb3d6njl9z",
+      "date": "2026-09-04",
+      "title": "09/04",
+      "body": "how CMS do their numbers\n\nAnalysis + Reading\nLLS Testing\nDatabase\n",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "peegix4vjutk",
+          "text": "Chat with Mirella on bbyy",
+          "done": false
+        },
+        {
+          "id": "qc0dybrjk90t",
+          "text": "get back to Stefano (questions and results)",
+          "done": false
+        },
+        {
+          "id": "ujtr6g5gk1zf",
+          "text": "Start preparing slides for a summary of Hyy analysis",
+          "done": false
+        }
+      ],
+      "updated": "2026-09-04T20:25:57.962Z"
+    },
+    {
       "id": "g0pzl800iuvq",
       "date": "2026-09-03",
       "title": "LLS Testing plan",
@@ -21,7 +46,7 @@
         {
           "id": "n87zkg39qltb",
           "text": "confirm Friday plan",
-          "done": false
+          "done": true
         },
         {
           "id": "4jysg8qv4x7r",
@@ -29,7 +54,7 @@
           "done": false
         }
       ],
-      "updated": "2026-09-03T20:53:08.008Z"
+      "updated": "2026-09-04T18:19:39.801Z"
     },
     {
       "id": "vk0xh9zg6syc",
