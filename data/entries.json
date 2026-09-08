@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-04T20:26:00.375Z",
+  "updated": "2026-09-08T20:59:14.276Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -32,9 +32,14 @@
           "id": "ujtr6g5gk1zf",
           "text": "Start preparing slides for a summary of Hyy analysis",
           "done": false
+        },
+        {
+          "id": "hnqfq31sk1cw",
+          "text": "Funding Form",
+          "done": false
         }
       ],
-      "updated": "2026-09-04T20:25:57.962Z"
+      "updated": "2026-09-08T20:59:13.075Z"
     },
     {
       "id": "g0pzl800iuvq",
