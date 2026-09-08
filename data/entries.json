@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-08T20:59:14.276Z",
+  "updated": "2026-09-08T22:11:32.480Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -15,7 +15,7 @@
       "id": "n5nb3d6njl9z",
       "date": "2026-09-04",
       "title": "09/04",
-      "body": "how CMS do their numbers\n\nAnalysis + Reading\nLLS Testing\nDatabase\n",
+      "body": "how CMS do their numbers\n\nAnalysis + Reading\nLLS Testing\nDatabase\n\nhttps://indico.cern.ch/event/1726554/",
       "tags": [],
       "checklist": [
         {
@@ -32,14 +32,9 @@
           "id": "ujtr6g5gk1zf",
           "text": "Start preparing slides for a summary of Hyy analysis",
           "done": false
-        },
-        {
-          "id": "hnqfq31sk1cw",
-          "text": "Funding Form",
-          "done": false
         }
       ],
-      "updated": "2026-09-08T20:59:13.075Z"
+      "updated": "2026-09-08T22:11:30.878Z"
     },
     {
       "id": "g0pzl800iuvq",
