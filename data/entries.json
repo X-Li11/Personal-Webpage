@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-08T22:11:32.480Z",
+  "updated": "2026-09-09T17:13:36.779Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -11,6 +11,15 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "ncasmlu1qd7i",
+      "date": "2026-09-08",
+      "title": "Questions to ask Stefano",
+      "body": "is 39% from (1.18-0.72)/1.18?\nis CMS 7% from 0.08/1.18\nuncertainty sigma_int 1.31% ",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-09-09T00:51:46.533Z"
+    },
     {
       "id": "n5nb3d6njl9z",
       "date": "2026-09-04",
