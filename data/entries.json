@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-09T17:13:36.779Z",
+  "updated": "2026-09-10T07:57:49.730Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -12,13 +12,22 @@
   ],
   "entries": [
     {
+      "id": "sw7r0h3edpdl",
+      "date": "2026-09-10",
+      "title": "QT Meeting",
+      "body": "Currently have the pages written and tested with a L1 stave. Completely follow the app flow (registration + auto creation of SP Chain and HV group) and upload a csv for module physical position\n\nLeft to do: wrap up the pages for Clapp with testing on dummy with rings (need Type0 to test with) then implement the structure change for existing ones",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-09-10T07:57:47.511Z"
+    },
+    {
       "id": "ncasmlu1qd7i",
       "date": "2026-09-08",
       "title": "Questions to ask Stefano",
-      "body": "is 39% from (1.18-0.72)/1.18?\nis CMS 7% from 0.08/1.18\nuncertainty sigma_int 1.31% ",
+      "body": "is 39% from (1.18-0.72)/1.18?\nis CMS 7% from 0.08/1.18\nuncertainty sigma_int 1.31% \n\n\nWhat do we mean by the KI are fully correlated across the two bins:\"\n It is implemented as a single nuisance parameter acting on\nthe 𝑔𝑔-interference normalisation, fully correlated between the two 𝑝𝛾𝛾\nT categories, and constitutes the\nlargest single contribution to the total uncertainty in Γ𝐻, amounting to 49 MeVat 68% CL. \"",
       "tags": [],
       "checklist": [],
-      "updated": "2026-09-09T00:51:46.533Z"
+      "updated": "2026-09-10T06:39:34.495Z"
     },
     {
       "id": "n5nb3d6njl9z",
