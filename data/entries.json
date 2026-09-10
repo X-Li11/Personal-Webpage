@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-10T07:57:49.730Z",
+  "updated": "2026-09-10T08:00:44.631Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -15,10 +15,10 @@
       "id": "sw7r0h3edpdl",
       "date": "2026-09-10",
       "title": "QT Meeting",
-      "body": "Currently have the pages written and tested with a L1 stave. Completely follow the app flow (registration + auto creation of SP Chain and HV group) and upload a csv for module physical position\n\nLeft to do: wrap up the pages for Clapp with testing on dummy with rings (need Type0 to test with) then implement the structure change for existing ones",
+      "body": "Currently have the pages written and tested with a L1 and L0 stave. Completely follow the app flow (registration + auto creation of SP Chain and HV group) and upload a csv for module physical position\n\nLeft to do: wrap up the pages for Clapp with testing on dummy with rings (need Type0 to test with) then implement the structure change for existing ones\n\nMeanwhile, testing microservices with our system testing box. currently half of L0 stave.\n",
       "tags": [],
       "checklist": [],
-      "updated": "2026-09-10T07:57:47.511Z"
+      "updated": "2026-09-10T08:00:43.214Z"
     },
     {
       "id": "ncasmlu1qd7i",
