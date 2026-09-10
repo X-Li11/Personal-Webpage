@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-10T14:47:12.988Z",
+  "updated": "2026-09-10T14:47:30.090Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -15,10 +15,10 @@
       "id": "sw7r0h3edpdl",
       "date": "2026-09-10",
       "title": "QT Meeting",
-      "body": "Currently have the pages written and tested with a L1 and L0 stave. Completely follow the app flow (registration + auto creation of SP Chain and HV group) and upload a csv for module physical position\n\nLeft to do: wrap up the pages for Clapp with testing on dummy with rings (need Type0 to test with) then implement the structure change for existing ones\n\nMeanwhile, testing microservices with our system testing box. currently half of L0 stave.\n\nplan for giving a talk on LLS meeting\n\ncontinue clapp development\n\ncontinue runkey preparation\n\nhands on session Oct6th-9th. \n",
+      "body": "Currently have the pages written and tested with a L1 and L0 stave. Completely follow the app flow (registration + auto creation of SP Chain and HV group) and upload a csv for module physical position\n\nLeft to do: wrap up the pages for Clapp with testing on dummy with rings (need Type0 to test with) then implement the structure change for existing ones\n\nMeanwhile, testing microservices with our system testing box. currently half of L0 stave.\n\nplan for giving a talk on LLS meeting\n\ncontinue clapp development\n\ncontinue runkey preparation\n\nnew release ready by 9/26(?). hands on session Oct6th-9th. \n",
       "tags": [],
       "checklist": [],
-      "updated": "2026-09-10T14:47:05.639Z"
+      "updated": "2026-09-10T14:47:29.445Z"
     },
     {
       "id": "ncasmlu1qd7i",
