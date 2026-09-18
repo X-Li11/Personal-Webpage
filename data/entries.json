@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-15T21:41:51.813Z",
+  "updated": "2026-09-18T20:28:42.472Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -11,6 +11,21 @@
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "b1migfiyuhs9",
+      "date": "2026-09-18",
+      "title": "CLApp to do list",
+      "body": "\n\nPut SN of bare local support in at the LLS registration step\n\n4 glue syringe for coupled ring\n2 glue syringe for rings\n\nRegister glue\nRegister glue syringe",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "jhudmi2kv1lp",
+          "text": "do Clapp update",
+          "done": false
+        }
+      ],
+      "updated": "2026-09-18T20:28:33.637Z"
+    },
     {
       "id": "sw7r0h3edpdl",
       "date": "2026-09-10",
