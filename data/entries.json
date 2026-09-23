@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-18T20:28:42.472Z",
+  "updated": "2026-09-23T21:39:34.466Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -12,10 +12,28 @@
   ],
   "entries": [
     {
+      "id": "5c2scyjol470",
+      "date": "2026-09-23",
+      "title": "Chain test notes",
+      "body": "Optoboard 1 and 2: slot 7 and slot 6\n4400247 and 4400244",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-09-23T21:39:33.482Z"
+    },
+    {
+      "id": "j3cut9qxg0qp",
+      "date": "2026-09-22",
+      "title": "",
+      "body": "",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-09-23T00:07:35.154Z"
+    },
+    {
       "id": "b1migfiyuhs9",
       "date": "2026-09-18",
       "title": "CLApp to do list",
-      "body": "\n\nPut SN of bare local support in at the LLS registration step\n\n4 glue syringe for coupled ring\n2 glue syringe for rings\n\nRegister glue\nRegister glue syringe",
+      "body": "Done: \nEdited the \n\nTalked with Loading Expert, one important change on LLS structure is added more glue syringe slots\nAdded features to register glue syringe/glue/bare local support to a LLS\nPut SN of bare local support in at the LLS registration step\n\nReceived Type0 Ring SN from OSU (registered as preproduction and labeled with dummy); had to receive to SLAC in order to load them (another lesson learned)\ntested Rings; worked fine; we just need to save module location info temporarily \n\nMicroservices: Figured out how to use runkey with Optoboard settings and FELIX settings tuned to our local setup. Just need a real LLS to test.",
       "tags": [],
       "checklist": [
         {
@@ -24,7 +42,7 @@
           "done": false
         }
       ],
-      "updated": "2026-09-18T20:28:33.637Z"
+      "updated": "2026-09-22T08:30:25.714Z"
     },
     {
       "id": "sw7r0h3edpdl",
