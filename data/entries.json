@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-23T21:39:34.466Z",
+  "updated": "2026-09-24T13:44:01.512Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -33,7 +33,7 @@
       "id": "b1migfiyuhs9",
       "date": "2026-09-18",
       "title": "CLApp to do list",
-      "body": "Done: \nEdited the \n\nTalked with Loading Expert, one important change on LLS structure is added more glue syringe slots\nAdded features to register glue syringe/glue/bare local support to a LLS\nPut SN of bare local support in at the LLS registration step\n\nReceived Type0 Ring SN from OSU (registered as preproduction and labeled with dummy); had to receive to SLAC in order to load them (another lesson learned)\ntested Rings; worked fine; we just need to save module location info temporarily \n\nMicroservices: Figured out how to use runkey with Optoboard settings and FELIX settings tuned to our local setup. Just need a real LLS to test.",
+      "body": "Done: \nTalked with Loading Expert, one important change on LLS structure is added more glue syringe slots\nAdded features to register glue syringe/glue/bare local support to a LLS\nPut SN of bare local support in at the LLS registration step\n\nReceived Type0 Ring SN from OSU (registered as preproduction and labeled with dummy); had to receive to SLAC in order to load them (another lesson learned)\ntested Rings; worked fine; we just need to save module location info temporarily \n\nMicroservices: Figured out how to use runkey with Optoboard settings and FELIX settings tuned to our local setup. Just need a real LLS to test.",
       "tags": [],
       "checklist": [
         {
@@ -42,7 +42,7 @@
           "done": false
         }
       ],
-      "updated": "2026-09-22T08:30:25.714Z"
+      "updated": "2026-09-24T13:44:00.215Z"
     },
     {
       "id": "sw7r0h3edpdl",
@@ -57,10 +57,10 @@
       "id": "ncasmlu1qd7i",
       "date": "2026-09-08",
       "title": "Questions to ask Stefano",
-      "body": "is 39% from (1.18-0.72)/1.18?\nis CMS 7% from 0.08/1.18\nuncertainty sigma_int 1.31% \n\n\nWhat do we mean by the KI are fully correlated across the two bins:\"\n It is implemented as a single nuisance parameter acting on\nthe 𝑔𝑔-interference normalisation, fully correlated between the two 𝑝𝛾𝛾\nT categories, and constitutes the\nlargest single contribution to the total uncertainty in Γ𝐻, amounting to 49 MeVat 68% CL. \"",
+      "body": "is 39% from (1.18-0.72)/1.18?\nis CMS 7% from 0.08/1.18\n\n\nWhat do we mean by the KI are fully correlated across the two bins:\"\n It is implemented as a single nuisance parameter acting on\nthe 𝑔𝑔-interference normalisation, fully correlated between the two 𝑝𝛾𝛾\nT categories, and constitutes the\nlargest single contribution to the total uncertainty in Γ𝐻, amounting to 49 MeVat 68% CL. \"",
       "tags": [],
       "checklist": [],
-      "updated": "2026-09-10T06:39:34.495Z"
+      "updated": "2026-09-24T09:20:16.556Z"
     },
     {
       "id": "n5nb3d6njl9z",
