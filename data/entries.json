@@ -1,16 +1,24 @@
 {
   "version": 1,
-  "updated": "2026-09-24T13:44:03.036Z",
+  "updated": "2026-09-25T17:40:04.561Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::68qg5j6p3j8o",
     "vk0xh9zg6syc::dedngjjdixmc",
     "vk0xh9zg6syc::ttacmbux3pfd",
-    "kqwzx7i4yo08::q3krxknkyvfu",
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "p7usx482x8kp",
+      "date": "2026-09-25",
+      "title": "",
+      "body": "MOPSHub shipping\nhttps://edh.cern.ch/Document/SupplyChain/SHIP/12079927?continue",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-09-25T17:40:03.225Z"
+    },
     {
       "id": "5c2scyjol470",
       "date": "2026-09-23",
@@ -19,15 +27,6 @@
       "tags": [],
       "checklist": [],
       "updated": "2026-09-23T21:39:33.482Z"
-    },
-    {
-      "id": "j3cut9qxg0qp",
-      "date": "2026-09-22",
-      "title": "",
-      "body": "",
-      "tags": [],
-      "checklist": [],
-      "updated": "2026-09-23T00:07:35.154Z"
     },
     {
       "id": "b1migfiyuhs9",
@@ -39,10 +38,10 @@
         {
           "id": "jhudmi2kv1lp",
           "text": "do Clapp update",
-          "done": false
+          "done": true
         }
       ],
-      "updated": "2026-09-24T13:44:00.215Z"
+      "updated": "2026-09-24T21:23:51.662Z"
     },
     {
       "id": "sw7r0h3edpdl",
@@ -72,12 +71,12 @@
         {
           "id": "peegix4vjutk",
           "text": "Chat with Mirella on bbyy",
-          "done": false
+          "done": true
         },
         {
           "id": "qc0dybrjk90t",
           "text": "get back to Stefano (questions and results)",
-          "done": false
+          "done": true
         },
         {
           "id": "ujtr6g5gk1zf",
@@ -85,7 +84,7 @@
           "done": false
         }
       ],
-      "updated": "2026-09-08T22:11:30.878Z"
+      "updated": "2026-09-24T21:24:01.502Z"
     },
     {
       "id": "g0pzl800iuvq",
@@ -102,10 +101,10 @@
         {
           "id": "4jysg8qv4x7r",
           "text": "follow up with Timon",
-          "done": false
+          "done": true
         }
       ],
-      "updated": "2026-09-04T18:19:39.801Z"
+      "updated": "2026-09-24T21:24:06.603Z"
     },
     {
       "id": "vk0xh9zg6syc",
@@ -131,7 +130,7 @@
         },
         {
           "id": "68qg5j6p3j8o",
-          "text": "Meeting with Susanne on 09/10",
+          "text": "Meeting with Susanne on 09/25",
           "done": false
         },
         {
@@ -150,7 +149,7 @@
           "done": false
         }
       ],
-      "updated": "2026-09-03T20:47:59.316Z"
+      "updated": "2026-09-24T21:23:29.452Z"
     },
     {
       "id": "39g1ykru721o",
@@ -180,10 +179,10 @@
         {
           "id": "q3krxknkyvfu",
           "text": "Course Registration",
-          "done": false
+          "done": true
         }
       ],
-      "updated": "2026-08-31T18:10:19.415Z"
+      "updated": "2026-09-24T21:23:48.751Z"
     },
     {
       "id": "88cm36t11xug",
