@@ -12,4 +12,6 @@ fix: stop that Felix stars before start new ones
 Problem 2:
 Symptom: Optoboards not able to be configured through Microservices' GUI
 Actual Cause: Unknown
-Fix: flpgbt to wake the Optoboard up using the old way
+Fix: flpgbt to wake the Optoboard up using the old way; then they are reachable through Microservices
+
+Problem 3:
