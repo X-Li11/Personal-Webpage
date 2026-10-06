@@ -1,11 +1,8 @@
 {
   "version": 1,
-  "updated": "2026-10-06T00:24:16.125Z",
+  "updated": "2026-10-06T00:26:35.219Z",
   "todoOrder": [
-    "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
-    "vk0xh9zg6syc::68qg5j6p3j8o",
-    "vk0xh9zg6syc::dedngjjdixmc",
     "vk0xh9zg6syc::ttacmbux3pfd",
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
@@ -19,7 +16,7 @@
       "checklist": [
         {
           "id": "vn0afr7iqme4",
-          "text": "Email Maximillian",
+          "text": "Email Maximillian (make the question clear and give clear info)",
           "done": false
         },
         {
@@ -46,9 +43,24 @@
           "id": "l2bjrkl5ronv",
           "text": "292 HW",
           "done": false
+        },
+        {
+          "id": "se9ltqaztnzg",
+          "text": "Lab Grading",
+          "done": false
+        },
+        {
+          "id": "qc9kj608uddt",
+          "text": "Read Jet and Flavor Tagging performance study materials",
+          "done": false
+        },
+        {
+          "id": "ff2xg23zupvc",
+          "text": "",
+          "done": false
         }
       ],
-      "updated": "2026-10-06T00:24:15.036Z"
+      "updated": "2026-10-06T00:26:32.184Z"
     },
     {
       "id": "5c2scyjol470",
@@ -162,7 +174,7 @@
         {
           "id": "68qg5j6p3j8o",
           "text": "Meeting with Susanne on 09/25",
-          "done": false
+          "done": true
         },
         {
           "id": "ttacmbux3pfd",
@@ -172,7 +184,7 @@
         {
           "id": "dedngjjdixmc",
           "text": "Upcoming meeting with Eric & Cooper & Caterina",
-          "done": false
+          "done": true
         },
         {
           "id": "rwxinbiwj74d",
@@ -180,7 +192,7 @@
           "done": false
         }
       ],
-      "updated": "2026-09-24T21:23:29.452Z"
+      "updated": "2026-10-06T00:24:24.785Z"
     },
     {
       "id": "39g1ykru721o",
@@ -411,7 +423,7 @@
         {
           "id": "ij86ra471qiz",
           "text": "Hyy work",
-          "done": false
+          "done": true
         },
         {
           "id": "cmh46yi71ykd",
@@ -424,7 +436,7 @@
           "done": true
         }
       ],
-      "updated": "2026-09-02T20:37:14.233Z"
+      "updated": "2026-10-06T00:24:22.418Z"
     },
     {
       "id": "tpuohcv4t7dg",
