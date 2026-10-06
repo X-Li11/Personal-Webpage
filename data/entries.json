@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-09-25T17:40:04.561Z",
+  "updated": "2026-10-06T00:24:16.125Z",
   "todoOrder": [
     "w4rbmap9jgeb::ij86ra471qiz",
     "blp7dhky5jl5::rxpeckxn5opv",
@@ -13,11 +13,42 @@
     {
       "id": "p7usx482x8kp",
       "date": "2026-09-25",
-      "title": "",
-      "body": "MOPSHub shipping\nhttps://edh.cern.ch/Document/SupplyChain/SHIP/12079927?continue",
+      "title": "October 5th",
+      "body": "MOPSHub shipping\nhttps://edh.cern.ch/Document/SupplyChain/SHIP/12079927?continue\n\n",
       "tags": [],
-      "checklist": [],
-      "updated": "2026-09-25T17:40:03.225Z"
+      "checklist": [
+        {
+          "id": "vn0afr7iqme4",
+          "text": "Email Maximillian",
+          "done": false
+        },
+        {
+          "id": "3q6hmgekr00v",
+          "text": "PJB with Eric?",
+          "done": false
+        },
+        {
+          "id": "mmhtvpcrr561",
+          "text": "Meeting with Susanne or not on Thursday",
+          "done": false
+        },
+        {
+          "id": "tiim39czrewy",
+          "text": "KOTO continue",
+          "done": false
+        },
+        {
+          "id": "rnk58aotri7h",
+          "text": "Stat Mech HW",
+          "done": false
+        },
+        {
+          "id": "l2bjrkl5ronv",
+          "text": "292 HW",
+          "done": false
+        }
+      ],
+      "updated": "2026-10-06T00:24:15.036Z"
     },
     {
       "id": "5c2scyjol470",
