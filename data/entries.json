@@ -1,12 +1,21 @@
 {
   "version": 1,
-  "updated": "2026-10-06T00:26:49.778Z",
+  "updated": "2026-10-13T21:44:43.729Z",
   "todoOrder": [
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::ttacmbux3pfd",
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "j0ccv3ju302s",
+      "date": "2026-10-13",
+      "title": "Oct 13th",
+      "body": "Change to stages for LLS on PDB",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-10-13T18:42:41.965Z"
+    },
     {
       "id": "p7usx482x8kp",
       "date": "2026-09-25",
@@ -22,7 +31,7 @@
         {
           "id": "3q6hmgekr00v",
           "text": "PJB with Eric?",
-          "done": false
+          "done": true
         },
         {
           "id": "mmhtvpcrr561",
@@ -37,17 +46,17 @@
         {
           "id": "rnk58aotri7h",
           "text": "Stat Mech HW",
-          "done": false
+          "done": true
         },
         {
           "id": "l2bjrkl5ronv",
           "text": "292 HW",
-          "done": false
+          "done": true
         },
         {
           "id": "se9ltqaztnzg",
           "text": "Lab Grading",
-          "done": false
+          "done": true
         },
         {
           "id": "qc9kj608uddt",
@@ -60,7 +69,7 @@
           "done": false
         }
       ],
-      "updated": "2026-10-06T00:26:49.371Z"
+      "updated": "2026-10-13T18:42:21.160Z"
     },
     {
       "id": "5c2scyjol470",
