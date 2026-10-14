@@ -16,7 +16,12 @@ Bundle*8 (Bundle contains PP0 Type1 - existing?)
 Question to ask: Are Objects defined on PDB yet?
 Manifolds? ANL responsibility - 
 IS_PP1_MANIFOLD
+IS Distribution Manifold
+Where can I look up the naming scheme?
 
+IS Barrel Half Assembly
+IS Barrel Quadrant Assembly
+IS Endcap Quadrant Assembly
 
 
 Determining Testing Stages:
@@ -24,5 +29,6 @@ Determining Testing Stages:
 2. Welding
 3. Post Welding Physical QC (Leakage, Pressure being tests; can have extra one called Backup Welding used - related to the two welding available design)
 4. post Welding Electrical testing (optional)
+Some stages are there already; need synchronization with OB and OEC to avoid repeated definitions
 
 Need Eric to add my permission
