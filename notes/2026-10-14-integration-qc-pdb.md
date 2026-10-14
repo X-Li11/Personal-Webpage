@@ -13,7 +13,11 @@ Environment sensors (TBD - not our responsibility)
 Ring*8 (or 7 for 1 quadrant)
 Bundle*8 (Bundle contains PP0 Type1 - existing?)
 
-Question to ask: Are the Manifolds defined on PDB yet? ANL responsibility
+Question to ask: Are Objects defined on PDB yet?
+Manifolds? ANL responsibility - 
+IS_PP1_MANIFOLD
+
+
 
 Determining Testing Stages:
 1. Electrical Testing
