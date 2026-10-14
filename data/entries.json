@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-14T20:41:16.940Z",
+  "updated": "2026-10-14T21:41:47.433Z",
   "todoOrder": [
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::ttacmbux3pfd",
@@ -11,10 +11,36 @@
       "id": "j0ccv3ju302s",
       "date": "2026-10-13",
       "title": "Oct 13th",
-      "body": "Change to stages for LLS on PDB finalized\nIntegration QC PDB concrete plan layout\n292m HW\nstat mech HW\nconfluence page update\n\n\n",
+      "body": "Change to stages for LLS on PDB finalized\n\n\n\n\n\n",
       "tags": [],
-      "checklist": [],
-      "updated": "2026-10-14T20:41:16.097Z"
+      "checklist": [
+        {
+          "id": "2tc0lc2wwsjf",
+          "text": "pharmacy check",
+          "done": false
+        },
+        {
+          "id": "34rvd7yvwwt5",
+          "text": "confluence page update",
+          "done": false
+        },
+        {
+          "id": "c8mf29r1x4mu",
+          "text": "stat mech HW",
+          "done": false
+        },
+        {
+          "id": "bukqlmvvx7te",
+          "text": "292m HW",
+          "done": false
+        },
+        {
+          "id": "yks59on0xdo9",
+          "text": "Integration QC PDB concrete plan layout",
+          "done": false
+        }
+      ],
+      "updated": "2026-10-14T21:41:42.456Z"
     },
     {
       "id": "p7usx482x8kp",
