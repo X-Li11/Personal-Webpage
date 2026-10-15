@@ -23,6 +23,7 @@ IS Barrel Half Assembly
 IS Barrel Quadrant Assembly
 IS Endcap Quadrant Assembly
 
+IS_BCM
 
 Determining Testing Stages:
 1. Electrical Testing
