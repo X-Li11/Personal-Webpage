@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-15T15:26:40.874Z",
+  "updated": "2026-10-15T15:26:50.288Z",
   "todoOrder": [
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::ttacmbux3pfd",
@@ -11,7 +11,7 @@
       "id": "j0ccv3ju302s",
       "date": "2026-10-13",
       "title": "Oct 13th",
-      "body": "Change to stages for LLS on PDB finalized\n\n\nLLS Runkey prepration (DAQ connectivity ready?\nDCS connectivity how? Ask Matthias for method and Su Dong for input\nMonika to check on the definition on PDB/EDMS\n\n\n",
+      "body": "Change to stages for LLS on PDB finalized\n\n\nLLS Runkey prepration (DAQ connectivity ready?\nDCS connectivity how? Ask Matthias for method and Su Dong for input\nAsk Monika to check on the definition on PDB/EDMS\n\n\n",
       "tags": [],
       "checklist": [
         {
@@ -40,7 +40,7 @@
           "done": true
         }
       ],
-      "updated": "2026-10-15T15:26:37.966Z"
+      "updated": "2026-10-15T15:26:47.629Z"
     },
     {
       "id": "p7usx482x8kp",
