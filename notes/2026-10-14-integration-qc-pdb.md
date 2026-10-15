@@ -13,17 +13,16 @@ Environment sensors (TBD - not our responsibility)
 Ring*8 (or 7 for 1 quadrant)
 Bundle*8 (Bundle contains PP0 Type1 - existing?)
 
-Question to ask: Are Objects defined on PDB yet?
-Manifolds? ANL responsibility - 
-IS_PP1_MANIFOLD
-IS Distribution Manifold
-Where can I look up the naming scheme?
+ANL responsibility - 
+IS_PP1_MANIFOLD - Cooling manifold for PP1
+IS Distribution Manifold - has 4 types now but maybe all inlet A side 4 C side 4
 
 IS Barrel Half Assembly
 IS Barrel Quadrant Assembly
 IS Endcap Quadrant Assembly
 
-IS_BCM
+IS_BCM defined
+IS_PLR not defined
 
 Determining Testing Stages:
 1. Electrical Testing
