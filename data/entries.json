@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-15T15:26:50.288Z",
+  "updated": "2026-10-16T18:24:32.128Z",
   "todoOrder": [
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::ttacmbux3pfd",
@@ -38,9 +38,14 @@
           "id": "yks59on0xdo9",
           "text": "Integration QC PDB concrete plan layout",
           "done": true
+        },
+        {
+          "id": "jo57ykhera84",
+          "text": "Talk with Matthias on DCS connectivity ",
+          "done": false
         }
       ],
-      "updated": "2026-10-15T15:26:47.629Z"
+      "updated": "2026-10-16T18:24:30.337Z"
     },
     {
       "id": "p7usx482x8kp",
