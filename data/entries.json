@@ -1,12 +1,30 @@
 {
   "version": 1,
-  "updated": "2026-10-16T18:24:32.128Z",
+  "updated": "2026-11-08T21:15:24.019Z",
   "todoOrder": [
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::ttacmbux3pfd",
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "a4x85gbcfgoa",
+      "date": "2026-11-06",
+      "title": "",
+      "body": "PP0 flavors: 2L11L0 (half) and 1L11L0 and 2 of flavor 1 + 1 of flavor 2 is 5L1 and 3 L0 and that's one quarter shell",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-11-06T23:44:52.053Z"
+    },
+    {
+      "id": "ykfey4v7d9vf",
+      "date": "2026-10-16",
+      "title": "Questions on Analysis",
+      "body": "the photon electron cluster reconstruction has many steps that involve a human chosen threshold like 4-2-0 schema for significance of a cell and 0.5 for the ratio of energy deposited in L1L2L3/Ecluster",
+      "tags": [],
+      "checklist": [],
+      "updated": "2026-10-16T19:10:39.479Z"
+    },
     {
       "id": "j0ccv3ju302s",
       "date": "2026-10-13",
