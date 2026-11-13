@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-13T20:16:23.318Z",
+  "updated": "2026-11-13T20:20:10.286Z",
   "todoOrder": [
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::ttacmbux3pfd",
@@ -31,11 +31,11 @@
         },
         {
           "id": "cg1lhqvr34lk",
-          "text": "Z+jets regression",
+          "text": "Z+jets regression (performance) or something more analysis",
           "done": false
         }
       ],
-      "updated": "2026-11-13T20:16:22.883Z"
+      "updated": "2026-11-13T20:20:09.001Z"
     },
     {
       "id": "a4x85gbcfgoa",
