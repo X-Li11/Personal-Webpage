@@ -1,12 +1,37 @@
 {
   "version": 1,
-  "updated": "2026-11-08T21:15:24.019Z",
+  "updated": "2026-11-13T19:38:26.054Z",
   "todoOrder": [
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::ttacmbux3pfd",
     "tpuohcv4t7dg::j1m9btvntvgl"
   ],
   "entries": [
+    {
+      "id": "30bcpjz5ppn8",
+      "date": "2026-11-13",
+      "title": "",
+      "body": "",
+      "tags": [],
+      "checklist": [
+        {
+          "id": "n8qgimq7pud5",
+          "text": "Get back to Marija Ask Sofi about SLDO",
+          "done": false
+        },
+        {
+          "id": "7uokkctbpw6e",
+          "text": "work with Umar on the continuation of energy correlator alpha s",
+          "done": false
+        },
+        {
+          "id": "dmiyvrraqbql",
+          "text": "",
+          "done": false
+        }
+      ],
+      "updated": "2026-11-13T19:38:24.511Z"
+    },
     {
       "id": "a4x85gbcfgoa",
       "date": "2026-11-06",
