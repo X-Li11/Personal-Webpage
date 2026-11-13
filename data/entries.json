@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-13T19:38:34.106Z",
+  "updated": "2026-11-13T20:16:23.318Z",
   "todoOrder": [
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::ttacmbux3pfd",
@@ -28,9 +28,14 @@
           "id": "dmiyvrraqbql",
           "text": "Hyy summary",
           "done": false
+        },
+        {
+          "id": "cg1lhqvr34lk",
+          "text": "Z+jets regression",
+          "done": false
         }
       ],
-      "updated": "2026-11-13T19:38:33.505Z"
+      "updated": "2026-11-13T20:16:22.883Z"
     },
     {
       "id": "a4x85gbcfgoa",
