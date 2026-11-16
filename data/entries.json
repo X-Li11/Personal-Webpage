@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-11-13T20:20:10.286Z",
+  "updated": "2026-11-16T19:23:38.969Z",
   "todoOrder": [
     "blp7dhky5jl5::rxpeckxn5opv",
     "vk0xh9zg6syc::ttacmbux3pfd",
@@ -11,13 +11,13 @@
       "id": "30bcpjz5ppn8",
       "date": "2026-11-13",
       "title": "",
-      "body": "",
+      "body": "integration test stand\nLV waveform generator\n",
       "tags": [],
       "checklist": [
         {
           "id": "n8qgimq7pud5",
           "text": "Get back to Marija Ask Sofi about SLDO",
-          "done": false
+          "done": true
         },
         {
           "id": "7uokkctbpw6e",
@@ -31,11 +31,11 @@
         },
         {
           "id": "cg1lhqvr34lk",
-          "text": "Z+jets regression (performance) or something more analysis",
+          "text": "Z+jets regression (performance) for these two weeks",
           "done": false
         }
       ],
-      "updated": "2026-11-13T20:20:09.001Z"
+      "updated": "2026-11-16T19:23:37.644Z"
     },
     {
       "id": "a4x85gbcfgoa",
